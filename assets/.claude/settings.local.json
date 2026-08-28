@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"/Users/nielsvanterve/Documents/Feliz Navidad/feliznavidad repo\" && sed -n '210,320p' sections/announcement-bar.liquid)",
+      "Read(//Users/nielsvanterve/Documents/Feliz Navidad/feliznavidad repo/**)"
+    ]
+  }
+}
