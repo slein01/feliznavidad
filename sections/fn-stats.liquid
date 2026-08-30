@@ -1,0 +1,37 @@
+<div class="fn-stats">
+  <div class="fn-stats__grid">
+    {%- for block in section.blocks -%}
+      <div class="fn-stats__item" {{ block.shopify_attributes }}>
+        <div class="fn-stats__value">{{ block.settings.value }}</div>
+        <p class="fn-stats__label">{{ block.settings.label }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FN — Cijfers",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Cijfer",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Waarde", "default": "4,8" },
+        { "type": "text", "id": "label", "label": "Label", "default": "gemiddeld op Google" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "FN — Cijfers",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "4,8", "label": "gemiddeld op Google" } },
+        { "type": "stat", "settings": { "value": "6", "label": "ornamenten in de vaste collectie" } },
+        { "type": "stat", "settings": { "value": "2–3", "label": "werkdagen levertijd" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -12,6 +12,12 @@
           "settings": { "text": "{{ product.vendor }}", "text_style": "uppercase" }
         },
         "title": { "type": "title", "settings": {} },
+        "rating_line": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"fn-pdp-rating\"><span class=\"fn-pdp-rating__stars\" aria-hidden=\"true\">★★★★★</span> <span>4,8 — beoordeeld door klanten op Google</span></div>"
+          }
+        },
         "price": { "type": "price", "settings": {} },
         "variant_picker": {
           "type": "variant_picker",
@@ -48,6 +54,7 @@
       "block_order": [
         "vendor",
         "title",
+        "rating_line",
         "price",
         "variant_picker",
         "quantity_selector",

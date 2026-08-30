@@ -154,6 +154,32 @@
         "padding_bottom": 0
       }
     },
+    "multicolumn_reviews": {
+      "type": "multicolumn",
+      "blocks": {
+        "r1": { "type": "column", "settings": { "title": "Joost", "text": "<p>&ldquo;Mooie producten en snelle levering!&rdquo;</p>" } },
+        "r2": { "type": "column", "settings": { "title": "Suzanne", "text": "<p>&ldquo;Leuke producten en mooi op tijd in huis, kom hier zeker vaker.&rdquo;</p>" } },
+        "r3": { "type": "column", "settings": { "title": "Jordi", "text": "<p>&ldquo;Top, snel in huis.&rdquo;</p>" } }
+      },
+      "block_order": ["r1", "r2", "r3"],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 8,
+        "padding_bottom": 24
+      }
+    },
     "custom_liquid_zWj3Xj": {
       "type": "custom-liquid",
       "name": "t:sections.custom-liquid.presets.name",
@@ -208,6 +234,7 @@
     "fn_trust",
     "rich_text_KRf7jF",
     "rich_text_Nt9ynH",
+    "multicolumn_reviews",
     "custom_liquid_zWj3Xj",
     "rich_text_FQPWYR"
   ]

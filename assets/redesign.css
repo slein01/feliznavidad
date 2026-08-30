@@ -525,10 +525,79 @@ fieldset.js .product-form__input input[type="radio"]:checked + label {
   background: var(--fn-cream); border-radius: 12px; padding: 1rem 1.4rem;
 }
 
+/* ---- PDP: statische Google-rating (custom_liquid block) --------------------- */
+.fn-pdp-rating {
+  display: flex; align-items: center; gap: .8rem;
+  font-size: 1.3rem; color: var(--fn-ink-soft); margin: .4rem 0 .2rem;
+}
+.fn-pdp-rating__stars { color: var(--fn-gold); letter-spacing: 2px; font-size: 1.5rem; }
+
+/* ---- Homepage review-kaarten (multicolumn) --------------------------------- */
+.multicolumn .multicolumn-list__item { text-align: left; }
+.multicolumn .multicolumn-card {
+  background: var(--fn-paper);
+  border: 2px solid var(--fn-line);
+  border-radius: 20px;
+  padding: 2.4rem;
+  height: 100%;
+}
+.multicolumn .multicolumn-list__item:nth-child(2) .multicolumn-card {
+  background: var(--fn-pine);
+  border-color: var(--fn-pine);
+  color: var(--fn-cream);
+}
+.multicolumn .multicolumn-card__info { padding: 0; }
+.multicolumn .multicolumn-card__info > .rte {
+  font-family: var(--fn-display); font-weight: 700;
+  font-size: 1.9rem; line-height: 1.35;
+}
+.multicolumn .multicolumn-card__title {
+  font-family: var(--fn-body);
+  font-weight: 500; font-size: 1.4rem;
+  color: var(--fn-ink-soft); margin-top: 1.4rem;
+}
+.multicolumn .multicolumn-list__item:nth-child(2) .multicolumn-card__title { color: rgba(255, 255, 255, .7); }
+
+/* ---- fn-stats (Over ons) --------------------------------------------------------- */
+.fn-stats { background: var(--fn-green); color: #fff; padding: 5.2rem 5rem; }
+.fn-stats__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.8rem;
+  max-width: var(--page-width, 120rem); margin: 0 auto; text-align: center;
+}
+.fn-stats__value { font-family: var(--fn-display); font-weight: 800; font-size: 4.4rem; line-height: 1; }
+.fn-stats__label { opacity: .9; font-size: 1.4rem; margin: .6rem 0 0; }
+@media (max-width: 749px) {
+  .fn-stats { padding: 3.2rem 2rem; }
+  .fn-stats__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ---- Collectie: eyebrow boven de titel ------------------------------------- */
+.template-collection .main-collection-banner .title::before,
+.template-collection .collection-hero__title::before {
+  content: "De collectie";
+  display: block;
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red);
+  margin-bottom: 1rem;
+}
+
+/* ---- Cart drawer: verzendbalk-marge -------------------------------------------- */
+.cart-drawer__shipbar { padding: 0 var(--fn-drawer-pad, 3.5rem) 1.2rem; }
+.cart-drawer__shipbar .fn-shipbar { padding-top: 0; }
+
+/* ---- Footer: text-blokken als link-lijstjes -------------------------------- */
+.footer-block--text .rte a { display: inline-block; padding: .4rem 0; }
+.footer-block--text .rte a:hover { color: #fff; }
+.footer-block__heading { margin-bottom: 1rem; }
+
 /* --------------------------------------------------------------------------
    Handmatig in Shopify (geen code):
    - Mega-menu CONTENT -> Online Store -> Navigation (dropdown-items).
-   - Cart drawer rendert alleen bij settings.cart_type = "drawer" (staat aan).
-   - fn-breadcrumb toont een collectie op de productpagina alleen als de klant
-     via die collectie binnenkomt (Shopify-gedrag).
+   - Nav-labels in de header komen uit je hoofdmenu.
+   - Announcement-bar tekst: stel de 3-delige boodschap in via de theme-editor.
+   - Social links: vul ze in onder Theme settings -> Social media (dan tonen
+     de footer-iconen).
+   - Klassiek/Grappig-badge op productkaarten kan alleen als je producten die
+     tags geeft in de admin (ze zitten nu in collecties, niet in tags).
+   - Collectie-omschrijvingen: alleen zichtbaar als in de admin ingevuld.
    -------------------------------------------------------------------------- */

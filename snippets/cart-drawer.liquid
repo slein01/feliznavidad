@@ -74,6 +74,9 @@
           </span>
         </button>
       </div>
+      {%- if cart != empty -%}
+        <div class="cart-drawer__shipbar">{% render 'fn-shipping-progress', threshold: 25 %}</div>
+      {%- endif -%}
       <cart-drawer-items
         {% if cart == empty %}
           class=" is-empty"
