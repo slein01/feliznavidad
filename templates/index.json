@@ -1,1 +1,214 @@
-{"sections":{"image_banner":{"type":"image-banner","blocks":{"heading_CwBWWd":{"type":"heading","settings":{"heading":"Maak je kerstboom compleet!","heading_size":"h2"}},"text_Ptfbri":{"type":"text","settings":{"text":"Met kerstornamenten, grappig of klassiek.","text_style":"body"}},"button":{"type":"buttons","settings":{"button_label_1":"Bekijk producten →","button_link_1":"shopify://collections/all","button_style_secondary_1":false,"button_label_2":"","button_link_2":"shopify://collections/all","button_style_secondary_2":false}}},"block_order":["heading_CwBWWd","text_Ptfbri","button"],"settings":{"image":"shopify://shop_images/kerstornament-zuurstok-astronaut.png","image_overlay_opacity":10,"image_height":"large","image_behavior":"none","desktop_content_position":"bottom-right","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","stack_images_on_mobile":false,"mobile_content_alignment":"center","show_text_below":true}},"collection_list_6KHTYx":{"type":"collection-list","blocks":{"featured_collection_RartAq":{"type":"featured_collection","settings":{"collection":"klassieke-ornamenten"}},"featured_collection_NTp6BU":{"type":"featured_collection","settings":{"collection":"grappige-ornamenten"}}},"block_order":["featured_collection_RartAq","featured_collection_NTp6BU"],"settings":{"title":"","heading_size":"h1","image_ratio":"square","columns_desktop":2,"color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","show_view_all":false,"columns_mobile":"1","swipe_on_mobile":false,"padding_top":36,"padding_bottom":36}},"featured_collection":{"type":"featured-collection","settings":{"collection":"all","products_to_show":3,"title":"Meest gekozen producten","heading_size":"h2","description":"","show_description":false,"description_style":"body","columns_desktop":3,"enable_desktop_slider":false,"full_width":false,"show_view_all":true,"view_all_style":"solid","color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","image_ratio":"adapt","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"quick_add":"none","columns_mobile":"2","swipe_on_mobile":false,"padding_top":44,"padding_bottom":36}},"rich_text_KRf7jF":{"type":"rich-text","blocks":{"heading_m9rjXQ":{"type":"heading","settings":{"heading":"Je kerstboom is niet compleet zonder kerstornamenten","heading_size":"h1"}},"text_9DnVkB":{"type":"text","settings":{"text":"<p>Bij Feliznavidad.nl hebben we allerlei soorten en maten kerstornamenten. Van <strong>klassieke ornamenten</strong> zoals zuurstokjes of <strong>grappige ornamenten</strong>. Ideaal om jouw kerstboom te voorzien van de juiste attributen. Combineer je kerstballen met een aantal kerstornamenten in je kerstboom, pimp je guirlande of geef ze cadeau en je kerst wordt helemaal top!</p>"}}},"block_order":["heading_m9rjXQ","text_9DnVkB"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","full_width":true,"padding_top":40,"padding_bottom":52}},"multicolumn_HiQcex":{"type":"multicolumn","blocks":{"column_iTiLNR":{"type":"column","settings":{"title":"Joost","text":"<p>Mooie producten en snelle levering!</p>","link_label":"","link":""}},"column_iBdGc4":{"type":"column","settings":{"title":"Suzanne","text":"<p>Leuke producten en mooi op tijd in huis, kom hier zeker vaker.</p>","link_label":"","link":""}},"column_mWVrDd":{"type":"column","settings":{"title":"Jordi","text":"<p>Top, snel in huis</p>","link_label":"","link":""}}},"block_order":["column_iTiLNR","column_iBdGc4","column_mWVrDd"],"disabled":true,"name":"t:sections.multicolumn.presets.name","settings":{"title":"Reviews","heading_size":"h1","image_width":"full","image_ratio":"adapt","button_label":"Alle reviews →","button_link":"","columns_desktop":3,"column_alignment":"left","background_style":"primary","color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","columns_mobile":"1","swipe_on_mobile":false,"padding_top":36,"padding_bottom":36}},"rich_text_Nt9ynH":{"type":"rich-text","blocks":{"heading_kdRwN9":{"type":"heading","settings":{"heading":"Wat klanten van ons vinden","heading_size":"h1"}},"text_3YTkmt":{"type":"text","settings":{"text":""}}},"block_order":["heading_kdRwN9","text_3YTkmt"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","full_width":true,"padding_top":0,"padding_bottom":0}},"custom_liquid_zWj3Xj":{"type":"custom-liquid","name":"t:sections.custom-liquid.presets.name","settings":{"custom_liquid":"<!-- Elfsight Google Reviews | Untitled Google Reviews -->\n<script src=\"https://elfsightcdn.com/platform.js\" async></script>\n<div class=\"elfsight-app-cada60dd-9d34-4934-9ce7-2d2a14039328\" data-elfsight-app-lazy></div>","color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","padding_top":40,"padding_bottom":52}},"rich_text_FQPWYR":{"type":"rich-text","blocks":{"heading_cj8XFF":{"type":"heading","settings":{"heading":"Feliznavidad.nl","heading_size":"h1"}},"text_hNpWiW":{"type":"text","settings":{"text":"<p>Kerst is toch een van de leukste periodes van het jaar? Dat vinden wij ook! We zijn Feliznavidad.nl begonnen zodat iedereen zijn of haar kerstboom kan voorzien van grappige kerstballen of ornamenten. Mis je iets in ons assortiment? Neem dan gerust contact op! </p>"}},"button_Edgrdq":{"type":"button","settings":{"button_label":"Contact →","button_link":"shopify://pages/contact","button_style_secondary":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading_cj8XFF","text_hNpWiW","button_Edgrdq"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","full_width":true,"padding_top":40,"padding_bottom":52}}},"order":["image_banner","collection_list_6KHTYx","featured_collection","rich_text_KRf7jF","multicolumn_HiQcex","rich_text_Nt9ynH","custom_liquid_zWj3Xj","rich_text_FQPWYR"]}
+{
+  "sections": {
+    "fn_hero": {
+      "type": "fn-hero",
+      "settings": {
+        "eyebrow": "Kerst 2025 · Ornamenten",
+        "heading": "Maak je kerstboom",
+        "highlight": "compleet.",
+        "text": "Grappige en klassieke kerstornamenten van onbreekbaar plastic. Hang 'm tussen je kerstballen, verwerk 'm in een guirlande of geef 'm cadeau. Vanaf €8,50 per stuk.",
+        "button_label": "Bekijk alle ornamenten",
+        "button_link": "shopify://collections/all",
+        "button_label_2": "Shop grappige ornamenten",
+        "button_link_2": "shopify://collections/grappige-ornamenten",
+        "rating_text": "4,8 gemiddeld — beoordeeld door klanten op Google",
+        "sticker_text": "vanaf\n€8,50",
+        "image_collection": "all"
+      }
+    },
+    "fn_category_split": {
+      "type": "fn-category-split",
+      "blocks": {
+        "cat_klassiek": {
+          "type": "category",
+          "settings": {
+            "collection": "klassieke-ornamenten",
+            "heading": "Klassieke ornamenten",
+            "text": "Tijdloos in je boom — zuurstok, kerstlicht en meer. Voor de kerst zoals je 'm kent.",
+            "link_label": "3 ornamenten",
+            "scheme": "green"
+          }
+        },
+        "cat_grappig": {
+          "type": "category",
+          "settings": {
+            "collection": "grappige-ornamenten",
+            "heading": "Grappige ornamenten",
+            "text": "Een astronaut, een gewichtheffende kerstman of een koffiebeker. Voor wie de boom niet te serieus neemt.",
+            "link_label": "3 ornamenten",
+            "scheme": "red"
+          }
+        }
+      },
+      "block_order": ["cat_klassiek", "cat_grappig"],
+      "settings": {
+        "heading": "Grappig of klassiek?",
+        "link_label": "Bekijk alles",
+        "link_url": "shopify://collections/all"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 6,
+        "title": "Meest gekozen",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "fn_trust": {
+      "type": "fn-trust",
+      "blocks": {
+        "t1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "heading": "Gratis verzending vanaf €25",
+            "text": "Daaronder €3,95 in heel Nederland."
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "heading": "Veilig betalen",
+            "text": "Met iDEAL, creditcard of PayPal."
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "icon": "calendar",
+            "heading": "In 2–3 werkdagen in huis",
+            "text": "Ruim op tijd voor de boom."
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {}
+    },
+    "rich_text_KRf7jF": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_m9rjXQ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Je kerstboom is niet compleet zonder kerstornamenten",
+            "heading_size": "h1"
+          }
+        },
+        "text_9DnVkB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Bij Feliznavidad.nl hebben we allerlei soorten en maten kerstornamenten. Van <strong>klassieke ornamenten</strong> zoals zuurstokjes of <strong>grappige ornamenten</strong>. Ideaal om jouw kerstboom te voorzien van de juiste attributen. Combineer je kerstballen met een aantal kerstornamenten in je kerstboom, pimp je guirlande of geef ze cadeau en je kerst wordt helemaal top!</p>"
+          }
+        }
+      },
+      "block_order": ["heading_m9rjXQ", "text_9DnVkB"],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_Nt9ynH": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_kdRwN9": {
+          "type": "heading",
+          "settings": { "heading": "Wat klanten van ons vinden", "heading_size": "h1" }
+        },
+        "text_3YTkmt": { "type": "text", "settings": { "text": "" } }
+      },
+      "block_order": ["heading_kdRwN9", "text_3YTkmt"],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_zWj3Xj": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<!-- Elfsight Google Reviews | Untitled Google Reviews -->\n<script src=\"https://elfsightcdn.com/platform.js\" async></script>\n<div class=\"elfsight-app-cada60dd-9d34-4934-9ce7-2d2a14039328\" data-elfsight-app-lazy></div>",
+        "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_FQPWYR": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_cj8XFF": {
+          "type": "heading",
+          "settings": { "heading": "Feliznavidad.nl", "heading_size": "h1" }
+        },
+        "text_hNpWiW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Kerst is toch een van de leukste periodes van het jaar? Dat vinden wij ook! We zijn Feliznavidad.nl begonnen zodat iedereen zijn of haar kerstboom kan voorzien van grappige kerstballen of ornamenten. Mis je iets in ons assortiment? Neem dan gerust contact op! </p>"
+          }
+        },
+        "button_Edgrdq": {
+          "type": "button",
+          "settings": {
+            "button_label": "Contact →",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": ["heading_cj8XFF", "text_hNpWiW", "button_Edgrdq"],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "fn_hero",
+    "fn_category_split",
+    "featured_collection",
+    "fn_trust",
+    "rich_text_KRf7jF",
+    "rich_text_Nt9ynH",
+    "custom_liquid_zWj3Xj",
+    "rich_text_FQPWYR"
+  ]
+}

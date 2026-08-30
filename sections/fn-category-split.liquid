@@ -1,0 +1,82 @@
+<div class="fn-cats">
+  {%- if section.settings.heading != blank or section.settings.link_label != blank -%}
+    <div class="fn-cats__head">
+      <h2 class="fn-cats__title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.link_label != blank -%}
+        <a href="{{ section.settings.link_url }}" class="fn-cat__link" style="border-bottom:2px solid var(--fn-red);padding-bottom:2px">{{ section.settings.link_label }} &rarr;</a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="fn-cats__grid">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign coll = block.settings.collection
+        assign img = block.settings.image
+        if img == blank and coll != blank
+          assign img = coll.featured_image
+          if img == blank and coll.products.size > 0
+            assign img = coll.products.first.featured_image
+          endif
+        endif
+        assign url = block.settings.link_url
+        if url == blank and coll != blank
+          assign url = coll.url
+        endif
+        assign name = block.settings.heading
+        if name == blank
+          assign name = coll.title
+        endif
+      -%}
+      <a href="{{ url | default: '#' }}" class="fn-cat fn-cat--{{ block.settings.scheme }}" {{ block.shopify_attributes }}>
+        <div>
+          <h3 class="fn-cat__name">{{ name }}</h3>
+          {%- if block.settings.text != blank -%}<p class="fn-cat__text">{{ block.settings.text }}</p>{%- endif -%}
+          <span class="fn-cat__link">{{ block.settings.link_label | default: 'Bekijk' }} &rarr;</span>
+        </div>
+        {%- if img -%}
+          {{ img | image_url: width: 400 | image_tag: widths: '150,300,400', sizes: '15rem', class: 'fn-cat__img', alt: img.alt }}
+        {%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FN — Categorie-split",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Grappig of klassiek?" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Bekijk alles" },
+    { "type": "url", "id": "link_url", "label": "Link" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categorie",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collectie" },
+        { "type": "text", "id": "heading", "label": "Kop", "info": "Leeg = collectienaam" },
+        { "type": "textarea", "id": "text", "label": "Tekst" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Bekijk" },
+        { "type": "url", "id": "link_url", "label": "Link", "info": "Leeg = collectie-URL" },
+        { "type": "image_picker", "id": "image", "label": "Foto", "info": "Leeg = eerste collectiefoto" },
+        {
+          "type": "select", "id": "scheme", "label": "Kleur", "default": "green",
+          "options": [{ "value": "green", "label": "Groen" }, { "value": "red", "label": "Rood" }]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    {
+      "name": "FN — Categorie-split",
+      "blocks": [
+        { "type": "category", "settings": { "scheme": "green", "heading": "Klassieke ornamenten", "text": "Tijdloos in je boom — zuurstok, kerstlicht en meer.", "link_label": "3 ornamenten" } },
+        { "type": "category", "settings": { "scheme": "red", "heading": "Grappige ornamenten", "text": "Een astronaut, een gewichtheffende kerstman of een koffiebeker.", "link_label": "3 ornamenten" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

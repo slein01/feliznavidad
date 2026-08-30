@@ -1,12 +1,53 @@
 /* ==========================================================================
    feliznavidad.nl — redesign layer  (bold & playful)
-   Loaded AFTER base.css in layout/theme.liquid, so it overrides Dawn 15.3.0.
+   Loaded AFTER base.css in layout/theme.liquid, overrides Dawn 15.3.0.
    Keep redesign styling in THIS file; touch Dawn's own .liquid/.css minimally.
    Design canvas: https://claude.ai/code/artifact/329e2eae-f326-4899-bf4f-e1a5eedaee63
-
-   Fonts load via a <link> to Google Fonts in theme.liquid. For a fully
-   GDPR-clean setup, self-host the .woff2 later and swap in @font-face here.
    ========================================================================== */
+
+/* ---- 0. Self-hosted fonts (latin + latin-ext subsets from Google Fonts) --- */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("fn-bricolage-latin.woff2") format("woff2");
+  font-weight: 600 800; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("fn-bricolage-latinext.woff2") format("woff2");
+  font-weight: 600 800; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("fn-instrumentsans-latin.woff2") format("woff2");
+  font-weight: 400 600; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("fn-instrumentsans-latinext.woff2") format("woff2");
+  font-weight: 400 600; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("fn-spacemono-400-latin.woff2") format("woff2");
+  font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("fn-spacemono-700-latin.woff2") format("woff2");
+  font-weight: 700; font-display: swap;
+}
 
 :root {
   --fn-cream:      #FFF7ED;
@@ -28,12 +69,8 @@
 }
 
 /* ---- 1. Type -------------------------------------------------------------- */
-body,
-.rte,
-input, select, textarea, button,
-.product__text, .card__content {
-  font-family: var(--fn-body);
-}
+body, .rte, input, select, textarea, button,
+.product__text, .card__content { font-family: var(--fn-body); }
 
 h1, h2, h3, h4,
 .h0, .h1, .h2, .h3, .h4,
@@ -42,23 +79,19 @@ h1, h2, h3, h4,
 .product__title, .product__title h1,
 .footer-block__heading, .newsletter__heading,
 .rich-text__heading, .collection__title,
-.cart__heading, .main-page-title {
+.cart__heading, .main-page-title, .article-template__title {
   font-family: var(--fn-display);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.05;
 }
+.banner__heading.h0, .rich-text__heading.h0, .title.h0 {
+  font-size: clamp(3.4rem, 6vw, 6.2rem);
+}
 
-/* a touch more scale on big headings */
-.banner__heading.h0,
-.rich-text__heading.h0,
-.title.h0 { font-size: clamp(3.4rem, 6vw, 6.2rem); }
-
-/* ---- 2. Announcement bar ---------------------------------------------------- */
-.announcement-bar,
-.utility-bar { background: var(--fn-pine); }
-.announcement-bar__message,
-.announcement-bar__link {
+/* ---- 2. Announcement bar ------------------------------------------------------ */
+.announcement-bar, .utility-bar { background: var(--fn-pine); }
+.announcement-bar__message, .announcement-bar__link {
   color: var(--fn-cream);
   font-family: var(--fn-mono);
   font-weight: 700;
@@ -67,21 +100,14 @@ h1, h2, h3, h4,
   font-size: 1.15rem;
 }
 
-/* ---- 3. Header ---------------------------------------------------------------- */
-.header-wrapper {
-  border-bottom: 2px solid var(--fn-line);
-  background: var(--fn-cream);
-}
-.header__menu-item span,
-.header__active-menu-item { font-weight: 600; }
+/* ---- 3. Header ------------------------------------------------------------------- */
+.header-wrapper { border-bottom: 2px solid var(--fn-line); background: var(--fn-cream); }
+.header__menu-item span, .header__active-menu-item { font-weight: 600; }
 .header__menu-item:hover span { color: var(--fn-red); }
 
-/* ---- 4. Buttons ----------------------------------------------------------------
-   Pill shape everywhere; primary = red; secondary/ghost = ink outline. */
-.button,
-.shopify-payment-button__button--unbranded,
-.product-form__submit,
-.cart__checkout-button,
+/* ---- 4. Buttons ---------------------------------------------------------------- */
+.button, .shopify-payment-button__button--unbranded,
+.product-form__submit, .cart__checkout-button,
 .shopify-payment-button__more-options {
   border-radius: 999px !important;
   font-family: var(--fn-display);
@@ -90,175 +116,201 @@ h1, h2, h3, h4,
   transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
 }
 .button:not([disabled]):hover,
-.product-form__submit:not([disabled]):hover {
-  transform: translateY(-2px);
-}
-.button--primary,
-.product-form__submit,
-.cart__checkout-button {
-  --color-button: 229, 55, 43;          /* Dawn reads "r, g, b" */
+.product-form__submit:not([disabled]):hover { transform: translateY(-2px); }
+.button--primary, .product-form__submit, .cart__checkout-button {
+  --color-button: 229, 55, 43;
   --color-button-text: 255, 255, 255;
 }
-.button--secondary {
-  --color-button: 255, 247, 237;
-  --color-button-text: 34, 28, 23;
-  border-width: 2px;
-}
+.button--secondary { --color-button: 255, 247, 237; --color-button-text: 34, 28, 23; border-width: 2px; }
 
-/* ---- 5. Prices ------------------------------------------------------------------ */
-.price,
-.price .price-item,
-.price__regular,
-.price__sale,
-.product__price,
-.cart-item__price,
-.totals__total-value {
-  font-family: var(--fn-mono);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+/* ---- 5. Prices ---------------------------------------------------------------- */
+.price, .price .price-item, .price__regular, .price__sale,
+.product__price, .cart-item__price, .totals__total-value {
+  font-family: var(--fn-mono); font-weight: 700; letter-spacing: -0.01em;
 }
 .price .price-item--regular,
 .product__info-container .price-item--regular { color: var(--fn-red); }
 .price--on-sale .price-item--sale { color: var(--fn-red); }
 
-/* ---- 6. Product & collection cards ------------------------------------------- */
-.card-wrapper .card__media,
-.card--card .card__inner,
-.card--standard .card__media,
-.collection-list .card__media,
+/* ---- 6. Product & collection cards ------------------------------------------ */
+.card-wrapper .card__media, .card--card .card__inner,
+.card--standard .card__media, .collection-list .card__media,
 .product-media-container {
-  background: var(--fn-photo-bg);
-  border-radius: 15px;
-  overflow: hidden;
+  background: var(--fn-photo-bg); border-radius: 15px; overflow: hidden;
 }
 .card { border-radius: 20px; }
-.card--card,
-.card-wrapper .card--card .card__inner {
+.card--card, .card-wrapper .card--card .card__inner {
   border: 2px solid var(--fn-line);
   transition: transform .18s ease, border-color .18s ease;
 }
 .card-wrapper:hover .card--card,
 .card-wrapper:hover .card--card .card__inner {
-  transform: translateY(-5px);
-  border-color: var(--fn-red);
+  transform: translateY(-5px); border-color: var(--fn-red);
 }
 .card__heading { font-size: 1.7rem; }
-.card__heading a::after { border-radius: 20px; }
-
-/* ---- 7. Category split (homepage collection list) --------------------------- */
-/* The two collection cards become bold coloured panels. */
-.collection-list--1-items,
-.collection-list.grid--2-col-tablet .grid__item { }
-.collection-list .grid__item .card--card .card__inner {
-  padding: 2.4rem;
-  border-width: 2px;
-}
-.collection-list .grid__item:nth-child(odd) .card--card .card__inner {
-  background: var(--fn-green-soft);
-  border-color: var(--fn-green);
-}
-.collection-list .grid__item:nth-child(even) .card--card .card__inner {
-  background: var(--fn-red-soft);
-  border-color: var(--fn-red);
-}
-.collection-list .card__heading { font-size: 2.4rem; }
-
-/* ---- 8. Trust strip (multicolumn on a coloured scheme) --------------------- */
-.multicolumn .multicolumn-card__info { padding: 0 1.2rem; }
-.multicolumn-card__info h3,
-.multicolumn-card__info .multicolumn-card__title {
-  font-family: var(--fn-display);
-  font-size: 1.7rem;
-}
-.multicolumn-list__item { text-align: left; }
-
-/* ---- 9. Image banner (hero) ---------------------------------------------------- */
-.banner--medium:not(.banner--mobile-bottom) .banner__content,
-.banner__box {
-  border-radius: 22px;
-  border: 2px solid var(--fn-line);
-}
-.banner__media { border-radius: 22px; overflow: hidden; }
-.banner__buttons .button { min-width: 0; }
-
-/* ---- 10. Rich text ----------------------------------------------------------- */
-.rich-text__text { color: var(--fn-ink-soft); }
-.rich-text__blocks { max-width: 72rem; }
-
-/* ---- 11. Product page ------------------------------------------------------------ */
-.product__title h1,
-.product__title { font-size: clamp(2.8rem, 3.4vw, 4.4rem); }
-.product__info-container .price { font-size: 2.4rem; }
-.product-form__buttons { display: flex; flex-direction: column; gap: 1rem; }
-.product-form__submit {
-  --color-button: 255, 247, 237;
-  --color-button-text: 34, 28, 23;
-  border: 2px solid var(--fn-ink) !important;
-}
-.product-form__submit.button--secondary[disabled] { opacity: .45; }
-.shopify-payment-button__button--unbranded {
-  background: var(--fn-red) !important;
-  color: #fff !important;
-}
-.quantity {
-  border-radius: 999px;
-  border: 2px solid var(--fn-ink);
-  overflow: hidden;
-}
-.quantity__input, .quantity__button { font-family: var(--fn-display); font-weight: 700; }
-.product .accordion,
-.product__accordion {
-  border: 2px solid var(--fn-line);
-  border-radius: 16px;
-  padding: 0 1.6rem;
-}
-.product__accordion summary { font-family: var(--fn-display); font-weight: 700; }
-/* trust icon-with-text block */
-.product .icon-with-text { gap: 1rem; }
-.product .icon-with-text .icon { color: var(--fn-green); }
-
-/* ---- 12. Cart --------------------------------------------------------------------- */
-.cart__blocks .totals__total-value { color: var(--fn-red); }
-.cart-item__name { font-family: var(--fn-display); font-weight: 700; }
-
-/* ---- 13. Footer ---------------------------------------------------------------- */
-.footer { border-top: 2px solid var(--fn-line); }
-.footer-block__heading {
-  font-family: var(--fn-display);
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-.footer__payment .list-payment__item svg { border-radius: 6px; }
-/* cream plaque behind the footer logo */
-.footer__content-top .footer-block--newsletter .footer__logo,
-.footer .footer-block__details-content > .footer-block__image-wrapper img {
-  background: var(--fn-cream);
-  border-radius: 12px;
-  padding: 12px 16px;
-}
-
-/* ---- 14. Newsletter / email signup ------------------------------------------- */
-.newsletter__button.button { border-radius: 999px !important; }
-
-/* ---- 15. Media & sections rhythm ------------------------------------------------ */
-.media--hover-effect > img:only-child,
 .card__media img { transition: transform .3s ease; }
 .card-wrapper:hover .card__media img { transform: scale(1.03); }
 
-/* ---- 16. Focus states (keep them visible, on-brand) ----------------------- */
-.button:focus-visible,
-a:focus-visible,
-summary:focus-visible {
-  outline: 3px solid var(--fn-red);
-  outline-offset: 2px;
+/* ---- 7. Rich text ------------------------------------------------------------- */
+.rich-text__text { color: var(--fn-ink-soft); }
+.rich-text__blocks { max-width: 72rem; }
+
+/* ---- 8. Product page --------------------------------------------------------------- */
+.product__title h1, .product__title { font-size: clamp(2.8rem, 3.4vw, 4.4rem); }
+.product__info-container .price { font-size: 2.4rem; }
+.product-form__buttons { display: flex; flex-direction: column; gap: 1rem; }
+.product-form__submit {
+  --color-button: 255, 247, 237; --color-button-text: 34, 28, 23;
+  border: 2px solid var(--fn-ink) !important;
+}
+.product-form__submit.button--secondary[disabled] { opacity: .45; }
+.shopify-payment-button__button--unbranded { background: var(--fn-red) !important; color: #fff !important; }
+.quantity { border-radius: 999px; border: 2px solid var(--fn-ink); overflow: hidden; }
+.quantity__input, .quantity__button { font-family: var(--fn-display); font-weight: 700; }
+.product .accordion, .product__accordion {
+  border: 2px solid var(--fn-line); border-radius: 16px; padding: 0 1.6rem;
+}
+.product__accordion summary { font-family: var(--fn-display); font-weight: 700; }
+.product .icon-with-text { gap: 1rem; }
+.product .icon-with-text .icon { color: var(--fn-green); }
+
+/* "Onbreekbaar plastic" badge on the PDP gallery */
+.product__media-wrapper { position: relative; }
+.product__media-wrapper::before {
+  content: "Onbreekbaar plastic";
+  position: absolute; z-index: 2; top: 1.4rem; left: 1.4rem;
+  background: var(--fn-green); color: #fff;
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.05rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .5rem 1rem; border-radius: 8px;
+}
+
+/* ---- 9. Cart / cart drawer -------------------------------------------------------- */
+.cart__blocks .totals__total-value { color: var(--fn-red); }
+.cart-item__name { font-family: var(--fn-display); font-weight: 700; }
+.cart-drawer .drawer__inner { background: var(--fn-paper); }
+.cart-drawer__header, .drawer__header { border-bottom: 2px solid var(--fn-line); }
+cart-drawer .drawer__heading { font-family: var(--fn-display); font-weight: 800; }
+.cart-drawer .cart-item__name { font-size: 1.5rem; }
+.cart-notification { border-radius: 20px; border: 2px solid var(--fn-line); }
+
+/* ---- 10. Mega-menu -------------------------------------------------------------- */
+.mega-menu__content {
+  border-radius: 0 0 20px 20px;
+  border: 2px solid var(--fn-line); border-top: 0;
+  box-shadow: 0 24px 40px rgba(34, 28, 23, .12);
+  background: var(--fn-paper);
+  padding-block: 3rem;
+}
+.mega-menu__list { gap: 3rem; }
+.mega-menu__link { font-weight: 600; }
+.mega-menu__link:hover { color: var(--fn-red); }
+.mega-menu__link--level-2 { font-size: 1.4rem; }
+
+/* ---- 11. Footer ------------------------------------------------------------------- */
+.footer { border-top: 2px solid var(--fn-line); }
+.footer-block__heading { font-family: var(--fn-display); font-weight: 700; font-size: 1.5rem; }
+.footer__payment .list-payment__item svg { border-radius: 6px; }
+
+/* ---- 12. Newsletter --------------------------------------------------------------- */
+.newsletter__button.button { border-radius: 999px !important; }
+
+/* ---- 13. Focus states ---------------------------------------------------------- */
+.button:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--fn-red); outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Custom redesign sections  (sections/fn-*.liquid)
+   ========================================================================== */
+
+/* ---- fn-hero -------------------------------------------------------------------- */
+.fn-hero { background:
+    radial-gradient(1100px 520px at 82% 4%, var(--fn-red-soft), transparent 60%),
+    var(--fn-cream);
+  padding: 6rem 0 7rem;
+}
+.fn-hero__grid {
+  display: grid; grid-template-columns: 1.02fr .98fr; gap: 5rem;
+  align-items: center; max-width: var(--page-width, 120rem);
+  margin: 0 auto; padding-inline: 5rem;
+}
+.fn-hero__eyebrow {
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red);
+  margin: 0 0 1.6rem;
+}
+.fn-hero__title {
+  font-family: var(--fn-display); font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.0; font-size: clamp(4rem, 6vw, 8.2rem); margin: 0;
+}
+.fn-hero__title em { font-style: normal; color: var(--fn-red); display: inline-block; transform: rotate(-2.5deg); }
+.fn-hero__text { max-width: 44rem; margin: 2.2rem 0 0; font-size: 1.8rem; color: var(--fn-ink-soft); }
+.fn-hero__actions { display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 3rem; }
+.fn-hero__rating { display: flex; align-items: center; gap: 1rem; margin-top: 2.4rem;
+  font-size: 1.4rem; color: var(--fn-ink-soft); }
+.fn-hero__stars { color: var(--fn-gold); letter-spacing: 2px; }
+.fn-hero__media { position: relative; min-height: 46rem; }
+.fn-hero__frame { position: absolute; border: 3px solid var(--fn-ink); border-radius: 2.4rem;
+  overflow: hidden; background: var(--fn-photo-bg); }
+.fn-hero__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fn-hero__frame--1 { right: 3.4rem; top: 0; width: 30rem; height: 43rem;
+  box-shadow: 16px 18px 0 rgba(34, 28, 23, .12); }
+.fn-hero__frame--2 { left: 0; bottom: 2rem; width: 21.4rem; height: 28rem;
+  transform: rotate(-3deg); box-shadow: 12px 14px 0 rgba(229, 55, 43, .18); }
+.fn-hero__sticker { position: absolute; right: 0; bottom: 0; background: var(--fn-gold);
+  color: var(--fn-ink); font-family: var(--fn-display); font-weight: 800; font-size: 1.5rem;
+  text-align: center; line-height: 1.1; padding: 1.2rem 1.6rem; border-radius: 1.4rem;
+  transform: rotate(6deg); box-shadow: 0 10px 22px rgba(34, 28, 23, .16); }
+@media (max-width: 749px) {
+  .fn-hero__grid { grid-template-columns: 1fr; gap: 3rem; padding-inline: 2rem; }
+  .fn-hero__media { min-height: 40rem; }
+  .fn-hero__frame--1 { right: 0; width: 60%; height: 34rem; }
+  .fn-hero__frame--2 { width: 42%; height: 22rem; }
+}
+
+/* ---- fn-category-split -------------------------------------------------------- */
+.fn-cats { max-width: var(--page-width, 120rem); margin: 0 auto; padding: 6rem 5rem; }
+.fn-cats__head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.4rem; gap: 2rem; }
+.fn-cats__title { font-family: var(--fn-display); font-weight: 800; font-size: clamp(3rem, 4vw, 4.4rem); margin: 0; }
+.fn-cats__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.4rem; }
+.fn-cat { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem;
+  border: 2px solid; border-radius: 2.4rem; padding: 3rem 3rem 3rem 3.8rem; text-decoration: none; color: var(--fn-ink); }
+.fn-cat--green { background: var(--fn-green-soft); border-color: var(--fn-green); }
+.fn-cat--red { background: var(--fn-red-soft); border-color: var(--fn-red); }
+.fn-cat__name { font-family: var(--fn-display); font-weight: 800; font-size: 2.8rem; margin: 0; }
+.fn-cat__text { color: var(--fn-ink-soft); margin: 1rem 0 0; max-width: 32rem; }
+.fn-cat__link { display: inline-block; margin-top: 1.6rem; font-family: var(--fn-display); font-weight: 700; }
+.fn-cat--green .fn-cat__link { color: var(--fn-green); }
+.fn-cat--red .fn-cat__link { color: var(--fn-red); }
+.fn-cat__img { width: 15rem; height: 20rem; object-fit: cover; border-radius: 1.6rem; border: 3px solid; }
+.fn-cat--green .fn-cat__img { border-color: var(--fn-green); }
+.fn-cat--red .fn-cat__img { border-color: var(--fn-red); }
+@media (max-width: 749px) {
+  .fn-cats { padding: 4rem 2rem; }
+  .fn-cats__grid { grid-template-columns: 1fr; }
+  .fn-cat { padding: 2rem; }
+  .fn-cat__img { width: 9rem; height: 12rem; }
+  .fn-cat__name { font-size: 2rem; }
+}
+
+/* ---- fn-trust --------------------------------------------------------------------- */
+.fn-trust { background: var(--fn-green); color: #fff; padding: 4.4rem 5rem; }
+.fn-trust__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.8rem;
+  max-width: var(--page-width, 120rem); margin: 0 auto; }
+.fn-trust__item { display: flex; gap: 1.4rem; align-items: flex-start; }
+.fn-trust__item svg { flex: none; width: 3rem; height: 3rem; }
+.fn-trust__item strong { font-family: var(--fn-display); font-size: 1.7rem; display: block; }
+.fn-trust__item p { opacity: .9; font-size: 1.4rem; margin: .3rem 0 0; }
+@media (max-width: 749px) {
+  .fn-trust { padding: 2.6rem 2rem; }
+  .fn-trust__grid { grid-template-columns: 1fr; gap: 1.6rem; }
 }
 
 /* --------------------------------------------------------------------------
-   STILL TO DO in sections/templates (CSS alone can't reach these):
-   - Hero: two overlapping photo frames + gold "vanaf €8,50" sticker
-     -> edit sections/image-banner.liquid or a custom section + templates/index.json
-   - Category split: real image + copy + "3 ornamenten ->" link per card
-   - Trust strip: force green colour scheme + custom SVG icons
-   - Mega-menu dropdown, cart-drawer restyle
-   - PDP gallery: single large photo, thumbnail strip, "Onbreekbaar plastic" badge
+   Not covered here (needs Shopify admin, not code):
+   - Mega-menu CONTENT: build the nav menu with dropdown items in
+     Online Store -> Navigation. This file only styles it.
+   - Cart drawer only renders when settings.cart_type = "drawer"
+     (set in config/settings_data.json — done in this branch).
    -------------------------------------------------------------------------- */
