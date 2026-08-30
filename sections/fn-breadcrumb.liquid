@@ -1,0 +1,24 @@
+<nav class="fn-crumbs page-width" aria-label="Kruimelpad">
+  <a href="{{ routes.root_url }}">Home</a>
+  {%- if template contains 'collection' and collection -%}
+    <span aria-hidden="true">/</span><span>{{ collection.title }}</span>
+  {%- elsif template contains 'product' and product -%}
+    {%- if collection -%}
+      <span aria-hidden="true">/</span><a href="{{ collection.url }}">{{ collection.title }}</a>
+    {%- endif -%}
+    <span aria-hidden="true">/</span><span>{{ product.title }}</span>
+  {%- elsif template contains 'page' and page -%}
+    <span aria-hidden="true">/</span><span>{{ page.title }}</span>
+  {%- elsif template contains 'article' and article -%}
+    {%- if blog -%}<span aria-hidden="true">/</span><a href="{{ blog.url }}">{{ blog.title }}</a>{%- endif -%}
+    <span aria-hidden="true">/</span><span>{{ article.title }}</span>
+  {%- endif -%}
+</nav>
+
+{% schema %}
+{
+  "name": "FN — Kruimelpad",
+  "settings": [],
+  "presets": [{ "name": "FN — Kruimelpad" }]
+}
+{% endschema %}
