@@ -1,0 +1,109 @@
+/* ==========================================================================
+   feliznavidad.nl — redesign layer
+   Bold & playful. Loaded AFTER base.css in layout/theme.liquid so it overrides
+   Dawn defaults. Keep redesign styling in THIS file where possible so Dawn's
+   own assets stay untouched and theme updates stay painless.
+   Design canvas: https://claude.ai/code/artifact/329e2eae-f326-4899-bf4f-e1a5eedaee63
+   ========================================================================== */
+
+/* --- 1. Fonts -------------------------------------------------------------- */
+/* Add the .woff2 files to /assets/ (same names) or swap these for a Shopify
+   font_picker setting. Bricolage Grotesque + Instrument Sans are NOT in the
+   Shopify font library, hence @font-face. */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("BricolageGrotesque-Bold.woff2") format("woff2");
+  font-weight: 700 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("InstrumentSans-Regular.woff2") format("woff2");
+  font-weight: 400 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("InstrumentSans-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+/* --- 2. Design tokens ---------------------------------------------------- */
+:root {
+  --fn-cream:      #FFF7ED;
+  --fn-paper:      #FFFFFF;
+  --fn-ink:        #221C17;
+  --fn-ink-soft:   #6E6156;
+  --fn-line:       #EBE1D4;
+  --fn-red:        #E5372B;
+  --fn-red-soft:   #FBE0DC;
+  --fn-green:      #1F9D61;
+  --fn-green-soft: #DEF2E8;
+  --fn-pine:       #10362A;
+  --fn-gold:       #E8B54B;
+  --fn-photo-bg:   #F2E6DF;
+
+  --fn-font-display: "Bricolage Grotesque", "Arial Black", sans-serif;
+  --fn-font-body:    "Instrument Sans", system-ui, -apple-system, sans-serif;
+
+  --fn-radius-pill: 999px;
+}
+
+/* --- 3. Type ----------------------------------------------------------------
+   Dawn wires --font-heading-family / --font-body-family from the theme editor
+   font pickers. Prefer setting those in the editor. This block forces the
+   redesign fonts even if the pickers can't reach them. */
+h1, h2, h3, .h0, .h1, .h2, .h3,
+.title, .card__heading, .banner__heading {
+  font-family: var(--fn-font-display);
+  letter-spacing: -0.02em;
+}
+body, .rte, p, li, input, textarea, select, button {
+  font-family: var(--fn-font-body);
+}
+
+/* --- 4. Buttons --------------------------------------------------------------
+   Pill shape + the redesign red. Dawn's .button covers most CTAs. */
+.button,
+.shopify-payment-button__button--unbranded {
+  border-radius: var(--fn-radius-pill) !important;
+  font-family: var(--fn-font-display);
+  font-weight: 700;
+}
+.button--primary,
+.button:not(.button--secondary):not(.button--tertiary) {
+  --color-button: 229, 55, 43;          /* Dawn expects "r, g, b" */
+  --color-button-text: 255, 255, 255;
+}
+
+/* --- 5. Announcement bar ----------------------------------------------------- */
+.announcement-bar {
+  background: var(--fn-pine);
+  color: var(--fn-cream);
+  font-family: "Space Mono", ui-monospace, monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+}
+
+/* --- 6. Product / collection cards ------------------------------------------
+   Give the media a warm ground so the pink-ish product photos sit flush. */
+.card--card .card__inner,
+.card-wrapper .card__media {
+  background: var(--fn-photo-bg);
+}
+.card-wrapper:hover .card__media img {
+  transform: translateY(-4px);
+}
+
+/* --- 7. Footer ------------------------------------------------------------- */
+.footer .footer-block__heading {
+  font-family: var(--fn-font-display);
+}
+
+/* --------------------------------------------------------------------------
+   NEXT: port the artboard layouts (hero, category split, trust strip,
+   mega-menu, cart drawer) into their Dawn sections/snippets and target them
+   with classes here. Keep edits to Dawn's own .liquid minimal.
+   -------------------------------------------------------------------------- */
