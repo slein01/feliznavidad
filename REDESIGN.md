@@ -4,13 +4,14 @@ Design canvas (visuele spec): https://claude.ai/code/artifact/329e2eae-f326-4899
 Theme: Dawn 15.3.0
 
 ## Al gedaan in deze branch
-- `assets/redesign.css` — nieuwe redesign-laag (tokens, @font-face, knop/kaart/announcement overrides). Geladen na `base.css`.
-- `layout/theme.liquid` — `redesign.css` ingehaakt in `<head>` (regel na `base.css`).
-- `config/settings_data.json` — actieve color scheme omgezet naar de palette (crème / ink / kerstrood), `buttons_radius` → 40 (pill), `buttons_border_thickness` → 2.
+- `config/settings_data.json` — actieve color scheme → palette (crème / ink / kerstrood), `buttons_radius` → 40, `buttons_border_thickness` → 2.
+- `layout/theme.liquid` — Google Fonts `<link>` (Bricolage Grotesque, Instrument Sans, Space Mono) + `redesign.css` ingehaakt na `base.css`.
+- `assets/redesign.css` — redesign-laag: display-typografie, pill-knoppen, rode primaire knop, mono/rode prijzen, kaart-styling + hover, categorie-panelen (groen/rood), PDP-styling (titel, prijs, quantity, accordion), announcement-bar (pine + mono), footer-koppen.
+- `locales/nl.json` — `add_to_cart` → "In m'n boom".
 
-## Nog te doen (port vanuit de artboards)
-- [ ] Fonts: `BricolageGrotesque-Bold.woff2` + `InstrumentSans-Regular/SemiBold.woff2` in `assets/` zetten (of via font_picker).
-- [ ] Hero → `sections/image-banner.liquid`: twee foto-frames + gouden prijs-sticker.
+## Nog te doen (sectie-/template-werk — CSS alleen komt hier niet bij)
+- [ ] Fonts eventueel self-hosten (`.woff2` in `assets/` + `@font-face`) voor GDPR-clean i.p.v. Google Fonts `<link>`.
+- [ ] Hero → `sections/image-banner.liquid` + `templates/index.json`: twee foto-frames + gouden prijs-sticker.
 - [ ] Categorie-split (Klassiek/Grappig) → `sections/collection-list.liquid` + CSS.
 - [ ] Trust-strip → `sections/multicolumn.liquid` op groene achtergrond.
 - [ ] Mega-menu → `snippets/header-mega-menu.liquid` + CSS.

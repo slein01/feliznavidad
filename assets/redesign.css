@@ -1,35 +1,13 @@
 /* ==========================================================================
-   feliznavidad.nl — redesign layer
-   Bold & playful. Loaded AFTER base.css in layout/theme.liquid so it overrides
-   Dawn defaults. Keep redesign styling in THIS file where possible so Dawn's
-   own assets stay untouched and theme updates stay painless.
+   feliznavidad.nl — redesign layer  (bold & playful)
+   Loaded AFTER base.css in layout/theme.liquid, so it overrides Dawn 15.3.0.
+   Keep redesign styling in THIS file; touch Dawn's own .liquid/.css minimally.
    Design canvas: https://claude.ai/code/artifact/329e2eae-f326-4899-bf4f-e1a5eedaee63
+
+   Fonts load via a <link> to Google Fonts in theme.liquid. For a fully
+   GDPR-clean setup, self-host the .woff2 later and swap in @font-face here.
    ========================================================================== */
 
-/* --- 1. Fonts -------------------------------------------------------------- */
-/* Add the .woff2 files to /assets/ (same names) or swap these for a Shopify
-   font_picker setting. Bricolage Grotesque + Instrument Sans are NOT in the
-   Shopify font library, hence @font-face. */
-@font-face {
-  font-family: "Bricolage Grotesque";
-  src: url("BricolageGrotesque-Bold.woff2") format("woff2");
-  font-weight: 700 800;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Instrument Sans";
-  src: url("InstrumentSans-Regular.woff2") format("woff2");
-  font-weight: 400 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Instrument Sans";
-  src: url("InstrumentSans-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-display: swap;
-}
-
-/* --- 2. Design tokens ---------------------------------------------------- */
 :root {
   --fn-cream:      #FFF7ED;
   --fn-paper:      #FFFFFF;
@@ -44,66 +22,243 @@
   --fn-gold:       #E8B54B;
   --fn-photo-bg:   #F2E6DF;
 
-  --fn-font-display: "Bricolage Grotesque", "Arial Black", sans-serif;
-  --fn-font-body:    "Instrument Sans", system-ui, -apple-system, sans-serif;
-
-  --fn-radius-pill: 999px;
+  --fn-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --fn-body:    "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --fn-mono:    "Space Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-/* --- 3. Type ----------------------------------------------------------------
-   Dawn wires --font-heading-family / --font-body-family from the theme editor
-   font pickers. Prefer setting those in the editor. This block forces the
-   redesign fonts even if the pickers can't reach them. */
-h1, h2, h3, .h0, .h1, .h2, .h3,
-.title, .card__heading, .banner__heading {
-  font-family: var(--fn-font-display);
+/* ---- 1. Type -------------------------------------------------------------- */
+body,
+.rte,
+input, select, textarea, button,
+.product__text, .card__content {
+  font-family: var(--fn-body);
+}
+
+h1, h2, h3, h4,
+.h0, .h1, .h2, .h3, .h4,
+.title, .title-wrapper h2,
+.card__heading, .banner__heading,
+.product__title, .product__title h1,
+.footer-block__heading, .newsletter__heading,
+.rich-text__heading, .collection__title,
+.cart__heading, .main-page-title {
+  font-family: var(--fn-display);
+  font-weight: 800;
   letter-spacing: -0.02em;
-}
-body, .rte, p, li, input, textarea, select, button {
-  font-family: var(--fn-font-body);
+  line-height: 1.05;
 }
 
-/* --- 4. Buttons --------------------------------------------------------------
-   Pill shape + the redesign red. Dawn's .button covers most CTAs. */
-.button,
-.shopify-payment-button__button--unbranded {
-  border-radius: var(--fn-radius-pill) !important;
-  font-family: var(--fn-font-display);
-  font-weight: 700;
-}
-.button--primary,
-.button:not(.button--secondary):not(.button--tertiary) {
-  --color-button: 229, 55, 43;          /* Dawn expects "r, g, b" */
-  --color-button-text: 255, 255, 255;
-}
+/* a touch more scale on big headings */
+.banner__heading.h0,
+.rich-text__heading.h0,
+.title.h0 { font-size: clamp(3.4rem, 6vw, 6.2rem); }
 
-/* --- 5. Announcement bar ----------------------------------------------------- */
-.announcement-bar {
-  background: var(--fn-pine);
+/* ---- 2. Announcement bar ---------------------------------------------------- */
+.announcement-bar,
+.utility-bar { background: var(--fn-pine); }
+.announcement-bar__message,
+.announcement-bar__link {
   color: var(--fn-cream);
-  font-family: "Space Mono", ui-monospace, monospace;
+  font-family: var(--fn-mono);
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-size: 1.15rem;
 }
 
-/* --- 6. Product / collection cards ------------------------------------------
-   Give the media a warm ground so the pink-ish product photos sit flush. */
-.card--card .card__inner,
-.card-wrapper .card__media {
-  background: var(--fn-photo-bg);
+/* ---- 3. Header ---------------------------------------------------------------- */
+.header-wrapper {
+  border-bottom: 2px solid var(--fn-line);
+  background: var(--fn-cream);
 }
-.card-wrapper:hover .card__media img {
-  transform: translateY(-4px);
+.header__menu-item span,
+.header__active-menu-item { font-weight: 600; }
+.header__menu-item:hover span { color: var(--fn-red); }
+
+/* ---- 4. Buttons ----------------------------------------------------------------
+   Pill shape everywhere; primary = red; secondary/ghost = ink outline. */
+.button,
+.shopify-payment-button__button--unbranded,
+.product-form__submit,
+.cart__checkout-button,
+.shopify-payment-button__more-options {
+  border-radius: 999px !important;
+  font-family: var(--fn-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+.button:not([disabled]):hover,
+.product-form__submit:not([disabled]):hover {
+  transform: translateY(-2px);
+}
+.button--primary,
+.product-form__submit,
+.cart__checkout-button {
+  --color-button: 229, 55, 43;          /* Dawn reads "r, g, b" */
+  --color-button-text: 255, 255, 255;
+}
+.button--secondary {
+  --color-button: 255, 247, 237;
+  --color-button-text: 34, 28, 23;
+  border-width: 2px;
 }
 
-/* --- 7. Footer ------------------------------------------------------------- */
-.footer .footer-block__heading {
-  font-family: var(--fn-font-display);
+/* ---- 5. Prices ------------------------------------------------------------------ */
+.price,
+.price .price-item,
+.price__regular,
+.price__sale,
+.product__price,
+.cart-item__price,
+.totals__total-value {
+  font-family: var(--fn-mono);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.price .price-item--regular,
+.product__info-container .price-item--regular { color: var(--fn-red); }
+.price--on-sale .price-item--sale { color: var(--fn-red); }
+
+/* ---- 6. Product & collection cards ------------------------------------------- */
+.card-wrapper .card__media,
+.card--card .card__inner,
+.card--standard .card__media,
+.collection-list .card__media,
+.product-media-container {
+  background: var(--fn-photo-bg);
+  border-radius: 15px;
+  overflow: hidden;
+}
+.card { border-radius: 20px; }
+.card--card,
+.card-wrapper .card--card .card__inner {
+  border: 2px solid var(--fn-line);
+  transition: transform .18s ease, border-color .18s ease;
+}
+.card-wrapper:hover .card--card,
+.card-wrapper:hover .card--card .card__inner {
+  transform: translateY(-5px);
+  border-color: var(--fn-red);
+}
+.card__heading { font-size: 1.7rem; }
+.card__heading a::after { border-radius: 20px; }
+
+/* ---- 7. Category split (homepage collection list) --------------------------- */
+/* The two collection cards become bold coloured panels. */
+.collection-list--1-items,
+.collection-list.grid--2-col-tablet .grid__item { }
+.collection-list .grid__item .card--card .card__inner {
+  padding: 2.4rem;
+  border-width: 2px;
+}
+.collection-list .grid__item:nth-child(odd) .card--card .card__inner {
+  background: var(--fn-green-soft);
+  border-color: var(--fn-green);
+}
+.collection-list .grid__item:nth-child(even) .card--card .card__inner {
+  background: var(--fn-red-soft);
+  border-color: var(--fn-red);
+}
+.collection-list .card__heading { font-size: 2.4rem; }
+
+/* ---- 8. Trust strip (multicolumn on a coloured scheme) --------------------- */
+.multicolumn .multicolumn-card__info { padding: 0 1.2rem; }
+.multicolumn-card__info h3,
+.multicolumn-card__info .multicolumn-card__title {
+  font-family: var(--fn-display);
+  font-size: 1.7rem;
+}
+.multicolumn-list__item { text-align: left; }
+
+/* ---- 9. Image banner (hero) ---------------------------------------------------- */
+.banner--medium:not(.banner--mobile-bottom) .banner__content,
+.banner__box {
+  border-radius: 22px;
+  border: 2px solid var(--fn-line);
+}
+.banner__media { border-radius: 22px; overflow: hidden; }
+.banner__buttons .button { min-width: 0; }
+
+/* ---- 10. Rich text ----------------------------------------------------------- */
+.rich-text__text { color: var(--fn-ink-soft); }
+.rich-text__blocks { max-width: 72rem; }
+
+/* ---- 11. Product page ------------------------------------------------------------ */
+.product__title h1,
+.product__title { font-size: clamp(2.8rem, 3.4vw, 4.4rem); }
+.product__info-container .price { font-size: 2.4rem; }
+.product-form__buttons { display: flex; flex-direction: column; gap: 1rem; }
+.product-form__submit {
+  --color-button: 255, 247, 237;
+  --color-button-text: 34, 28, 23;
+  border: 2px solid var(--fn-ink) !important;
+}
+.product-form__submit.button--secondary[disabled] { opacity: .45; }
+.shopify-payment-button__button--unbranded {
+  background: var(--fn-red) !important;
+  color: #fff !important;
+}
+.quantity {
+  border-radius: 999px;
+  border: 2px solid var(--fn-ink);
+  overflow: hidden;
+}
+.quantity__input, .quantity__button { font-family: var(--fn-display); font-weight: 700; }
+.product .accordion,
+.product__accordion {
+  border: 2px solid var(--fn-line);
+  border-radius: 16px;
+  padding: 0 1.6rem;
+}
+.product__accordion summary { font-family: var(--fn-display); font-weight: 700; }
+/* trust icon-with-text block */
+.product .icon-with-text { gap: 1rem; }
+.product .icon-with-text .icon { color: var(--fn-green); }
+
+/* ---- 12. Cart --------------------------------------------------------------------- */
+.cart__blocks .totals__total-value { color: var(--fn-red); }
+.cart-item__name { font-family: var(--fn-display); font-weight: 700; }
+
+/* ---- 13. Footer ---------------------------------------------------------------- */
+.footer { border-top: 2px solid var(--fn-line); }
+.footer-block__heading {
+  font-family: var(--fn-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.footer__payment .list-payment__item svg { border-radius: 6px; }
+/* cream plaque behind the footer logo */
+.footer__content-top .footer-block--newsletter .footer__logo,
+.footer .footer-block__details-content > .footer-block__image-wrapper img {
+  background: var(--fn-cream);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+/* ---- 14. Newsletter / email signup ------------------------------------------- */
+.newsletter__button.button { border-radius: 999px !important; }
+
+/* ---- 15. Media & sections rhythm ------------------------------------------------ */
+.media--hover-effect > img:only-child,
+.card__media img { transition: transform .3s ease; }
+.card-wrapper:hover .card__media img { transform: scale(1.03); }
+
+/* ---- 16. Focus states (keep them visible, on-brand) ----------------------- */
+.button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--fn-red);
+  outline-offset: 2px;
 }
 
 /* --------------------------------------------------------------------------
-   NEXT: port the artboard layouts (hero, category split, trust strip,
-   mega-menu, cart drawer) into their Dawn sections/snippets and target them
-   with classes here. Keep edits to Dawn's own .liquid minimal.
+   STILL TO DO in sections/templates (CSS alone can't reach these):
+   - Hero: two overlapping photo frames + gold "vanaf €8,50" sticker
+     -> edit sections/image-banner.liquid or a custom section + templates/index.json
+   - Category split: real image + copy + "3 ornamenten ->" link per card
+   - Trust strip: force green colour scheme + custom SVG icons
+   - Mega-menu dropdown, cart-drawer restyle
+   - PDP gallery: single large photo, thumbnail strip, "Onbreekbaar plastic" badge
    -------------------------------------------------------------------------- */
