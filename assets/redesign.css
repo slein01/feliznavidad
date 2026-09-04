@@ -562,10 +562,13 @@ fieldset.js .product-form__input input[type="radio"]:checked + label {
 .footer-block--text .rte a:hover { color: #fff; }
 .footer-block__heading { margin-bottom: 1rem; }
 
-/* ---- fn-statement + foto-collage (homepage) ------------------------------- */
+/* ---- fn-statement + foto-collage (homepage) -------------------------------
+   Witte achtergrond loopt nu OVER de volle breedte (op de -section wrapper),
+   de inhoud zit in .page-width. Geen zwevend wit blok meer. */
+.fn-statement-section { background: var(--fn-paper); padding-block: 6.5rem; }
 .fn-statement {
   display: grid; grid-template-columns: 1fr 1fr; gap: 5.6rem;
-  align-items: center; padding-block: 8rem; background: var(--fn-paper);
+  align-items: center;
 }
 .fn-statement__eyebrow {
   font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
@@ -573,16 +576,71 @@ fieldset.js .product-form__input input[type="radio"]:checked + label {
 }
 .fn-statement__title {
   font-family: var(--fn-display); font-weight: 800; letter-spacing: -0.02em;
-  font-size: clamp(3.2rem, 4vw, 4.6rem); line-height: 1.05; margin: 0;
+  font-size: clamp(3.2rem, 4vw, 4.4rem); line-height: 1.06; margin: 0;
 }
-.fn-statement__text { color: var(--fn-ink-soft); font-size: 1.7rem; margin: 2rem 0 2.8rem; max-width: 46rem; }
+.fn-statement__text { color: var(--fn-ink-soft); font-size: 1.7rem; margin: 1.8rem 0 2.6rem; max-width: 44rem; }
 .fn-statement__collage { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
-.fn-statement__tile { border-radius: 2rem; overflow: hidden; background: var(--fn-photo-bg); aspect-ratio: 4 / 5; }
+.fn-statement__tile { border-radius: 1.8rem; overflow: hidden; background: var(--fn-photo-bg); aspect-ratio: 1 / 1.12; }
 .fn-statement__tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.fn-statement__tile--2, .fn-statement__tile--4 { margin-top: 3rem; }
+.fn-statement__tile--2, .fn-statement__tile--4 { margin-top: 2.4rem; }
 @media (max-width: 749px) {
-  .fn-statement { grid-template-columns: 1fr; gap: 3rem; padding-block: 4.4rem; }
-  .fn-statement__tile--2, .fn-statement__tile--4 { margin-top: 1.6rem; }
+  .fn-statement-section { padding-block: 4rem; }
+  .fn-statement { grid-template-columns: 1fr; gap: 2.6rem; }
+  .fn-statement__tile--2, .fn-statement__tile--4 { margin-top: 1.2rem; }
+}
+
+/* ---- fn-reviews — eigen review-slider in de huisstijl ------------------- */
+.fn-reviews { padding-block: 1rem 4rem; }
+.fn-reviews__summary {
+  display: flex; align-items: baseline; justify-content: center;
+  gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;
+}
+.fn-reviews__score {
+  font-family: var(--fn-display); font-weight: 800; font-size: 3.6rem; line-height: 1;
+}
+.fn-reviews__stars { color: var(--fn-gold); letter-spacing: 2px; font-size: 1.8rem; }
+.fn-reviews__meta { font-size: 1.4rem; color: var(--fn-ink-soft); }
+
+.fn-reviews__track {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: .4rem .4rem 1.6rem;
+  scrollbar-width: thin;
+}
+.fn-reviews__track::-webkit-scrollbar { height: 6px; }
+.fn-reviews__track::-webkit-scrollbar-thumb { background: var(--fn-line); border-radius: 999px; }
+
+.fn-review {
+  flex: 0 0 33rem;
+  scroll-snap-align: start;
+  display: flex; flex-direction: column; gap: 1.2rem;
+  background: var(--fn-paper);
+  border: 2px solid var(--fn-line);
+  border-radius: 20px;
+  padding: 2.2rem;
+}
+.fn-review__head { display: flex; align-items: center; gap: 1.2rem; }
+.fn-review__avatar {
+  flex: none;
+  width: 3.8rem; height: 3.8rem; border-radius: 999px;
+  display: grid; place-items: center;
+  color: #fff; font-family: var(--fn-display); font-weight: 800; font-size: 1.6rem;
+}
+.fn-review__name { font-family: var(--fn-display); font-weight: 700; font-size: 1.5rem; margin: 0; }
+.fn-review__date { font-size: 1.15rem; color: var(--fn-ink-soft); margin: .2rem 0 0; }
+.fn-review__stars { color: var(--fn-gold); letter-spacing: 2px; font-size: 1.5rem; }
+.fn-review__star--dim { color: var(--fn-line); }
+.fn-review__text { font-size: 1.45rem; line-height: 1.5; color: var(--fn-ink); margin: 0; }
+.fn-review__source {
+  font-family: var(--fn-mono); font-size: 1rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fn-ink-soft);
+  margin: auto 0 0;
+}
+@media (max-width: 749px) {
+  .fn-review { flex-basis: 78vw; }
 }
 
 /* ---- fn-contact --------------------------------------------------------------- */

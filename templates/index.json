@@ -137,6 +137,17 @@
         "padding_bottom": 0
       }
     },
+    "fn_reviews": {
+      "type": "fn-reviews",
+      "blocks": {
+        "rv1": { "type": "review", "settings": { "name": "Tim", "date": "9 maanden geleden op Google", "rating": 5, "text": "Top kerststukje voor mijn vriendin! Zeker een aanrader.", "source": "via Google", "avatar_color": "#5B4B8A" } },
+        "rv2": { "type": "review", "settings": { "name": "Cat", "date": "9 maanden geleden op Google", "rating": 5, "text": "Ik heb deze twee gezellige ornamenten gekocht. Enorm blij mee! Voor mij persoonlijk is het echt een cadeautje.", "source": "via Google", "avatar_color": "#2C7D52" } },
+        "rv3": { "type": "review", "settings": { "name": "Jordi Erve", "date": "11 maanden geleden op Google", "rating": 5, "text": "Erg ruim assortiment en goede kwaliteit. Wij wilden dit graag in het kerstpakket stoppen voor onze collega's.", "source": "via Google", "avatar_color": "#9B4DA0" } },
+        "rv4": { "type": "review", "settings": { "name": "Danny Hulsink", "date": "11 maanden geleden op Google", "rating": 5, "text": "Super origineel en stevig gemaakt — de astronaut zweeft nu vrolijk tussen de lichtjes van de boom.", "source": "via Google", "avatar_color": "#D9722B" } }
+      },
+      "block_order": ["rv1", "rv2", "rv3", "rv4"],
+      "settings": { "show_summary": true, "score": "4,8", "summary_text": "op basis van onze Google-reviews" }
+    },
     "custom_liquid_zWj3Xj": {
       "type": "custom-liquid",
       "name": "t:sections.custom-liquid.presets.name",
@@ -191,7 +202,7 @@
     "fn_trust",
     "fn_statement",
     "rich_text_Nt9ynH",
-    "custom_liquid_zWj3Xj",
+    "fn_reviews",
     "rich_text_FQPWYR"
   ]
 }

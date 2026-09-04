@@ -1,0 +1,70 @@
+<div class="fn-reviews page-width">
+  {%- if section.settings.show_summary -%}
+    <div class="fn-reviews__summary">
+      <span class="fn-reviews__score">{{ section.settings.score }}</span>
+      <span class="fn-reviews__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="fn-reviews__meta">{{ section.settings.summary_text }}</span>
+    </div>
+  {%- endif -%}
+
+  <div class="fn-reviews__track">
+    {%- for block in section.blocks -%}
+      {%- assign initial = block.settings.name | strip | slice: 0 | upcase -%}
+      <article class="fn-review" {{ block.shopify_attributes }}>
+        <div class="fn-review__head">
+          <span class="fn-review__avatar" style="background: {{ block.settings.avatar_color }}">{{ initial }}</span>
+          <div class="fn-review__who">
+            <p class="fn-review__name">{{ block.settings.name }}</p>
+            {%- if block.settings.date != blank -%}<p class="fn-review__date">{{ block.settings.date }}</p>{%- endif -%}
+          </div>
+        </div>
+        <div class="fn-review__stars" aria-label="{{ block.settings.rating }} van 5 sterren">
+          {%- for i in (1..5) -%}
+            {%- if i <= block.settings.rating -%}&#9733;{%- else -%}<span class="fn-review__star--dim">&#9733;</span>{%- endif -%}
+          {%- endfor -%}
+        </div>
+        <p class="fn-review__text">{{ block.settings.text }}</p>
+        {%- if block.settings.source != blank -%}
+          <p class="fn-review__source">{{ block.settings.source }}</p>
+        {%- endif -%}
+      </article>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FN — Reviews",
+  "settings": [
+    { "type": "checkbox", "id": "show_summary", "label": "Samenvatting tonen", "default": true },
+    { "type": "text", "id": "score", "label": "Cijfer", "default": "4,8" },
+    { "type": "text", "id": "summary_text", "label": "Samenvatting-tekst", "default": "beoordelingen op Google" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Naam", "default": "Klant" },
+        { "type": "text", "id": "date", "label": "Datum-tekst", "default": "onlangs op Google" },
+        { "type": "range", "id": "rating", "label": "Sterren", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Review", "default": "Mooie producten en snelle levering!" },
+        { "type": "text", "id": "source", "label": "Bron", "default": "via Google" },
+        { "type": "color", "id": "avatar_color", "label": "Avatar-kleur", "default": "#1F9D61" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "FN — Reviews",
+      "blocks": [
+        { "type": "review", "settings": { "name": "Tim", "date": "9 maanden geleden op Google", "rating": 5, "text": "Top kerststukje voor mijn vriendin! Zeker een aanrader.", "source": "via Google", "avatar_color": "#5B4B8A" } },
+        { "type": "review", "settings": { "name": "Cat", "date": "9 maanden geleden op Google", "rating": 5, "text": "Ik heb deze twee gezellige ornamenten gekocht. Enorm blij mee! Voor mij persoonlijk is het echt een cadeautje.", "source": "via Google", "avatar_color": "#2C7D52" } },
+        { "type": "review", "settings": { "name": "Jordi Erve", "date": "11 maanden geleden op Google", "rating": 5, "text": "Erg ruim assortiment en goede kwaliteit. Wij wilden dit graag in het kerstpakket stoppen voor onze collega's.", "source": "via Google", "avatar_color": "#9B4DA0" } },
+        { "type": "review", "settings": { "name": "Danny Hulsink", "date": "11 maanden geleden op Google", "rating": 5, "text": "Super origineel en stevig gemaakt — de astronaut zweeft nu vrolijk tussen de lichtjes van de boom.", "source": "via Google", "avatar_color": "#D9722B" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
