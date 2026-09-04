@@ -1575,58 +1575,104 @@ h2.rich-text__heading,
   .featured-blog ul.grid { grid-template-columns: 1fr !important; }
 }
 
-/* article-card: wit vlak, foto boven (afgerond), tekst eronder */
+/* article-card zonder afbeelding -> tekst-forward "artikel-teaser" die uitnodigt
+   om door te klikken: label · titel · eerste regels · "Lees verder ->" */
 .article-card.card--card {
   background: var(--fn-paper) !important;
   border: 2px solid var(--fn-line) !important;
   border-radius: 20px !important;
-  padding: 1.1rem !important;
+  padding: 0 !important;
   overflow: hidden;
+  transition: transform .18s ease, border-color .18s ease;
 }
 .article-card.card--card::after { display: none !important; }
+.article-card-wrapper:hover .article-card.card--card {
+  transform: translateY(-4px);
+  border-color: var(--fn-red) !important;
+}
+/* .card__inner is bij deze posts alleen een wrapper (geen foto) -> onzichtbaar */
 .article-card.card--card .card__inner {
   border: 0 !important;
-  border-radius: 13px !important;
-  background: var(--fn-photo-bg) !important;
-  overflow: hidden;
+  background: transparent !important;
+  border-radius: 0 !important;
 }
-.article-card.card--card .card__inner .article-card__image,
-.article-card.card--card .card__inner .media { border-radius: 13px !important; }
+.article-card.card--card .card__media:empty,
+.article-card.card--card .article-card__image-wrapper:empty { display: none !important; }
+
 .article-card.card--card > .card__content,
 .article-card.card--card .card__content {
   display: flex !important;
   flex-direction: column !important;
-  gap: .5rem !important;
-  padding: 1.2rem .4rem .4rem !important;
+  gap: .9rem !important;
+  padding: 2.4rem !important;
   grid-template-rows: none !important;
   align-content: start;
+  height: 100%;
+  min-height: 22rem;
 }
-.article-card.card--card .card__information { padding: 0 !important; }
+.article-card.card--card .card__information {
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  gap: .9rem;
+  height: 100%;
+}
+/* "Inspiratie"-label */
+.featured-blog .article-card .card__information::before,
+.template-blog .article-card .card__information::before {
+  content: "Inspiratie";
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fn-red);
+}
+/* titel (override Dawn's .h2 wanneer show_excerpt aan staat) */
 .article-card.card--card .card__heading,
 .article-card.card--card .card__heading a,
 .article-card.card--card .card__heading .full-unstyled-link {
   font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
   font-weight: 800 !important;
-  font-size: 1.6rem !important;
-  line-height: 1.25 !important;
+  font-size: 1.75rem !important;
+  line-height: 1.22 !important;
+  letter-spacing: -.01em !important;
   color: var(--fn-ink) !important;
   text-decoration: none !important;
   box-shadow: none !important;
+  margin: 0 !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-
-/* alleen in de Inspiratie-context (featured-blog): "Inspiratie"-label + geen datum/excerpt */
-.featured-blog .article-card .card__information::before {
-  content: "Inspiratie";
-  display: block;
-  font-family: "Space Mono", ui-monospace, monospace;
-  font-size: 1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fn-ink-soft);
-  margin-bottom: .1rem;
+/* eerste regels van het artikel, kleiner */
+.article-card.card--card .article-card__excerpt {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+  font-size: 1.35rem !important;
+  line-height: 1.5 !important;
+  color: var(--fn-ink-soft) !important;
+  margin: 0 !important;
+  max-width: none !important;
 }
+/* "Lees verder ->" onderaan de kaart */
+.article-card.card--card .article-card__footer {
+  margin-top: auto !important;
+  padding-top: .4rem;
+}
+.article-card.card--card .article-card__footer::before {
+  content: "Lees verder \2192";
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--fn-red);
+}
+.article-card-wrapper:hover .article-card__footer::before { text-decoration: underline; text-underline-offset: .3rem; }
+/* datum/auteur weg */
 .featured-blog .article-card .article-card__info,
-.featured-blog .article-card .article-card__excerpt,
-.featured-blog .article-card .article-card__footer,
-.featured-blog .article-card .card__badge { display: none !important; }
+.template-blog .article-card .article-card__info,
+.article-card.card--card .card__badge { display: none !important; }
 
 /* --------------------------------------------------------------------------
    Handmatig in Shopify (geen code):
