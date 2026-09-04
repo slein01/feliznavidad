@@ -133,8 +133,8 @@
         "content_alignment": "center",
         "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
         "full_width": true,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 56,
+        "padding_bottom": 8
       }
     },
     "fn_reviews": {
