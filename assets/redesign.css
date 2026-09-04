@@ -695,6 +695,98 @@ fieldset.js .product-form__input input[type="radio"]:checked + label {
 .blog-articles__article .article-card { height: 100%; }
 
 /* ==========================================================================
+   Delivery 9 — collectiepagina + productkaarten aanscherpen
+   (redesign.css laadt nu óók aan het einde van <body>, dus dit wint van
+    Dawn's component-css zonder !important-spam)
+   ========================================================================== */
+
+/* -- Geen witte balk bovenaan: hele pagina + losse secties op crème -- */
+body,
+.content-for-layout,
+#shopify-section-fn_breadcrumb,
+#shopify-section-fn_collection_nav {
+  background-color: var(--fn-cream);
+}
+
+/* -- Kruimelpad strak tegen de titel -- */
+#shopify-section-fn_breadcrumb { padding: 0; }
+.fn-crumbs { padding: 1.8rem 0 0; margin: 0; }
+
+/* -- Collectie-header: minder lucht eromheen -- */
+.collection-hero { padding-block: 1.2rem 0; }
+.collection-hero__inner { padding: 1.6rem 0 1.2rem; }
+.collection-hero__title { margin: 0; }
+.collection-hero__description { margin-top: 1.2rem; }
+
+/* -- fn-collection-nav: categorie-pills -- */
+.fn-collnav {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .8rem;
+  padding: 1.2rem 0 .4rem;
+}
+.fn-collnav__label {
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.1rem;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--fn-ink-soft);
+  margin-right: .4rem;
+}
+.fn-collnav__pill {
+  display: inline-flex; align-items: center;
+  border: 2px solid var(--fn-line); background: var(--fn-paper);
+  border-radius: 999px; padding: .8rem 1.5rem;
+  font-size: 1.4rem; font-weight: 600; color: var(--fn-ink); text-decoration: none;
+  transition: border-color .12s ease, background .12s ease, color .12s ease;
+}
+.fn-collnav__pill:hover { border-color: var(--fn-ink); }
+.fn-collnav__pill.is-active { background: var(--fn-ink); border-color: var(--fn-ink); color: var(--fn-cream); }
+
+/* -- Dawn's facetbalk dichter tegen de pills, minder witruimte -- */
+#ProductGridContainer { margin-top: .4rem; }
+.facets-container.facets-container--drawer,
+.collection .facets,
+.product-grid-container > .collection__title { margin-block: .8rem 1.2rem; }
+.collection .loading__spinner ~ #product-grid,
+#product-grid { margin-top: 1rem; }
+
+/* -- Productkaarten: wit vlak, rand, ronde hoeken, inhoud netjes -- */
+.card-wrapper .card--card .card__inner,
+.card--card .card__inner {
+  background: var(--fn-paper);
+  border: 2px solid var(--fn-line);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 1rem;
+}
+.card--card .card__inner .card__media {
+  border-radius: 13px;
+  background: var(--fn-photo-bg);
+  margin: 0;
+}
+.card--card .card__content {
+  padding: 1.2rem .4rem .4rem;
+  grid-template-rows: max-content;
+  align-content: start;
+  row-gap: .2rem;
+}
+.card--card .card__information { padding: 0; grid-row-start: auto; }
+.card--card .card__heading { font-size: 1.6rem; font-weight: 700; line-height: 1.25; margin: 0; }
+.card--card .card-information { margin-top: .3rem; }
+.card--card .price { font-size: 1.4rem; }
+.card-wrapper .quick-add { margin-top: 1rem; padding: 0; }
+.card-wrapper .quick-add__submit { border-radius: 999px; }
+
+/* -- Groene/rode classificatie-chip -- */
+.fn-card-tag {
+  display: inline-block;
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .3rem .7rem; border-radius: 6px; margin-bottom: .6rem;
+}
+.fn-card-tag--klassiek { background: var(--fn-green-soft); color: var(--fn-green); }
+.fn-card-tag--grappig { background: var(--fn-red-soft); color: var(--fn-red); }
+
+/* -- Homepage "Meest gekozen": zelfde kaartstijl, iets meer ademruimte -- */
+#shopify-section-featured_collection .card--card .card__inner { padding: 1.1rem; }
+
+/* ==========================================================================
    CTA-KLEUREN — definitief (overschrijft alle regels hierboven)
    Canvas: "In m'n boom" (in winkelwagen) = ROOD gevuld overal.
            Dynamische checkout ("Nu kopen") = ghost/outline, ondergeschikt.

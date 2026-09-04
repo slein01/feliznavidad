@@ -1,0 +1,12 @@
+{%- comment -%} Groene/rode classificatie-chip op productkaarten, o.b.v. collectie-lidmaatschap. {%- endcomment -%}
+{%- liquid
+  assign fn_cat = ''
+  for c in card_product.collections
+    if c.handle == 'grappige-ornamenten'
+      assign fn_cat = 'Grappig'
+    elsif c.handle == 'klassieke-ornamenten'
+      assign fn_cat = 'Klassiek'
+    endif
+  endfor
+-%}
+{%- if fn_cat != blank -%}<span class="fn-card-tag fn-card-tag--{{ fn_cat | downcase }}">{{ fn_cat }}</span>{%- endif -%}
