@@ -1680,14 +1680,15 @@ h2.rich-text__heading,
 .fn-purchase-row {
   display: grid;
   grid-template-columns: 12.5rem minmax(0, 1fr);
-  align-items: center;
+  align-items: start;              /* teller lijnt met de BOVENkant, dus met "In m'n boom" */
   gap: 1.2rem;
   margin-top: 1.8rem;
 }
-/* kolom 1: alleen de stepper (label verborgen, maar leesbaar voor screenreaders) */
+/* kolom 1: alleen de stepper (label verborgen, wel leesbaar voor screenreaders) */
 .fn-purchase-row .product-form__quantity {
   grid-column: 1;
   grid-row: 1;
+  align-self: start;
   display: block !important;
   width: 12.5rem !important;
   margin: 0 !important;
@@ -1703,7 +1704,7 @@ h2.rich-text__heading,
 .fn-purchase-row .quantity {
   width: 100% !important;
   min-width: 0 !important;
-  height: 5rem;
+  height: 5rem;              /* zelfde hoogte als de knop -> netjes uitgelijnd */
 }
 /* kolom 2: het hele koop-formulier — MOET display:block (custom element = inline) */
 .fn-purchase-row product-form,
@@ -1728,12 +1729,14 @@ h2.rich-text__heading,
   min-height: 5rem;
 }
 
-@media (max-width: 749px) {
+/* Mobiel: teller compact bovenaan, knoppen vol-breed eronder */
+@media (max-width: 599px) {
   .fn-purchase-row {
     grid-template-columns: 1fr;
     align-items: stretch;
+    gap: 1rem;
   }
-  .fn-purchase-row .product-form__quantity { grid-column: 1; grid-row: 1; width: 100% !important; }
+  .fn-purchase-row .product-form__quantity { grid-column: 1; grid-row: 1; width: 14rem !important; }
   .fn-purchase-row product-form,
   .fn-purchase-row .product-form { grid-column: 1; grid-row: 2; }
   .fn-purchase-row .quantity { width: 100% !important; }
