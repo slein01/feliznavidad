@@ -828,13 +828,25 @@ body,
   padding: 0 4rem 0 2rem !important;
   margin: 0 !important;
   font-family: "Instrument Sans", system-ui, -apple-system, sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 1.4rem !important;
   line-height: 1 !important;
   color: var(--fn-ink) !important;
   background: var(--fn-paper) !important;
   box-shadow: none !important;
   transition: border-color .12s ease, background .12s ease, color .12s ease;
+}
+/* alle tekst in de filter-pills exact hetzelfde gewicht (niet vet) */
+.facets__summary,
+.facets__summary *,
+.facets__summary-label,
+.mobile-facets__summary,
+.mobile-facets__summary *,
+.facet-filters__sort,
+.facet-filters__sort option,
+.facets .select__select,
+.facets .select__select option {
+  font-weight: 500 !important;
 }
 .facets__summary::-webkit-details-marker,
 .facets__summary::marker,
@@ -1046,35 +1058,41 @@ summary.header__icon--summary {
   height: 4rem !important;
   display: grid !important;
   place-items: center !important;
+  color: var(--fn-ink) !important;
 }
 .header__icon--search:hover,
 summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
+.header__icon--search .svg-wrapper, .header__icon--summary .svg-wrapper,
 .header__icon--search .icon, .header__icon--summary .icon,
-.header__icon--search svg, .header__icon--summary svg { width: 1.9rem; height: 1.9rem; }
+.header__icon--search svg, .header__icon--summary svg {
+  width: 1.9rem !important; height: 1.9rem !important; color: var(--fn-ink) !important;
+}
 
 /* Winkelwagen als rode pill:  [icoon]  Winkelwagen  (n) */
 #cart-icon-bubble.header__icon--cart {
   display: inline-flex !important;
-  align-items: center;
-  gap: .7rem;
+  align-items: center !important;
+  gap: .7rem !important;
   width: auto !important;
   height: auto !important;
-  min-height: 4rem;
+  min-height: 3.8rem;
   background: var(--fn-red) !important;
   border-radius: 999px !important;
-  padding: 0 1.6rem !important;
-}
-#cart-icon-bubble .svg-wrapper,
-#cart-icon-bubble > .icon,
-#cart-icon-bubble > svg { order: 1; display: inline-flex; }
-#cart-icon-bubble .icon,
-#cart-icon-bubble svg {
+  padding: 0 1.8rem !important;
+  text-decoration: none !important;
   color: #fff !important;
-  fill: none !important;
-  stroke: #fff !important;
-  width: 2rem !important;
-  height: 2rem !important;
 }
+#cart-icon-bubble.header__icon--cart:hover,
+#cart-icon-bubble.header__icon--cart:focus { text-decoration: none !important; }
+#cart-icon-bubble .svg-wrapper { order: 1; display: inline-flex !important; align-items: center; }
+#cart-icon-bubble .icon,
+#cart-icon-bubble svg,
+#cart-icon-bubble svg path {
+  color: #fff !important;
+  fill: currentColor !important;   /* icon-cart.svg is fill-based met currentColor */
+  stroke: none !important;
+}
+#cart-icon-bubble svg { width: 2rem !important; height: 2rem !important; }
 #cart-icon-bubble::after {
   content: "Winkelwagen";
   order: 2;
@@ -1083,20 +1101,23 @@ summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
   font-size: 1.45rem;
   color: #fff;
   line-height: 1;
+  text-decoration: none !important;
 }
 #cart-icon-bubble .cart-count-bubble {
   order: 3;
   position: static !important;
   display: grid;
   place-items: center;
-  min-width: 2rem;
-  height: 2rem;
-  padding: 0 .3rem;
-  margin: 0 -.2rem 0 0;
-  background: rgba(255, 255, 255, .25) !important;
+  min-width: 1.9rem;
+  height: 1.9rem;
+  padding: 0 .35rem;
+  margin: 0;
+  background: rgba(255, 255, 255, .22) !important;
   border-radius: 999px;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+  font-weight: 700;
   line-height: 1;
+  color: #fff;
 }
 #cart-icon-bubble .cart-count-bubble::after { display: none; }
 #cart-icon-bubble .cart-count-bubble span { color: #fff !important; }
