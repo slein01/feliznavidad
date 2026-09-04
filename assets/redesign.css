@@ -1072,27 +1072,28 @@ summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
 #cart-icon-bubble.header__icon--cart {
   display: inline-flex !important;
   align-items: center !important;
-  gap: .7rem !important;
+  gap: .55rem !important;
   width: auto !important;
   height: auto !important;
-  min-height: 3.8rem;
+  min-height: 3.6rem;
   background: var(--fn-red) !important;
   border-radius: 999px !important;
-  padding: 0 1.8rem !important;
+  padding: 0 1.7rem !important;
   text-decoration: none !important;
   color: #fff !important;
 }
 #cart-icon-bubble.header__icon--cart:hover,
 #cart-icon-bubble.header__icon--cart:focus { text-decoration: none !important; }
 #cart-icon-bubble .svg-wrapper { order: 1; display: inline-flex !important; align-items: center; }
-#cart-icon-bubble .icon,
-#cart-icon-bubble svg,
-#cart-icon-bubble svg path {
-  color: #fff !important;
-  fill: currentColor !important;   /* icon-cart.svg is fill-based met currentColor */
-  stroke: none !important;
+#cart-icon-bubble .icon-cart,
+#cart-icon-bubble svg {
+  width: 2rem !important;
+  height: 2rem !important;
+  color: #fff !important;      /* trolley-icoon is stroke-based met currentColor */
+  stroke: currentColor !important;
+  fill: none !important;
 }
-#cart-icon-bubble svg { width: 2rem !important; height: 2rem !important; }
+#cart-icon-bubble svg circle { fill: currentColor !important; stroke: currentColor !important; }
 #cart-icon-bubble::after {
   content: "Winkelwagen";
   order: 2;
@@ -1103,24 +1104,29 @@ summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
   line-height: 1;
   text-decoration: none !important;
 }
+/* tellertje als platte tekst "(1)", geen apart rondje — zoals het design */
 #cart-icon-bubble .cart-count-bubble {
   order: 3;
   position: static !important;
-  display: grid;
-  place-items: center;
-  min-width: 1.9rem;
-  height: 1.9rem;
-  padding: 0 .35rem;
-  margin: 0;
-  background: rgba(255, 255, 255, .22) !important;
-  border-radius: 999px;
-  font-size: 1.1rem;
+  display: inline-flex !important;
+  align-items: baseline;
+  min-width: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 0 0 -.2rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
   font-weight: 700;
+  font-size: 1.45rem;
   line-height: 1;
-  color: #fff;
+  color: #fff !important;
 }
-#cart-icon-bubble .cart-count-bubble::after { display: none; }
-#cart-icon-bubble .cart-count-bubble span { color: #fff !important; }
+#cart-icon-bubble .cart-count-bubble::before { content: "("; }
+#cart-icon-bubble .cart-count-bubble::after { content: ")"; display: inline !important; }
+#cart-icon-bubble .cart-count-bubble span[aria-hidden] { color: #fff !important; }
 
 /* ==========================================================================
    CTA-KLEUREN — definitief (overschrijft alle regels hierboven)
