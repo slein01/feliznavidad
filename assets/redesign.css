@@ -700,91 +700,143 @@ fieldset.js .product-form__input input[type="radio"]:checked + label {
     Dawn's component-css zonder !important-spam)
    ========================================================================== */
 
-/* -- Geen witte balk bovenaan: hele pagina + losse secties op crème -- */
+/* -- Geen witte balk bovenaan: hele pagina op crème -- */
 body,
 .content-for-layout,
 #shopify-section-fn_breadcrumb,
-#shopify-section-fn_collection_nav {
-  background-color: var(--fn-cream);
-}
+#shopify-section-fn_collection_nav { background-color: var(--fn-cream); }
 
-/* -- Kruimelpad strak tegen de titel -- */
 #shopify-section-fn_breadcrumb { padding: 0; }
 .fn-crumbs { padding: 1.8rem 0 0; margin: 0; }
 
-/* -- Collectie-header: minder lucht eromheen -- */
+/* -- Collectie-header: strak -- */
 .collection-hero { padding-block: 1.2rem 0; }
-.collection-hero__inner { padding: 1.6rem 0 1.2rem; }
+.collection-hero__inner { padding: 1.6rem 0 1rem; }
 .collection-hero__title { margin: 0; }
 .collection-hero__description { margin-top: 1.2rem; }
 
-/* -- fn-collection-nav: categorie-pills -- */
+/* -- Categorie-pills + Dawn-facetbalk als één filterband -- */
 .fn-collnav {
   display: flex; flex-wrap: wrap; align-items: center; gap: .8rem;
-  padding: 1.2rem 0 .4rem;
+  padding: 1rem 0 .2rem;
 }
 .fn-collnav__label {
-  font-family: var(--fn-mono); font-weight: 700; font-size: 1.1rem;
-  letter-spacing: .16em; text-transform: uppercase; color: var(--fn-ink-soft);
-  margin-right: .4rem;
+  font-family: "Space Mono", ui-monospace, monospace; font-weight: 700; font-size: 1.1rem;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--fn-ink-soft); margin-right: .4rem;
 }
 .fn-collnav__pill {
   display: inline-flex; align-items: center;
   border: 2px solid var(--fn-line); background: var(--fn-paper);
-  border-radius: 999px; padding: .8rem 1.5rem;
+  border-radius: 999px; padding: .8rem 1.6rem;
+  font-family: "Instrument Sans", system-ui, sans-serif;
   font-size: 1.4rem; font-weight: 600; color: var(--fn-ink); text-decoration: none;
-  transition: border-color .12s ease, background .12s ease, color .12s ease;
 }
 .fn-collnav__pill:hover { border-color: var(--fn-ink); }
 .fn-collnav__pill.is-active { background: var(--fn-ink); border-color: var(--fn-ink); color: var(--fn-cream); }
 
-/* -- Dawn's facetbalk dichter tegen de pills, minder witruimte -- */
-#ProductGridContainer { margin-top: .4rem; }
-.facets-container.facets-container--drawer,
-.collection .facets,
-.product-grid-container > .collection__title { margin-block: .8rem 1.2rem; }
-.collection .loading__spinner ~ #product-grid,
-#product-grid { margin-top: 1rem; }
+#shopify-section-fn_collection_nav { padding-bottom: 0; }
+.collection .facets.facets--horizontal,
+.facets-container { margin-top: .4rem !important; padding-top: .2rem !important; }
+.facets__heading, .facet-filters__label { color: var(--fn-ink-soft) !important; font-weight: 600 !important; }
+.facets__disclosure .facets__summary,
+.facets__summary {
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 999px !important;
+  padding: .8rem 1.5rem !important;
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+  font-weight: 600 !important; font-size: 1.4rem !important;
+  background: var(--fn-paper) !important;
+}
+.facets__summary:hover { border-color: var(--fn-ink) !important; }
+.facet-filters__sort, .facets .select__select {
+  border: 2px solid var(--fn-line) !important; border-radius: 999px !important;
+  padding: .8rem 1.3rem !important; font-weight: 600 !important;
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+}
+.product-count__text { font-family: "Instrument Sans", system-ui, sans-serif !important; color: var(--fn-ink-soft) !important; }
+#ProductGridContainer, #product-grid { margin-top: 1rem !important; }
 
-/* -- Productkaarten: wit vlak, rand, ronde hoeken, inhoud netjes -- */
-.card-wrapper .card--card .card__inner,
-.card--card .card__inner {
-  background: var(--fn-paper);
-  border: 2px solid var(--fn-line);
-  border-radius: 20px;
+/* -- PRODUCTKAARTEN (card-stijl) — matcht het canvas -- */
+.card-wrapper.product-card-wrapper { display: flex; flex-direction: column; }
+.card--card {
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 20px !important;
+  background: var(--fn-paper) !important;
+  padding: 1.1rem !important;
   overflow: hidden;
-  padding: 1rem;
+  height: auto !important;
 }
-.card--card .card__inner .card__media {
-  border-radius: 13px;
-  background: var(--fn-photo-bg);
-  margin: 0;
+.card--card:after { display: none !important; }              /* Dawn's schaduw-pseudo uit */
+.card--card .card__inner {
+  background: var(--fn-photo-bg) !important;
+  border: 0 !important;
+  border-radius: 13px !important;
+  overflow: hidden;
 }
-.card--card .card__content {
-  padding: 1.2rem .4rem .4rem;
-  grid-template-rows: max-content;
-  align-content: start;
-  row-gap: .2rem;
-}
-.card--card .card__information { padding: 0; grid-row-start: auto; }
-.card--card .card__heading { font-size: 1.6rem; font-weight: 700; line-height: 1.25; margin: 0; }
-.card--card .card-information { margin-top: .3rem; }
-.card--card .price { font-size: 1.4rem; }
-.card-wrapper .quick-add { margin-top: 1rem; padding: 0; }
-.card-wrapper .quick-add__submit { border-radius: 999px; }
+.card--card .card__inner .card__media,
+.card--card .card__inner .card__media .media { border-radius: 13px !important; }
+.card--card .card__inner .card__media .media img { object-fit: cover !important; }
 
-/* -- Groene/rode classificatie-chip -- */
+/* inhoud onder de foto: flex-kolom, gelijke gaps, bovenaan uitgelijnd */
+.card--card > .card__content,
+.card--card.card--media > .card__content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: .5rem !important;
+  grid-template-rows: none !important;
+  padding: 1rem .2rem .2rem !important;
+  margin: 0 !important;
+}
+.card--card > .card__content .card__information,
+.card--card > .card__content .card-information {
+  padding: 0 !important; margin: 0 !important; width: 100%;
+}
+.card--card .card__heading {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important; font-size: 1.55rem !important;
+  line-height: 1.2 !important; margin: 0 !important;
+}
+.card--card .card__heading a { color: var(--fn-ink); }
+.card--card .price,
+.card--card .price *,
+.card--card .price-item {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  font-weight: 700 !important; font-size: 1.3rem !important;
+}
+.card--card .price .price-item--regular { color: var(--fn-red) !important; }
+
+/* quick-add knop: vol-breed onder de prijs, uitgelijnd met de kaart */
+.card-wrapper .quick-add {
+  margin: .9rem 0 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+.card-wrapper .quick-add__submit {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+  border-radius: 999px !important;
+  width: 100% !important;
+  min-height: 4.4rem;
+}
+
+/* -- Grid: gelijke kolommen + nette tussenruimte -- */
+.product-grid.grid { column-gap: 2.2rem !important; row-gap: 3rem !important; }
+.grid--3-col-desktop .grid__item { max-width: none !important; }
+@media (min-width: 990px) {
+  .product-grid.grid--3-col-desktop .grid__item { width: calc((100% - 4.4rem) / 3) !important; }
+}
+
+/* -- Classificatie-chip -- */
 .fn-card-tag {
   display: inline-block;
-  font-family: var(--fn-mono); font-weight: 700; font-size: 1rem;
-  letter-spacing: .12em; text-transform: uppercase;
-  padding: .3rem .7rem; border-radius: 6px; margin-bottom: .6rem;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-weight: 700; font-size: 1rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .35rem .7rem; border-radius: 6px; margin: 0 !important;
 }
-.fn-card-tag--klassiek { background: var(--fn-green-soft); color: var(--fn-green); }
+.fn-card-tag--klassiek { background: var(--fn-green-soft); color: #157a49; }
 .fn-card-tag--grappig { background: var(--fn-red-soft); color: var(--fn-red); }
-
-/* -- Homepage "Meest gekozen": zelfde kaartstijl, iets meer ademruimte -- */
-#shopify-section-featured_collection .card--card .card__inner { padding: 1.1rem; }
 
 /* ==========================================================================
    CTA-KLEUREN — definitief (overschrijft alle regels hierboven)
