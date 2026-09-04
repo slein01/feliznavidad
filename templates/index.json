@@ -153,16 +153,6 @@
         "feed_url": ""
       }
     },
-    "custom_liquid_zWj3Xj": {
-      "type": "custom-liquid",
-      "name": "t:sections.custom-liquid.presets.name",
-      "settings": {
-        "custom_liquid": "<!-- Elfsight Google Reviews | Untitled Google Reviews -->\n<script src=\"https://elfsightcdn.com/platform.js\" async></script>\n<div class=\"elfsight-app-cada60dd-9d34-4934-9ce7-2d2a14039328\" data-elfsight-app-lazy></div>",
-        "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "rich_text_FQPWYR": {
       "type": "rich-text",
       "blocks": {
