@@ -1258,6 +1258,216 @@ h2.rich-text__heading,
 .rich-text__text,
 .rich-text__blocks .rich-text__text { color: var(--fn-ink-soft) !important; font-size: 1.7rem !important; }
 
+/* ==========================================================================
+   Delivery 26 — content-links, productpagina, blog/artikel, cart-drawer, fonts
+   ========================================================================== */
+
+/* -- Inline content-links: zwarte tekst, rode lijn eronder (geen blauw) --
+   Geldt overal waar Dawn een .rte / content-link rendert. */
+.rte a:not(.button),
+.rich-text__text a,
+.article-template__content a,
+.article-card__excerpt a,
+.metafield-rich_text_field a,
+#MainContent .rte a:not(.button),
+#MainContent p a:not(.button),
+#MainContent li a:not(.button),
+.fn-contact__card .rte a {
+  color: var(--fn-ink) !important;
+  text-decoration: none !important;
+  box-shadow: inset 0 -2px 0 0 var(--fn-red);
+  padding-bottom: .15rem;
+  transition: box-shadow .12s ease, color .12s ease;
+}
+.rte a:not(.button):hover,
+.article-template__content a:hover,
+#MainContent p a:not(.button):hover {
+  color: var(--fn-red) !important;
+  box-shadow: inset 0 -3px 0 0 var(--fn-red);
+}
+
+/* CTA-tekstlink met pijl (utility voor eigen secties) */
+.fn-arrow-link {
+  color: var(--fn-ink) !important; text-decoration: none !important; font-weight: 600;
+  box-shadow: inset 0 -2px 0 0 var(--fn-red); padding-bottom: .2rem;
+}
+.fn-arrow-link::after { content: " \2192"; }
+
+/* -- Productpagina -- */
+.product-form__buttons .product-form__submit,
+.product-form__buttons .product-form__submit.button--secondary {
+  background-color: var(--fn-red) !important;
+  color: #fff !important;
+  border: 0 !important;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+}
+.product-form__buttons .shopify-payment-button__button--unbranded,
+.product-form__buttons .shopify-payment-button__button {
+  background: transparent !important;
+  color: var(--fn-ink) !important;
+  border: 2px solid var(--fn-ink) !important;
+  border-radius: 999px !important;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+}
+.product-form__quantity .quantity,
+.product .quantity {
+  border: 2px solid var(--fn-ink) !important;
+  border-radius: 999px !important;
+  overflow: hidden;
+  height: 4.8rem;
+}
+.product .quantity__button { color: var(--fn-ink) !important; width: 4.4rem; }
+.product .quantity__button svg { width: 1rem; height: 1rem; }
+.product .quantity__input {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important; font-size: 1.6rem !important;
+}
+.product__accordion summary,
+.product .accordion__title,
+.product .accordion summary * {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+}
+.product .icon-with-text p,
+.product .icon-with-text .h4 {
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+  font-weight: 400 !important; font-size: 1.4rem !important;
+}
+/* "TIP"-caption op de PDP-rich-text */
+.rich-text__caption {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  letter-spacing: .2em !important;
+  text-transform: uppercase !important;
+  color: var(--fn-red) !important;
+  margin-bottom: 1.4rem !important;
+}
+/* Related products */
+#Related-Products .title,
+.related-products__heading,
+.related-products .h2 {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+
+/* -- Featured blog / Inspiratie-kaarten -- */
+.article-card {
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  background: var(--fn-paper) !important;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.article-card:hover { transform: translateY(-4px); border-color: var(--fn-red) !important; }
+.article-card__info,
+.article-card > .card__content,
+.article-card__content { padding: 1.8rem !important; }
+.article-card__title,
+.article-card .card__heading {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important; font-size: 1.7rem !important; line-height: 1.25;
+}
+.article-card__excerpt { font-size: 1.35rem !important; color: var(--fn-ink-soft) !important; }
+.blog-articles, .article-card-wrapper .grid { gap: 2.2rem !important; }
+
+/* -- Blog-lijst + artikelpagina -- */
+.main-blog .title,
+.blog .title--primary,
+.template-blog .title {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+.article-template__title {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(3.2rem, 5vw, 5.2rem) !important;
+  letter-spacing: -.02em !important;
+}
+.article-template__hero,
+.article-template__hero-container .media,
+.article-template__hero-image { border-radius: 24px !important; overflow: hidden; }
+.article-template__content {
+  max-width: 68rem; margin-inline: auto;
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+}
+.article-template__content p,
+.article-template__content li { font-size: 1.7rem !important; line-height: 1.65 !important; }
+.article-template__content h2,
+.article-template__content h3 {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+.pagination__list .pagination__item {
+  border-radius: 999px;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 700;
+}
+.pagination__item--current { background: var(--fn-red); color: #fff; }
+
+/* -- Cart drawer (winkelmand op elke pagina) -- */
+.cart-drawer .drawer__inner { background: var(--fn-cream) !important; }
+.cart-drawer .drawer__header { border-bottom: 2px solid var(--fn-line); }
+.cart-drawer .drawer__heading,
+.cart-drawer .totals__total {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+.cart-drawer .cart-item__name {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important; font-size: 1.5rem !important;
+}
+.cart-drawer .cart-item__price-wrapper .price,
+.cart-drawer .cart-item__price,
+.cart-drawer .totals__total-value {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  color: var(--fn-red) !important;
+}
+.cart-drawer .cart-item__media img,
+.cart-drawer .cart-item__image {
+  border-radius: 12px; background: var(--fn-photo-bg);
+}
+.cart-drawer .cart-item .quantity {
+  border: 2px solid var(--fn-ink); border-radius: 999px; overflow: hidden; height: 3.6rem;
+}
+.cart-drawer .drawer__footer { border-top: 2px solid var(--fn-line); background: var(--fn-cream); }
+.cart-drawer .cart__checkout-button { border-radius: 999px !important; }
+.cart-notification,
+.cart-notification__header { border-radius: 20px; }
+.cart-notification__heading,
+.cart-notification .cart-item__name {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+}
+
+/* -- Cart-pagina -- */
+.cart-items thead th,
+.cart__items thead th {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  text-transform: uppercase; letter-spacing: .12em; font-size: 1.1rem;
+}
+.cart-item__name {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+}
+.cart__footer .totals__total-value,
+.cart__blocks .totals__total-value {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  color: var(--fn-red) !important;
+}
+
+/* -- Losse pagina (Over ons via standaard page-template als vangnet) -- */
+.main-page-title,
+.page-title,
+.rte h1, .rte h2 {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+.page-width .rte,
+.article-template__content,
+.page-content { font-family: "Instrument Sans", system-ui, sans-serif; }
+
 /* --------------------------------------------------------------------------
    Handmatig in Shopify (geen code):
    - Mega-menu CONTENT -> Online Store -> Navigation (dropdown-items).

@@ -100,6 +100,10 @@
     "rich_text_jdEbzg": {
       "type": "rich-text",
       "blocks": {
+        "caption_tip": {
+          "type": "caption",
+          "settings": { "caption": "Tip", "text_style": "caption-with-letter-spacing", "text_size": "medium" }
+        },
         "heading_8nbPU6": {
           "type": "heading",
           "settings": { "heading": "Een ornament maakt je kerstboom af!", "heading_size": "h1" }
@@ -111,7 +115,7 @@
           }
         }
       },
-      "block_order": ["heading_8nbPU6", "text_VtaRAB"],
+      "block_order": ["caption_tip", "heading_8nbPU6", "text_VtaRAB"],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",

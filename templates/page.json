@@ -1,1 +1,10 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":28,"padding_bottom":28}},"rich_text_mW77za":{"type":"rich-text","blocks":{"heading_NtTJkx":{"type":"heading","settings":{"heading":"","heading_size":"h1"}},"text_tdrypd":{"type":"text","settings":{"text":""}}},"block_order":["heading_NtTJkx","text_tdrypd"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4","full_width":true,"padding_top":40,"padding_bottom":52}}},"order":["main","rich_text_mW77za"]}
+{
+  "sections": {
+    "fn_breadcrumb": { "type": "fn-breadcrumb", "settings": {} },
+    "main": {
+      "type": "main-page",
+      "settings": { "padding_top": 24, "padding_bottom": 44 }
+    }
+  },
+  "order": ["fn_breadcrumb", "main"]
+}
