@@ -1677,22 +1677,32 @@ h2.rich-text__heading,
 /* ==========================================================================
    Delivery 30 — PDP koop-blok: hoeveelheid naast de knop, strakke knoppen
    ========================================================================== */
-/* Rij 1:  [ − 1 + ]  [ In m'n boom ]
-   Rij 2:  [ Nu kopen ] over de VOLLE breedte (loopt door onder de teller
-   d.m.v. een negatieve marge — betrouwbaarder dan display:contents). */
-.fn-purchase-row {
-  --fn-qty-w: 11.5rem;
-  --fn-qty-gap: 1.3rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 1.1rem var(--fn-qty-gap);
-  margin-top: 1.8rem;
+/* fn-product-buy.js verplaatst de teller IN .product-form__buttons, zodat
+   teller + beide knoppen echte siblings zijn. Daarna is de layout een simpel,
+   betrouwbaar CSS-grid:
+       [ − 1 + ]  [ In m'n boom ]          (rij 1)
+       [ Nu kopen -- volle breedte ]       (rij 2) */
+.fn-purchase-row { margin-top: 1.8rem; }
+
+/* wrappers zijn geen layout meer -> volle breedte doorgeven */
+.fn-purchase-row product-form,
+.fn-purchase-row .product-form,
+.fn-purchase-row product-form > form {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.fn-purchase-row .product-form__buttons {
+  display: grid !important;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  align-items: start;
+  gap: 1.2rem;
+  width: 100%;
 }
 .fn-purchase-row .product-form__quantity {
-  order: 1;
-  flex: 0 0 var(--fn-qty-w);
-  width: var(--fn-qty-w);
+  grid-column: 1;
+  grid-row: 1;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -1708,49 +1718,34 @@ h2.rich-text__heading,
   min-width: 0 !important;
   height: 5rem;
 }
-.fn-purchase-row product-form,
-.fn-purchase-row .product-form {
-  order: 2;
-  display: block !important;
-  flex: 1 1 20rem;
-  min-width: 0;
-  margin: 0 !important;
-}
-.fn-purchase-row .product-form__buttons {
-  display: flex !important;
-  flex-direction: column;
-  gap: 1.1rem;                 /* ruimte tussen "In m'n boom" en "Nu kopen" */
-  width: 100%;
-}
 .fn-purchase-row .product-form__submit {
+  grid-column: 2;
+  grid-row: 1;
   width: 100% !important;
   min-height: 5rem;
   margin: 0 !important;
 }
-/* "Nu kopen" loopt door onder de teller -> volle containerbreedte */
 .fn-purchase-row .shopify-payment-button {
-  width: calc(100% + var(--fn-qty-w) + var(--fn-qty-gap)) !important;
-  margin-left: calc(-1 * (var(--fn-qty-w) + var(--fn-qty-gap))) !important;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  width: 100% !important;
+  margin: 0 !important;
 }
 .fn-purchase-row .shopify-payment-button__button { width: 100% !important; min-height: 5rem; }
-.fn-purchase-row .product-form__error-message-wrapper { flex: 1 1 100%; order: 3; }
+.fn-purchase-row .product-form__error-message-wrapper { grid-column: 1 / -1; }
 
-/* Mobiel: teller compact links op eigen regel, knoppen daaronder vol-breed */
+/* voordat het script draait: teller nog los in .fn-purchase-row -> gewoon links */
+.fn-purchase-row:not([data-fn-arranged]) > .product-form__quantity { width: 14rem; margin-bottom: 1.2rem !important; }
+
+/* Mobiel: alles onder elkaar, vol-breed */
 @media (max-width: 520px) {
-  .fn-purchase-row {
-    flex-direction: column;
-    align-items: stretch;
+  .fn-purchase-row .product-form__buttons {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  .fn-purchase-row .product-form__quantity {
-    flex: none;
-    width: 14rem;
-  }
-  .fn-purchase-row product-form,
-  .fn-purchase-row .product-form { flex: none; width: 100%; }
-  .fn-purchase-row .shopify-payment-button {
-    width: 100% !important;
-    margin-left: 0 !important;
-  }
+  .fn-purchase-row .product-form__quantity { grid-column: 1; grid-row: 1; }
+  .fn-purchase-row .product-form__submit { grid-column: 1; grid-row: 2; }
+  .fn-purchase-row .shopify-payment-button { grid-column: 1; grid-row: 3; }
 }
 
 /* Strakke knoppen: geen extra rand-ring of schaduw meer */
