@@ -9,16 +9,6 @@
         "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4"
       }
     },
-    "fn_collection_nav": {
-      "type": "fn-collection-nav",
-      "blocks": {
-        "n_all": { "type": "link", "settings": { "label": "Alles", "link": "shopify://collections/all", "is_all": true } },
-        "n_klassiek": { "type": "link", "settings": { "label": "Klassiek", "collection": "klassieke-ornamenten" } },
-        "n_grappig": { "type": "link", "settings": { "label": "Grappig", "collection": "grappige-ornamenten" } }
-      },
-      "block_order": ["n_all", "n_klassiek", "n_grappig"],
-      "settings": {}
-    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -68,5 +58,5 @@
       }
     }
   },
-  "order": ["fn_breadcrumb", "banner", "fn_collection_nav", "product-grid", "rich_text_LFzdCw"]
+  "order": ["fn_breadcrumb", "banner", "product-grid", "rich_text_LFzdCw"]
 }
