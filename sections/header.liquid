@@ -294,6 +294,7 @@
           </svg>
         </span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+        <span class="fn-cart-text" aria-hidden="true">Winkelwagen{%- if cart != empty %} <span class="fn-cart-count">({{ cart.item_count }})</span>{%- endif -%}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
             {%- if cart.item_count < 100 -%}

@@ -787,17 +787,19 @@ body,
 .facets__disclosure { margin: 0 !important; }
 .facet-filters { align-items: center !important; }
 
-/* "FILTER:" en "SORTEER OP:" labels — mono, klein, uppercase */
+/* "FILTER:" en "SORTEER OP:" labels visueel weg — design heeft alleen de pills.
+   Visually-hidden (niet display:none) zodat screenreaders het label houden. */
 .facets__heading,
-.facet-filters__label,
-.facet-filters__label label {
-  font-family: "Space Mono", ui-monospace, monospace !important;
-  font-weight: 700 !important;
-  font-size: 1.1rem !important;
-  letter-spacing: .14em !important;
-  text-transform: uppercase !important;
-  color: var(--fn-ink-soft) !important;
-  margin: 0 !important;
+.facet-filters__label {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
 }
 
 /* === ALLE filter-knoppen identiek: witte pill, ruime tekst === */
@@ -1084,49 +1086,38 @@ summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
 }
 #cart-icon-bubble.header__icon--cart:hover,
 #cart-icon-bubble.header__icon--cart:focus { text-decoration: none !important; }
-#cart-icon-bubble .svg-wrapper { order: 1; display: inline-flex !important; align-items: center; }
+#cart-icon-bubble .svg-wrapper {
+  order: 1;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: none;
+}
 #cart-icon-bubble .icon-cart,
 #cart-icon-bubble svg {
-  width: 2rem !important;
-  height: 2rem !important;
+  display: block;
+  width: 1.9rem !important;
+  height: 1.9rem !important;
   color: #fff !important;      /* trolley-icoon is stroke-based met currentColor */
   stroke: currentColor !important;
   fill: none !important;
 }
 #cart-icon-bubble svg circle { fill: currentColor !important; stroke: currentColor !important; }
-#cart-icon-bubble::after {
-  content: "Winkelwagen";
+/* "Winkelwagen (1)" als één tekst-run, netjes verticaal uitgelijnd met het icoon */
+#cart-icon-bubble::after { content: none !important; }
+#cart-icon-bubble .fn-cart-text {
   order: 2;
+  display: inline-flex;
+  align-items: center;
   font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
   font-weight: 700;
-  font-size: 1.45rem;
+  font-size: 1.4rem;
+  line-height: 1;
   color: #fff;
-  line-height: 1;
   text-decoration: none !important;
+  white-space: nowrap;
 }
-/* tellertje als platte tekst "(1)", geen apart rondje — zoals het design */
-#cart-icon-bubble .cart-count-bubble {
-  order: 3;
-  position: static !important;
-  display: inline-flex !important;
-  align-items: baseline;
-  min-width: 0 !important;
-  width: auto !important;
-  height: auto !important;
-  padding: 0 !important;
-  margin: 0 0 0 -.2rem !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
-  font-weight: 700;
-  font-size: 1.45rem;
-  line-height: 1;
-  color: #fff !important;
-}
-#cart-icon-bubble .cart-count-bubble::before { content: "("; }
-#cart-icon-bubble .cart-count-bubble::after { content: ")"; display: inline !important; }
-#cart-icon-bubble .cart-count-bubble span[aria-hidden] { color: #fff !important; }
+#cart-icon-bubble .fn-cart-count { font: inherit; margin-left: .3rem; }
+#cart-icon-bubble .cart-count-bubble { display: none !important; }
 
 /* ==========================================================================
    CTA-KLEUREN — definitief (overschrijft alle regels hierboven)
