@@ -33,8 +33,12 @@ input, select, textarea, button, .btn, .field__input,
 h1, h2, h3, h4, h5, h6,
 .h0, .h1, .h2, .h3, .h4, .h5,
 .title, .card__heading, .collection-hero__title,
-.product__title, .product__title h1 {
-  font-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+.product__title, .product__title h1,
+.rich-text__heading, .rich-text h1, .rich-text h2, .rich-text h3,
+.rich-text__blocks h1, .rich-text__blocks h2, .rich-text__blocks h3 {
+  font-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
 }
 .price, .price *, [class*="price-item"],
 .fn-hero__eyebrow, .fn-cats__eyebrow, .fn-statement__eyebrow, .fn-contact__eyebrow,
@@ -771,7 +775,30 @@ body,
    Filterbalk (Dawn facets) — zelfde pill-stijl als de categorie-nav
    ========================================================================== */
 .facets-container { margin-top: 1.2rem !important; padding-top: .4rem !important; }
-.facets__form { gap: .8rem !important; align-items: center; }
+
+/* Volgorde: filters links | (auto-ruimte) | "3 producten" | Sorteer-pill */
+.facets__form {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: .9rem !important;
+  row-gap: .9rem !important;
+}
+.facets__form > .facets__wrapper {
+  order: 1;
+  display: flex; flex-wrap: wrap; align-items: center; gap: .8rem;
+}
+.facets__form .product-count {
+  order: 2;
+  margin-left: auto !important;
+  margin-right: .6rem !important;
+  flex: 0 0 auto;
+}
+.facets__form .facet-filters.sorting {
+  order: 3;
+  margin: 0 !important;
+  flex: 0 0 auto;
+}
 
 /* "FILTER:" en "SORTEER OP:" labels — mono, klein, uppercase */
 .facets__heading,
@@ -791,14 +818,17 @@ body,
 .facets__disclosure .facets__summary,
 .facets__summary,
 .mobile-facets__summary,
-.facets-pill .facets__summary {
+.facets-pill .facets__summary,
+.facet-filters__sort,
+.facets .select__select {
   list-style: none;
   cursor: pointer;
   display: inline-flex !important;
   align-items: center;
+  height: 4rem !important;
   border: 2px solid var(--fn-line) !important;
   border-radius: 999px !important;
-  padding: .8rem 1.6rem !important;
+  padding: 0 1.7rem !important;
   font-family: "Instrument Sans", system-ui, -apple-system, sans-serif !important;
   font-weight: 600 !important;
   font-size: 1.4rem !important;
@@ -810,9 +840,9 @@ body,
 .facets__summary::marker,
 .mobile-facets__summary::-webkit-details-marker { display: none; content: ""; }
 .facets__summary > div,
-.mobile-facets__summary > div { display: inline-flex; align-items: center; gap: .6rem; }
+.mobile-facets__summary > div { display: inline-flex; align-items: center; gap: .9rem; }
 .facets__summary svg,
-.mobile-facets__summary svg { width: 1.1rem; height: 1.1rem; }
+.mobile-facets__summary svg { width: 1rem; height: 1rem; margin-left: .2rem; }
 .facets__summary:hover,
 .mobile-facets__summary:hover { border-color: var(--fn-ink) !important; }
 /* open of actief -> donkere pill, zoals de actieve categorie-pill */
@@ -828,27 +858,20 @@ details[open] > .facets__summary svg,
 .facets__disclosure[open] > .facets__summary svg,
 details[open] > .mobile-facets__summary svg { color: var(--fn-cream); }
 
-/* Sorteer-select als pill (zelfde look) */
+/* Sorteer-select: zelfde pill (basis komt van de gedeelde regel hierboven),
+   alleen extra ruimte rechts voor de caret + native pijl weg */
 .facet-filters__sort,
-.facets .select .facet-filters__sort,
 .facets .select__select,
 select.facet-filters__sort {
-  border: 2px solid var(--fn-line) !important;
-  border-radius: 999px !important;
-  background-color: var(--fn-paper) !important;
-  padding: .8rem 3.8rem .8rem 1.6rem !important;
-  font-family: "Instrument Sans", system-ui, -apple-system, sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 1.4rem !important;
-  color: var(--fn-ink) !important;
+  padding-right: 3.6rem !important;
   -webkit-appearance: none !important;
   appearance: none !important;
-  cursor: pointer;
 }
 .facet-filters .select,
 .facets .select { border: 0 !important; background: none !important; }
 .facet-filters .select .svg-wrapper,
-.facets .select .svg-wrapper { right: 1.5rem; color: var(--fn-ink); }
+.facets .select .svg-wrapper { right: 1.6rem; color: var(--fn-ink); width: 1rem; }
+.facet-filters .select .svg-wrapper svg { width: 1rem; height: 1rem; }
 
 /* Actieve-filter chips ("verwijder deze filter") */
 .active-facets__button-inner,
@@ -981,45 +1004,63 @@ select.facet-filters__sort {
 summary.header__icon--summary {
   border: 2px solid var(--fn-line) !important;
   border-radius: 999px !important;
-  width: 4.4rem !important;
-  height: 4.4rem !important;
+  width: 4rem !important;
+  height: 4rem !important;
+  display: grid !important;
+  place-items: center !important;
 }
 .header__icon--search:hover,
 summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
+.header__icon--search .icon, .header__icon--summary .icon,
+.header__icon--search svg, .header__icon--summary svg { width: 1.9rem; height: 1.9rem; }
 
+/* Winkelwagen als rode pill:  [icoon]  Winkelwagen  (n) */
 #cart-icon-bubble.header__icon--cart {
   display: inline-flex !important;
   align-items: center;
-  gap: .6rem;
+  gap: .7rem;
   width: auto !important;
   height: auto !important;
+  min-height: 4rem;
   background: var(--fn-red) !important;
   border-radius: 999px !important;
-  padding: 1rem 1.7rem 1rem 1.5rem !important;
+  padding: 0 1.6rem !important;
 }
-#cart-icon-bubble.header__icon--cart .icon,
-#cart-icon-bubble.header__icon--cart svg {
+#cart-icon-bubble .svg-wrapper,
+#cart-icon-bubble > .icon,
+#cart-icon-bubble > svg { order: 1; display: inline-flex; }
+#cart-icon-bubble .icon,
+#cart-icon-bubble svg {
   color: #fff !important;
-  fill: #fff !important;
-  width: 1.8rem !important;
-  height: 1.8rem !important;
+  fill: none !important;
+  stroke: #fff !important;
+  width: 2rem !important;
+  height: 2rem !important;
 }
-#cart-icon-bubble.header__icon--cart::after {
+#cart-icon-bubble::after {
   content: "Winkelwagen";
+  order: 2;
   font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   color: #fff;
   line-height: 1;
 }
 #cart-icon-bubble .cart-count-bubble {
+  order: 3;
   position: static !important;
+  display: grid;
+  place-items: center;
   min-width: 2rem;
   height: 2rem;
-  margin: 0;
-  background: rgba(255, 255, 255, .28) !important;
+  padding: 0 .3rem;
+  margin: 0 -.2rem 0 0;
+  background: rgba(255, 255, 255, .25) !important;
   border-radius: 999px;
+  font-size: 1.15rem;
+  line-height: 1;
 }
+#cart-icon-bubble .cart-count-bubble::after { display: none; }
 #cart-icon-bubble .cart-count-bubble span { color: #fff !important; }
 
 /* ==========================================================================
