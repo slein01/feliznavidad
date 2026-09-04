@@ -33,8 +33,19 @@ De oude `image-banner` / `collection-list` / disabled `multicolumn` zijn eruit.
 - Hero-/categorie-foto's eventueel handmatig kiezen in de theme-editor (anders worden
   automatisch productfoto's gebruikt).
 
-## Nog te doen (optioneel, volgende ronde)
-- PDP-galerij exact als canvas (grote foto + thumbnailstrip links) — nu Dawn's thumbnail-layout.
-- Cart drawer fijn-tunen op basis van de echte gerenderde markup.
-- Contact / Over ons / Inspiratie: eigen templates + secties.
-- Footer: dark scheme + crème logo-plaatje + betaalicoon-rij.
+## Ronde 5–6 toegevoegd
+- PDP: statische Google-rating (custom_liquid block), spec incl. "Onbreekbaar: Ja".
+- Homepage: `fn-statement` (tekst + 4-foto collage) i.p.v. rich-text; review-kaarten (multicolumn).
+- Footer: 3 kolommen + nieuwsbrief + social ingeschakeld (footer-group.json).
+- Over ons: volledig herbouwd (`page.over-ons.json` + `fn-stats`).
+- Contact: `fn-contact` sectie — 2-koloms formulier + info-kaarten.
+- Winkelmand: verzendbalk in de drawer (`fn-shipping-progress` snippet); cart-pagina 2-koloms via CSS (`#MainContent:has(...)`).
+- Kruimelpad op artikel-templates.
+- Mobiel menu: grote-typografie-styling.
+
+## Nog te doen / bewust benadering
+- PDP-galerij: Dawn's thumbnail-layout (canvas heeft strip links) — niet 1-op-1.
+- Filter-paneel: Dawn's facet-UI gestyled als pills (geen uitklap-checkbox-paneel).
+- Cart 2-koloms leunt op `:has()` + sectie-id's — check in preview.
+- Announcement-tekst, hoofdmenu/mega-menu, social links, collectie-omschrijvingen,
+  productt tags (Klassiek/Grappig-badge), blogposts: handmatig in de Shopify-admin.

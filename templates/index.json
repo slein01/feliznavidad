@@ -106,32 +106,15 @@
       "block_order": ["t1", "t2", "t3"],
       "settings": {}
     },
-    "rich_text_KRf7jF": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_m9rjXQ": {
-          "type": "heading",
-          "settings": {
-            "heading": "Je kerstboom is niet compleet zonder kerstornamenten",
-            "heading_size": "h1"
-          }
-        },
-        "text_9DnVkB": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Bij Feliznavidad.nl hebben we allerlei soorten en maten kerstornamenten. Van <strong>klassieke ornamenten</strong> zoals zuurstokjes of <strong>grappige ornamenten</strong>. Ideaal om jouw kerstboom te voorzien van de juiste attributen. Combineer je kerstballen met een aantal kerstornamenten in je kerstboom, pimp je guirlande of geef ze cadeau en je kerst wordt helemaal top!</p>"
-          }
-        }
-      },
-      "block_order": ["heading_m9rjXQ", "text_9DnVkB"],
-      "name": "t:sections.rich-text.presets.name",
+    "fn_statement": {
+      "type": "fn-statement",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "eyebrow": "Waarom ornamenten",
+        "heading": "Je kerstboom is niet compleet zonder ornamenten",
+        "text": "Bij Feliznavidad.nl vind je kerstornamenten in allerlei soorten en maten — van klassieke zuurstokjes tot een gewichtheffende kerstman. Combineer ze met je kerstballen, pimp je guirlande of geef ze cadeau. En je kerst wordt helemaal top.",
+        "button_label": "Shop nu",
+        "button_link": "shopify://collections/all",
+        "collection": "all"
       }
     },
     "rich_text_Nt9ynH": {
@@ -232,7 +215,7 @@
     "fn_category_split",
     "featured_collection",
     "fn_trust",
-    "rich_text_KRf7jF",
+    "fn_statement",
     "rich_text_Nt9ynH",
     "multicolumn_reviews",
     "custom_liquid_zWj3Xj",

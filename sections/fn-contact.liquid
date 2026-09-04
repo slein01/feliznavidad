@@ -1,0 +1,90 @@
+<div class="fn-contact page-width">
+  <div class="fn-contact__intro">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="fn-contact__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h1 class="fn-contact__title">{{ section.settings.heading }}</h1>
+    {%- if section.settings.text != blank -%}
+      <p class="fn-contact__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="fn-contact__grid">
+    <div class="fn-contact__formwrap">
+      {%- form 'contact', id: 'FnContactForm' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="fn-contact__note fn-contact__note--ok">Bedankt! We hebben je bericht ontvangen en reageren meestal binnen 1 werkdag.</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <p class="fn-contact__note fn-contact__note--err">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+        <div class="fn-contact__row">
+          <label class="fn-field">
+            <span>Naam</span>
+            <input type="text" name="contact[name]" autocomplete="name" placeholder="Voor- en achternaam"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          </label>
+          <label class="fn-field">
+            <span>E-mailadres</span>
+            <input type="email" name="contact[email]" autocomplete="email" required placeholder="jouw@email.nl"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+          </label>
+        </div>
+        <label class="fn-field">
+          <span>Bestelnummer <em>(optioneel)</em></span>
+          <input type="text" name="contact[Bestelnummer]" placeholder="#1234">
+        </label>
+        <label class="fn-field">
+          <span>Bericht</span>
+          <textarea name="contact[body]" rows="6" required placeholder="Waar kunnen we mee helpen?">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </label>
+        <button type="submit" class="button button--primary">Versturen</button>
+      {%- endform -%}
+    </div>
+
+    <aside class="fn-contact__aside">
+      {%- for block in section.blocks -%}
+        <div class="fn-contact__card fn-contact__card--{{ block.settings.scheme }}" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.heading }}</h3>
+          <div class="rte">{{ block.settings.text }}</div>
+        </div>
+      {%- endfor -%}
+    </aside>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FN — Contact",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Contact" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Vraag maar raak" },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Iets kwijt over je bestelling, of mis je een ornament in het assortiment? Stuur een berichtje — we reageren meestal binnen 1 werkdag." }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Info-kaart",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Kop", "default": "Direct contact" },
+        { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>E-mail: info@feliznavidad.nl<br>Bereikbaar ma–vr, 9:00–17:00</p>" },
+        {
+          "type": "select", "id": "scheme", "label": "Kleur", "default": "plain",
+          "options": [{ "value": "plain", "label": "Wit" }, { "value": "green", "label": "Groen" }]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "FN — Contact",
+      "blocks": [
+        { "type": "card", "settings": { "scheme": "plain", "heading": "Direct contact", "text": "<p>E-mail: <a href=\"mailto:info@feliznavidad.nl\">info@feliznavidad.nl</a><br>Bereikbaar ma–vr, 9:00–17:00</p>" } },
+        { "type": "card", "settings": { "scheme": "green", "heading": "Bestelling & retour", "text": "<p>Levering in 2–3 werkdagen. Niet tevreden? Retourneren kan binnen 14 dagen.</p>" } },
+        { "type": "card", "settings": { "scheme": "plain", "heading": "Bedrijfsgegevens", "text": "<p>Feliznavidad.nl<br>[STRAAT + NR]<br>[POSTCODE + PLAATS]<br>KvK [KVK-NUMMER] · BTW [BTW-NUMMER]</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

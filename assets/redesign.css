@@ -590,14 +590,135 @@ fieldset.js .product-form__input input[type="radio"]:checked + label {
 .footer-block--text .rte a:hover { color: #fff; }
 .footer-block__heading { margin-bottom: 1rem; }
 
+/* ---- fn-statement + foto-collage (homepage) ------------------------------- */
+.fn-statement {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5.6rem;
+  align-items: center; padding-block: 8rem; background: var(--fn-paper);
+}
+.fn-statement__eyebrow {
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red); margin: 0 0 1.4rem;
+}
+.fn-statement__title {
+  font-family: var(--fn-display); font-weight: 800; letter-spacing: -0.02em;
+  font-size: clamp(3.2rem, 4vw, 4.6rem); line-height: 1.05; margin: 0;
+}
+.fn-statement__text { color: var(--fn-ink-soft); font-size: 1.7rem; margin: 2rem 0 2.8rem; max-width: 46rem; }
+.fn-statement__collage { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+.fn-statement__tile { border-radius: 2rem; overflow: hidden; background: var(--fn-photo-bg); aspect-ratio: 4 / 5; }
+.fn-statement__tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fn-statement__tile--2, .fn-statement__tile--4 { margin-top: 3rem; }
+@media (max-width: 749px) {
+  .fn-statement { grid-template-columns: 1fr; gap: 3rem; padding-block: 4.4rem; }
+  .fn-statement__tile--2, .fn-statement__tile--4 { margin-top: 1.6rem; }
+}
+
+/* ---- fn-contact --------------------------------------------------------------- */
+.fn-contact { padding-block: 4rem 8rem; }
+.fn-contact__eyebrow {
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red); margin: 0 0 1.2rem;
+}
+.fn-contact__title { font-family: var(--fn-display); font-weight: 800; font-size: clamp(3.6rem, 5vw, 5.6rem); margin: 0; }
+.fn-contact__text { color: var(--fn-ink-soft); font-size: 1.7rem; max-width: 56rem; margin: 1.6rem 0 0; }
+.fn-contact__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 34rem; gap: 5.6rem;
+  align-items: start; margin-top: 4rem;
+}
+.fn-contact__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; }
+.fn-field { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.8rem; }
+.fn-field span { font-size: 1.3rem; font-weight: 600; }
+.fn-field span em { color: var(--fn-ink-soft); font-style: normal; font-weight: 400; }
+.fn-field input, .fn-field textarea {
+  border: 2px solid var(--fn-line); border-radius: 12px; background: var(--fn-paper);
+  padding: 1.3rem 1.5rem; font-family: var(--fn-body); font-size: 1.5rem; color: var(--fn-ink); width: 100%;
+}
+.fn-field input:focus, .fn-field textarea:focus { border-color: var(--fn-ink); outline: none; }
+.fn-contact__formwrap .button { border-radius: 999px !important; margin-top: .4rem; }
+.fn-contact__note { border-radius: 12px; padding: 1.2rem 1.4rem; font-size: 1.4rem; margin-bottom: 1.8rem; }
+.fn-contact__note--ok { background: var(--fn-green-soft); color: var(--fn-pine); border: 2px solid var(--fn-green); }
+.fn-contact__note--err { background: var(--fn-red-soft); color: var(--fn-red); border: 2px solid var(--fn-red); }
+.fn-contact__aside { display: flex; flex-direction: column; gap: 1.6rem; }
+.fn-contact__card { border: 2px solid var(--fn-line); border-radius: 18px; padding: 2.2rem; background: var(--fn-paper); }
+.fn-contact__card--green { background: var(--fn-green-soft); border-color: var(--fn-green); }
+.fn-contact__card h3 { font-family: var(--fn-display); font-weight: 700; font-size: 1.6rem; margin: 0 0 1rem; }
+.fn-contact__card .rte { font-size: 1.4rem; color: var(--fn-ink-soft); }
+.fn-contact__card .rte a { color: var(--fn-red); }
+@media (max-width: 749px) {
+  .fn-contact__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .fn-contact__row { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Cart page — 2-koloms (items links, samenvatting rechts)
+   Haakt op de sectie-id's uit templates/cart.json.
+   ========================================================================== */
+@media (min-width: 990px) {
+  #MainContent:has(> #shopify-section-cart-footer) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 38rem;
+    align-items: start;
+    column-gap: 4.4rem;
+    max-width: var(--page-width, 120rem);
+    margin-inline: auto;
+    padding-inline: 5rem;
+  }
+  #MainContent:has(> #shopify-section-cart-footer) > #shopify-section-fn_shipping_bar { grid-column: 1 / -1; }
+  #MainContent:has(> #shopify-section-cart-footer) > #shopify-section-cart-items { grid-column: 1; }
+  #MainContent:has(> #shopify-section-cart-footer) > #shopify-section-cart-footer {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    position: sticky;
+    top: 2rem;
+  }
+  #MainContent:has(> #shopify-section-cart-footer) > #shopify-section-featured_collection_iKLkfY { grid-column: 1 / -1; }
+
+  #shopify-section-cart-footer .cart__footer {
+    background: var(--fn-paper);
+    border: 2px solid var(--fn-line);
+    border-radius: 22px;
+    padding: 2.6rem;
+    margin-top: 0;
+  }
+  #shopify-section-cart-footer .cart__footer > * { max-width: none; }
+}
+
+/* ==========================================================================
+   Mobiel menu — grote typografie
+   ========================================================================== */
+@media (max-width: 989px) {
+  .menu-drawer__inner-container { background: var(--fn-cream); }
+  .menu-drawer__navigation-container { padding-top: 1.2rem; }
+  .menu-drawer__menu-item {
+    font-family: var(--fn-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 2.4rem;
+    padding-block: 1.4rem;
+  }
+  .menu-drawer__menu-item--active,
+  .menu-drawer__menu-item:hover { color: var(--fn-red); background: transparent; }
+  .menu-drawer__submenu .menu-drawer__menu-item { font-size: 1.8rem; }
+  .menu-drawer__utility-links { background: transparent; }
+}
+
+/* ==========================================================================
+   Blog / artikel — extra
+   ========================================================================== */
+.template-article .fn-crumbs,
+.template-blog .fn-crumbs { margin-bottom: 1.6rem; }
+.article-template__title { font-size: clamp(3.2rem, 5vw, 5.4rem); }
+.article-template__hero { border-radius: 24px; }
+.blog-articles__article .article-card { height: 100%; }
+
 /* --------------------------------------------------------------------------
    Handmatig in Shopify (geen code):
    - Mega-menu CONTENT -> Online Store -> Navigation (dropdown-items).
    - Nav-labels in de header komen uit je hoofdmenu.
    - Announcement-bar tekst: stel de 3-delige boodschap in via de theme-editor.
-   - Social links: vul ze in onder Theme settings -> Social media (dan tonen
-     de footer-iconen).
-   - Klassiek/Grappig-badge op productkaarten kan alleen als je producten die
-     tags geeft in de admin (ze zitten nu in collecties, niet in tags).
+   - Social links: vul ze in onder Theme settings -> Social media.
+   - Klassiek/Grappig-badge op productkaarten: alleen mogelijk als je producten
+     die tags geeft in de admin (ze zitten nu in collecties, niet in tags).
    - Collectie-omschrijvingen: alleen zichtbaar als in de admin ingevuld.
+   - Blogposts voor de "Inspiratie"-sectie: aanmaken in de admin.
    -------------------------------------------------------------------------- */
