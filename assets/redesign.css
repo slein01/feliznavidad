@@ -10,13 +10,36 @@
    pad op de Shopify-CDN). Hier alleen Dawn's font-variabelen overschrijven zodat
    ELK element de redesign-fonts pakt, niet alleen wat we expliciet targeten. */
 :root {
-  --font-heading-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
-  --font-heading-style: normal;
-  --font-heading-weight: 800;
-  --font-body-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-body-style: normal;
-  --font-body-weight: 400;
-  --font-body-weight-bold: 600;
+  --font-heading-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif !important;
+  --font-heading-style: normal !important;
+  --font-heading-weight: 800 !important;
+  --font-body-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+  --font-body-style: normal !important;
+  --font-body-weight: 400 !important;
+  --font-body-weight-bold: 600 !important;
+}
+
+/* Forceer op element-niveau — sommige Dawn-onderdelen negeren de variabele. */
+body,
+.rte, .rte *,
+p, li, dd, dt, td, th, blockquote, figcaption, label, legend, caption,
+input, select, textarea, button, .btn, .field__input,
+.card__content, .card-information, .card__information,
+.facets, .facet-filters, .product-count, .collection-hero__description,
+.product__text, .product__description, .product-form,
+.announcement-bar__message {
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5,
+.title, .card__heading, .collection-hero__title,
+.product__title, .product__title h1 {
+  font-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+}
+.price, .price *, [class*="price-item"],
+.fn-hero__eyebrow, .fn-cats__eyebrow, .fn-statement__eyebrow, .fn-contact__eyebrow,
+.eyebrow, .announcement-bar__message {
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, "Courier New", monospace;
 }
 
 :root {
@@ -120,6 +143,25 @@ h1, h2, h3, h4,
 .card__heading { font-size: 1.7rem; }
 .card__media img { transition: transform .3s ease; }
 .card-wrapper:hover .card__media img { transform: scale(1.03); }
+
+/* Witruimte weg: Dawn's kaart-grid heeft flexibele 1fr-spacer-rijen die de
+   inhoud verticaal centreren -> laat alles bovenaan aansluiten. */
+.card__content,
+.card:not(.ratio) > .card__content,
+.card__inner:not(.ratio) > .card__content {
+  grid-template-rows: max-content !important;
+  align-content: start !important;
+  row-gap: 0 !important;
+  padding: 1.4rem 0.4rem 0.4rem !important;
+}
+.card__information,
+.card--standard .card__information {
+  grid-row-start: auto !important;
+  padding: 0.6rem 0.4rem 0 !important;
+}
+.card-wrapper .card-information { margin-top: 0.4rem; }
+.card-wrapper .quick-add { margin-top: 1rem; }
+.card-wrapper .card-information > *:empty { display: none; }
 
 /* ---- 7. Rich text ------------------------------------------------------------- */
 .rich-text__text { color: var(--fn-ink-soft); }
@@ -306,13 +348,19 @@ cart-drawer .drawer__heading { font-family: var(--fn-display); font-weight: 800;
 .collection-hero, .main-collection-banner {
   padding-block: 2.4rem 0;
 }
+.collection-hero__inner { padding-block: 2.4rem 1.6rem; }
 .collection-hero__title, .main-collection-banner .title,
 .collection .title-wrapper .title {
   font-size: clamp(3.6rem, 5vw, 6rem);
 }
-.collection__description, .banner__text {
-  color: var(--fn-ink-soft); font-size: 1.7rem; max-width: 62rem;
+.collection-hero__description, .collection__description, .banner__text {
+  color: var(--fn-ink-soft); font-size: 1.7rem; max-width: 62rem; margin-top: 1.2rem;
 }
+/* minder witruimte tussen omschrijving, filterbalk en grid */
+.collection { padding-top: 0.8rem !important; }
+#ProductGridContainer { margin-top: 0.5rem; }
+.facets-container, .collection .facets { margin-block: 1rem 1.5rem !important; }
+.product-grid { margin-top: 1rem !important; }
 
 /* facets / filter bar -> pills */
 .facets__summary,
