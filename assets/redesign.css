@@ -958,6 +958,70 @@ select.facet-filters__sort {
 .fn-card-tag--klassiek { background: var(--fn-green-soft); color: #157a49; }
 .fn-card-tag--grappig { background: var(--fn-red-soft); color: var(--fn-red); }
 
+/* -- Prijs + voorraadstatus op één regel (zoals het canvas) -- */
+.card--card > .card__content .card-information {
+  display: flex !important;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .8rem;
+  flex-wrap: wrap;
+}
+.card--card > .card__content .card-information > *:empty { display: none !important; }
+.fn-card-stock {
+  font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  font-size: 1.15rem; font-weight: 600; color: var(--fn-green);
+  white-space: nowrap;
+}
+.fn-card-stock--out { color: var(--fn-ink-soft); }
+
+/* ==========================================================================
+   Header — zoekknop als omcirkelde pill, winkelwagen als rode pill (canvas)
+   ========================================================================== */
+.header__icon--search,
+summary.header__icon--summary {
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 999px !important;
+  width: 4.4rem !important;
+  height: 4.4rem !important;
+}
+.header__icon--search:hover,
+summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
+
+#cart-icon-bubble.header__icon--cart {
+  display: inline-flex !important;
+  align-items: center;
+  gap: .6rem;
+  width: auto !important;
+  height: auto !important;
+  background: var(--fn-red) !important;
+  border-radius: 999px !important;
+  padding: 1rem 1.7rem 1rem 1.5rem !important;
+}
+#cart-icon-bubble.header__icon--cart .icon,
+#cart-icon-bubble.header__icon--cart svg {
+  color: #fff !important;
+  fill: #fff !important;
+  width: 1.8rem !important;
+  height: 1.8rem !important;
+}
+#cart-icon-bubble.header__icon--cart::after {
+  content: "Winkelwagen";
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #fff;
+  line-height: 1;
+}
+#cart-icon-bubble .cart-count-bubble {
+  position: static !important;
+  min-width: 2rem;
+  height: 2rem;
+  margin: 0;
+  background: rgba(255, 255, 255, .28) !important;
+  border-radius: 999px;
+}
+#cart-icon-bubble .cart-count-bubble span { color: #fff !important; }
+
 /* ==========================================================================
    CTA-KLEUREN — definitief (overschrijft alle regels hierboven)
    Canvas: "In m'n boom" (in winkelwagen) = ROOD gevuld overal.
