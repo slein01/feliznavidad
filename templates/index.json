@@ -140,13 +140,18 @@
     "fn_reviews": {
       "type": "fn-reviews",
       "blocks": {
-        "rv1": { "type": "review", "settings": { "name": "Tim", "date": "9 maanden geleden op Google", "rating": 5, "text": "Top kerststukje voor mijn vriendin! Zeker een aanrader.", "source": "via Google", "avatar_color": "#5B4B8A" } },
-        "rv2": { "type": "review", "settings": { "name": "Cat", "date": "9 maanden geleden op Google", "rating": 5, "text": "Ik heb deze twee gezellige ornamenten gekocht. Enorm blij mee! Voor mij persoonlijk is het echt een cadeautje.", "source": "via Google", "avatar_color": "#2C7D52" } },
-        "rv3": { "type": "review", "settings": { "name": "Jordi Erve", "date": "11 maanden geleden op Google", "rating": 5, "text": "Erg ruim assortiment en goede kwaliteit. Wij wilden dit graag in het kerstpakket stoppen voor onze collega's.", "source": "via Google", "avatar_color": "#9B4DA0" } },
-        "rv4": { "type": "review", "settings": { "name": "Danny Hulsink", "date": "11 maanden geleden op Google", "rating": 5, "text": "Super origineel en stevig gemaakt — de astronaut zweeft nu vrolijk tussen de lichtjes van de boom.", "source": "via Google", "avatar_color": "#D9722B" } }
+        "rv1": { "type": "review", "settings": { "name": "Joost", "rating": 5, "text": "Mooie producten en snelle levering!" } },
+        "rv2": { "type": "review", "settings": { "name": "Suzanne", "rating": 5, "text": "Leuke producten en mooi op tijd in huis, kom hier zeker vaker." } },
+        "rv3": { "type": "review", "settings": { "name": "Jordi", "rating": 5, "text": "Top, snel in huis." } }
       },
-      "block_order": ["rv1", "rv2", "rv3", "rv4"],
-      "settings": { "show_summary": true, "score": "4,8", "summary_text": "op basis van onze Google-reviews" }
+      "block_order": ["rv1", "rv2", "rv3"],
+      "settings": {
+        "show_badge": true,
+        "score": "4,8",
+        "count_text": "op Google",
+        "reviews_url": "https://www.google.com/maps?cid=7747585870966781709",
+        "feed_url": ""
+      }
     },
     "custom_liquid_zWj3Xj": {
       "type": "custom-liquid",
