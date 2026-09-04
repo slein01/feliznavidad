@@ -776,102 +776,119 @@ body,
    ========================================================================== */
 .facets-container { margin-top: 1.2rem !important; padding-top: .4rem !important; }
 
-/* Volgorde: filters links | (auto-ruimte) | "3 producten" | Sorteer-pill */
-.facets__form {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center;
-  column-gap: .9rem !important;
-  row-gap: .9rem !important;
+/* --- Layout: Dawn's .facets__form is een GRID (1fr | max | max).
+   Kolommen omwisselen zodat het aantal producten VÓÓR de sorteer-pill staat. --- */
+@media screen and (min-width: 750px) {
+  .facets__form {
+    display: grid !important;
+    grid-template-columns: 1fr max-content max-content !important;
+    column-gap: 1.6rem !important;
+    align-items: center !important;
+    margin-bottom: .5rem !important;
+  }
+  .facets__form > .facets__wrapper { grid-column: 1 !important; grid-row: 1 !important; }
+  .facets__form .product-count {
+    grid-column: 2 !important; grid-row: 1 !important;
+    align-self: center !important; margin: 0 !important; text-align: right;
+  }
+  .facets__form .facet-filters.sorting {
+    grid-column: 3 !important; grid-row: 1 !important;
+    align-self: center !important; margin: 0 !important;
+  }
 }
-.facets__form > .facets__wrapper {
-  order: 1;
-  display: flex; flex-wrap: wrap; align-items: center; gap: .8rem;
+.facets__wrapper {
+  display: flex !important; flex-wrap: wrap; align-items: center;
+  gap: .8rem !important;
 }
-.facets__form .product-count {
-  order: 2;
-  margin-left: auto !important;
-  margin-right: .6rem !important;
-  flex: 0 0 auto;
-}
-.facets__form .facet-filters.sorting {
-  order: 3;
-  margin: 0 !important;
-  flex: 0 0 auto;
-}
+.facets__disclosure { margin: 0 !important; }
+.facet-filters { align-items: center !important; }
 
 /* "FILTER:" en "SORTEER OP:" labels — mono, klein, uppercase */
 .facets__heading,
 .facet-filters__label,
-.facet-filters__label label,
-.facets__form > .facets__heading {
+.facet-filters__label label {
   font-family: "Space Mono", ui-monospace, monospace !important;
   font-weight: 700 !important;
   font-size: 1.1rem !important;
   letter-spacing: .14em !important;
   text-transform: uppercase !important;
   color: var(--fn-ink-soft) !important;
+  margin: 0 !important;
 }
 
-/* De filter-knoppen (Beschikbaarheid / Prijs / ...) als witte pill —
-   collectie- ÉN zoekpagina, desktop én mobiel */
-.facets__disclosure .facets__summary,
+/* === ALLE filter-knoppen identiek: witte pill, ruime tekst === */
+.facets__form .facets__summary,
+.facets__form .facets__disclosure .facets__summary,
 .facets__summary,
 .mobile-facets__summary,
 .facets-pill .facets__summary,
+.facet-filters .facet-filters__sort,
 .facet-filters__sort,
 .facets .select__select {
-  list-style: none;
-  cursor: pointer;
+  box-sizing: border-box !important;
+  list-style: none !important;
+  cursor: pointer !important;
   display: inline-flex !important;
-  align-items: center;
-  height: 4rem !important;
+  align-items: center !important;
+  justify-content: space-between;
+  gap: 1rem !important;
+  height: 4.2rem !important;
+  min-width: 0;
+  white-space: nowrap !important;
   border: 2px solid var(--fn-line) !important;
   border-radius: 999px !important;
-  padding: 0 1.7rem !important;
+  padding: 0 2rem !important;
+  margin: 0 !important;
   font-family: "Instrument Sans", system-ui, -apple-system, sans-serif !important;
   font-weight: 600 !important;
   font-size: 1.4rem !important;
+  line-height: 1 !important;
   color: var(--fn-ink) !important;
   background: var(--fn-paper) !important;
+  box-shadow: none !important;
   transition: border-color .12s ease, background .12s ease, color .12s ease;
 }
 .facets__summary::-webkit-details-marker,
 .facets__summary::marker,
-.mobile-facets__summary::-webkit-details-marker { display: none; content: ""; }
+.mobile-facets__summary::-webkit-details-marker { display: none !important; content: "" !important; }
 .facets__summary > div,
-.mobile-facets__summary > div { display: inline-flex; align-items: center; gap: .9rem; }
+.mobile-facets__summary > div {
+  display: inline-flex !important; align-items: center; gap: 1rem;
+  width: 100%; justify-content: space-between;
+}
+.facets__summary .svg-wrapper,
 .facets__summary svg,
-.mobile-facets__summary svg { width: 1rem; height: 1rem; margin-left: .2rem; }
+.mobile-facets__summary svg {
+  width: 1.1rem !important; height: 1.1rem !important; flex: none;
+}
 .facets__summary:hover,
-.mobile-facets__summary:hover { border-color: var(--fn-ink) !important; }
-/* open of actief -> donkere pill, zoals de actieve categorie-pill */
+.mobile-facets__summary:hover,
+.facet-filters__sort:hover { border-color: var(--fn-ink) !important; }
+
+/* geopende filter -> donkere pill (zoals de actieve categorie-pill) */
 details[open] > .facets__summary,
-.facets__disclosure[open] > .facets__summary,
-.js-filter.facets__disclosure[open] .facets__summary,
+.facets__disclosure[open] .facets__summary,
 details[open] > .mobile-facets__summary {
   background: var(--fn-ink) !important;
   border-color: var(--fn-ink) !important;
   color: var(--fn-cream) !important;
 }
-details[open] > .facets__summary svg,
-.facets__disclosure[open] > .facets__summary svg,
-details[open] > .mobile-facets__summary svg { color: var(--fn-cream); }
+.facets__disclosure[open] .facets__summary svg,
+details[open] > .mobile-facets__summary svg { color: var(--fn-cream) !important; }
 
-/* Sorteer-select: zelfde pill (basis komt van de gedeelde regel hierboven),
-   alleen extra ruimte rechts voor de caret + native pijl weg */
+/* Sorteer-select: extra ruimte rechts voor de caret, native pijl weg */
 .facet-filters__sort,
 .facets .select__select,
 select.facet-filters__sort {
-  padding-right: 3.6rem !important;
+  padding-right: 4rem !important;
   -webkit-appearance: none !important;
   appearance: none !important;
 }
 .facet-filters .select,
-.facets .select { border: 0 !important; background: none !important; }
+.facets .select { border: 0 !important; background: none !important; padding: 0 !important; }
 .facet-filters .select .svg-wrapper,
-.facets .select .svg-wrapper { right: 1.6rem; color: var(--fn-ink); width: 1rem; }
-.facet-filters .select .svg-wrapper svg { width: 1rem; height: 1rem; }
+.facets .select .svg-wrapper { right: 1.8rem !important; left: auto !important; color: var(--fn-ink) !important; }
+.facet-filters .select .svg-wrapper svg { width: 1.1rem !important; height: 1.1rem !important; }
 
 /* Actieve-filter chips ("verwijder deze filter") */
 .active-facets__button-inner,
@@ -889,6 +906,7 @@ select.facet-filters__sort {
 .product-count__text {
   font-family: "Instrument Sans", system-ui, sans-serif !important;
   color: var(--fn-ink-soft) !important;
+  white-space: nowrap;
 }
 #ProductGridContainer, #product-grid { margin-top: 1.6rem !important; }
 
@@ -1000,6 +1018,14 @@ select.facet-filters__sort {
 /* ==========================================================================
    Header — zoekknop als omcirkelde pill, winkelwagen als rode pill (canvas)
    ========================================================================== */
+/* ruimte tussen de icoontjes (Dawn's .header__icons heeft geen gap) */
+.header__icons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.1rem !important;
+}
+.header__icons > .header__icon { margin: 0 !important; }
+
 .header__icon--search,
 summary.header__icon--summary {
   border: 2px solid var(--fn-line) !important;
@@ -1118,6 +1144,33 @@ summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
 .card__heading,
 .card-wrapper .card__heading,
 .card__information .card__heading { font-size: 1.7rem; font-weight: 700; }
+
+/* ==========================================================================
+   RICH-TEXT SECTIE — exact hetzelfde lettertype als de collectie-header
+   (staat helemaal onderaan zodat het van álles wint; het <h2> heeft ook
+    de class .rte, die anders het body-font zou opdringen)
+   ========================================================================== */
+h2.rich-text__heading,
+.rich-text__heading,
+.rich-text__heading.rte,
+.rich-text__blocks .rich-text__heading,
+.rich-text .rich-text__heading {
+  font-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.08 !important;
+}
+.rich-text__text,
+.rich-text__text.rte,
+.rich-text__text.rte p,
+.rich-text__text.rte *,
+.rich-text__blocks .rich-text__text,
+.rich-text__blocks .rich-text__text * {
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+  font-weight: 400 !important;
+}
+.rich-text__text,
+.rich-text__blocks .rich-text__text { color: var(--fn-ink-soft) !important; font-size: 1.7rem !important; }
 
 /* --------------------------------------------------------------------------
    Handmatig in Shopify (geen code):
