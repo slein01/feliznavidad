@@ -1,12 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "fn_breadcrumb": { "type": "fn-breadcrumb", "settings": {} },
+    "fn_breadcrumb": {
+      "type": "fn-breadcrumb",
+      "settings": {}
+    },
     "rich_text_hero": {
       "type": "rich-text",
       "blocks": {
         "heading": {
           "type": "heading",
-          "settings": { "heading": "Kerst mag best gek zijn", "heading_size": "h1" }
+          "settings": {
+            "heading": "Kerst mag best gek zijn",
+            "heading_size": "h1"
+          }
         },
         "text": {
           "type": "text",
@@ -19,11 +34,18 @@
           "settings": {
             "button_label": "Bekijk alle ornamenten",
             "button_link": "shopify://collections/all",
-            "button_style_secondary": false
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
@@ -37,12 +59,49 @@
     "multicolumn_values": {
       "type": "multicolumn",
       "blocks": {
-        "v1": { "type": "column", "settings": { "title": "Onbreekbaar", "text": "<p>Plastic ornamenten — valt er eentje, dan is er geen man overboord.</p>" } },
-        "v2": { "type": "column", "settings": { "title": "Eén prijs", "text": "<p>Alles &euro;8,50. Geen gedoe, en makkelijk cadeau te geven.</p>" } },
-        "v3": { "type": "column", "settings": { "title": "Snel in huis", "text": "<p>Voor 15:00 besteld, in 2–3 werkdagen aan je boom.</p>" } },
-        "v4": { "type": "column", "settings": { "title": "Mis je iets?", "text": "<p>Laat het weten — ons assortiment groeit met wat klanten vragen.</p>" } }
+        "v1": {
+          "type": "column",
+          "settings": {
+            "title": "Onbreekbaar",
+            "text": "<p>Plastic ornamenten — valt er eentje, dan is er geen man overboord.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "v2": {
+          "type": "column",
+          "settings": {
+            "title": "Uniek",
+            "text": "<p>We ontwerpen veel van onze ornamenten helemaal zelf.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "v3": {
+          "type": "column",
+          "settings": {
+            "title": "Snel in huis",
+            "text": "<p>Vandaag besteld, morgen verzonden.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "v4": {
+          "type": "column",
+          "settings": {
+            "title": "Mis je iets?",
+            "text": "<p>Laat het weten — ons assortiment groeit met wat klanten vragen.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["v1", "v2", "v3", "v4"],
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "Waar we voor staan",
@@ -64,11 +123,33 @@
     "fn_stats": {
       "type": "fn-stats",
       "blocks": {
-        "s1": { "type": "stat", "settings": { "value": "4,8", "label": "gemiddeld op Google" } },
-        "s2": { "type": "stat", "settings": { "value": "6", "label": "ornamenten in de vaste collectie" } },
-        "s3": { "type": "stat", "settings": { "value": "2–3", "label": "werkdagen levertijd" } }
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "4,8",
+            "label": "gemiddeld op Google"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "6",
+            "label": "ornamenten in de vaste collectie"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "2–3",
+            "label": "werkdagen levertijd"
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
       "settings": {}
     },
     "rich_text_cta": {
@@ -76,22 +157,34 @@
       "blocks": {
         "heading": {
           "type": "heading",
-          "settings": { "heading": "Klaar om je boom te pimpen?", "heading_size": "h1" }
+          "settings": {
+            "heading": "Klaar om je boom te pimpen?",
+            "heading_size": "h1"
+          }
         },
         "text": {
           "type": "text",
-          "settings": { "text": "<p>Bekijk de klassiekers en de grappige ornamenten, of stuur ons een berichtje.</p>" }
+          "settings": {
+            "text": "<p>Bekijk de klassiekers en de grappige ornamenten, of stuur ons een berichtje.</p>"
+          }
         },
         "button": {
           "type": "button",
           "settings": {
             "button_label": "Neem contact op",
             "button_link": "shopify://pages/contact",
-            "button_style_secondary": true
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -103,5 +196,11 @@
       }
     }
   },
-  "order": ["fn_breadcrumb", "rich_text_hero", "multicolumn_values", "fn_stats", "rich_text_cta"]
+  "order": [
+    "fn_breadcrumb",
+    "rich_text_hero",
+    "multicolumn_values",
+    "fn_stats",
+    "rich_text_cta"
+  ]
 }

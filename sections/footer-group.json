@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -23,11 +32,15 @@
           "type": "text",
           "settings": {
             "heading": "Info",
-            "subtext": "<p><a href=\"/pages/over-ons\">Over ons</a><br><a href=\"/pages/contact\">Contact</a><br><a href=\"/blogs/nieuws\">Inspiratie &amp; nieuws</a></p>"
+            "subtext": "<p><a href=\"/pages/over-ons\">Over ons</a><br/><a href=\"/pages/contact\">Contact</a><br/><a href=\"/blogs/nieuws\">Inspiratie & nieuws</a></p>"
           }
         }
       },
-      "block_order": ["fn_brand", "fn_shop", "fn_info"],
+      "block_order": [
+        "fn_brand",
+        "fn_shop",
+        "fn_info"
+      ],
       "settings": {
         "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
         "newsletter_enable": true,
@@ -44,5 +57,7 @@
       }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }
