@@ -504,6 +504,15 @@ fieldset.js .product-form__input input[type="radio"]:checked + label {
 .footer :is(a, p, li, .footer-block__heading, .footer__copyright small, .rte) { color: #D9E5DF; }
 .footer a:hover { color: #fff; }
 .footer-block__heading { color: var(--fn-cream); }
+/* base.css bevat nog een oude !important-regel (font 'Bubblegum') op .footer-block__heading
+   — hier expliciet terug naar het echte site-lettertype, incl. "Blijf op de hoogte". */
+.footer-block__heading,
+.newsletter-form__message--success,
+.newsletter-form__message--success * {
+  font-family: var(--fn-display) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
 .footer__content-top { border-bottom: 1px solid rgba(255, 255, 255, .15); }
 .footer__content-bottom { border-top: 0; }
 .footer .newsletter-form__field-wrapper .field__input {
