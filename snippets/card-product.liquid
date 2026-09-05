@@ -108,6 +108,7 @@
         {%- endif -%}
         <div class="card__content">
           <div class="card__information">
+            {% render 'fn-card-tag', card_product: card_product %}
             <h3
               class="card__heading"
               {% if card_product.featured_media == null and settings.card_style == 'standard' %}
@@ -145,6 +146,7 @@
       </div>
       <div class="card__content">
         <div class="card__information">
+          {% render 'fn-card-tag', card_product: card_product %}
           <h3
             class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
             {% if card_product.featured_media or settings.card_style == 'card' %}
@@ -205,6 +207,11 @@
             {%- endif -%}
 
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+            {%- if card_product.available -%}
+              <span class="fn-card-stock">Op voorraad</span>
+            {%- else -%}
+              <span class="fn-card-stock fn-card-stock--out">Uitverkocht</span>
+            {%- endif -%}
             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                 {% liquid

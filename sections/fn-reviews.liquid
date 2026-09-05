@@ -1,0 +1,82 @@
+{%- liquid
+  assign src = section.settings.feed_url | strip
+  assign is_url = false
+  if src contains 'http'
+    assign is_url = true
+  endif
+  if src != blank and is_url == false
+    assign src = 'https://featurable.com/api/v1/widgets/' | append: src
+  endif
+-%}
+
+<div class="fn-reviews page-width"{% if src != blank %} data-reviews-src="{{ src }}"{% endif %}>
+  {%- if section.settings.show_badge -%}
+    {%- capture badge_inner -%}
+      <span class="fn-reviews__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="fn-reviews__score" data-reviews-score>{{ section.settings.score }}</span>
+      <span class="fn-reviews__count" data-reviews-count>{{ section.settings.count_text }}</span>
+    {%- endcapture -%}
+    <div class="fn-reviews__head">
+      {%- if section.settings.reviews_url != blank -%}
+        <a class="fn-reviews__badge" href="{{ section.settings.reviews_url }}" target="_blank" rel="noopener nofollow">
+          {{ badge_inner }}
+          <svg class="fn-reviews__badge-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      {%- else -%}
+        <span class="fn-reviews__badge">{{ badge_inner }}</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="fn-reviews__grid">
+    {%- for block in section.blocks -%}
+      <article class="fn-review" {{ block.shopify_attributes }}>
+        <div class="fn-review__stars" aria-label="{{ block.settings.rating }} van 5 sterren">
+          {%- for i in (1..5) -%}
+            {%- if i <= block.settings.rating -%}&#9733;{%- else -%}<span class="fn-review__star--dim">&#9733;</span>{%- endif -%}
+          {%- endfor -%}
+        </div>
+        <p class="fn-review__text">{{ block.settings.text }}</p>
+        <p class="fn-review__name">&mdash; {{ block.settings.name }}</p>
+      </article>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script src="{{ 'fn-reviews.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "FN — Reviews",
+  "settings": [
+    { "type": "header", "content": "Google-badge" },
+    { "type": "checkbox", "id": "show_badge", "label": "Badge tonen", "default": true },
+    { "type": "text", "id": "score", "label": "Gemiddelde score", "default": "4,8" },
+    { "type": "text", "id": "count_text", "label": "Tekst achter de score", "default": "op Google" },
+    { "type": "url", "id": "reviews_url", "label": "Link naar Google-reviewpagina", "info": "De badge wordt dan aanklikbaar en opent je Google-reviews in een nieuw tabblad." },
+    { "type": "text", "id": "feed_url", "label": "Live score ophalen — Featurable widget-ID of JSON-URL", "info": "Optioneel. Leeg = de score hierboven wordt getoond. Ingevuld = score + aantal worden live opgehaald (o.a. via een gratis Featurable-koppeling met je Google Bedrijfsprofiel)." }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Naam", "default": "Klant" },
+        { "type": "range", "id": "rating", "label": "Sterren", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Review", "default": "Mooie producten en snelle levering!" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "FN — Reviews",
+      "blocks": [
+        { "type": "review", "settings": { "name": "Joost", "rating": 5, "text": "Mooie producten en snelle levering!" } },
+        { "type": "review", "settings": { "name": "Suzanne", "rating": 5, "text": "Leuke producten en mooi op tijd in huis, kom hier zeker vaker." } },
+        { "type": "review", "settings": { "name": "Jordi", "rating": 5, "text": "Top, snel in huis." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

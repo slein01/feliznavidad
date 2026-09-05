@@ -1,0 +1,29 @@
+{%- comment -%}
+  Free-shipping progress bar. Used by sections/fn-shipping-bar.liquid (cart page)
+  and snippets/cart-drawer.liquid (drawer).
+  Accepts: threshold (in euros, default 25)
+{%- endcomment -%}
+{%- liquid
+  assign fn_threshold = threshold | default: 25 | times: 100
+  assign fn_remaining = fn_threshold | minus: cart.total_price
+  assign fn_pct = 0
+  if fn_threshold > 0
+    assign fn_pct = cart.total_price | times: 1.0 | divided_by: fn_threshold | times: 100 | round
+  endif
+  if fn_pct > 100
+    assign fn_pct = 100
+  endif
+-%}
+{%- if cart != empty -%}
+  <div class="fn-shipbar">
+    {%- if fn_remaining > 0 -%}
+      <p class="fn-shipbar__msg">Nog <strong>{{ fn_remaining | money }}</strong> tot gratis verzending</p>
+    {%- else -%}
+      <p class="fn-shipbar__msg fn-shipbar__msg--done">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg>
+        Je hebt gratis verzending!
+      </p>
+    {%- endif -%}
+    <div class="fn-shipbar__track"><div class="fn-shipbar__fill" style="width: {{ fn_pct }}%"></div></div>
+  </div>
+{%- endif -%}

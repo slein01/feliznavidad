@@ -1,0 +1,82 @@
+{%- liquid
+  assign img1 = section.settings.image_1
+  assign img2 = section.settings.image_2
+  if img1 == blank or img2 == blank
+    assign i = 0
+    for product in section.settings.image_collection.products limit: 2
+      if i == 0 and img1 == blank
+        assign img1 = product.featured_image
+      elsif i == 1 and img2 == blank
+        assign img2 = product.featured_image
+      endif
+      assign i = i | plus: 1
+    endfor
+  endif
+-%}
+
+<div class="fn-hero">
+  <div class="fn-hero__grid">
+    <div class="fn-hero__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="fn-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="fn-hero__title">
+        {{- section.settings.heading -}}
+        {%- if section.settings.highlight != blank -%} <em>{{ section.settings.highlight }}</em>{%- endif -%}
+      </h1>
+      {%- if section.settings.text != blank -%}
+        <p class="fn-hero__text">{{ section.settings.text }}</p>
+      {%- endif -%}
+      <div class="fn-hero__actions">
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="button button--primary">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button_label_2 != blank -%}
+          <a href="{{ section.settings.button_link_2 }}" class="button button--secondary">{{ section.settings.button_label_2 }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.rating_text != blank -%}
+        <p class="fn-hero__rating"><span class="fn-hero__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> {{ section.settings.rating_text }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="fn-hero__media">
+      <div class="fn-hero__frame fn-hero__frame--1">
+        {%- if img1 -%}
+          {{ img1 | image_url: width: 800 | image_tag: widths: '300,450,600,800', sizes: '30rem', alt: img1.alt }}
+        {%- endif -%}
+      </div>
+      <div class="fn-hero__frame fn-hero__frame--2">
+        {%- if img2 -%}
+          {{ img2 | image_url: width: 600 | image_tag: widths: '215,320,430', sizes: '21rem', alt: img2.alt }}
+        {%- endif -%}
+      </div>
+      {%- if section.settings.sticker_text != blank -%}
+        <div class="fn-hero__sticker">{{ section.settings.sticker_text | newline_to_br }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FN — Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Kerst 2025 · Ornamenten" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Maak je kerstboom" },
+    { "type": "text", "id": "highlight", "label": "Rood accentwoord", "default": "compleet." },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Grappige en klassieke kerstornamenten van onbreekbaar plastic. Vanaf €8,50 per stuk." },
+    { "type": "text", "id": "button_label", "label": "Knop 1 label", "default": "Bekijk alle ornamenten" },
+    { "type": "url", "id": "button_link", "label": "Knop 1 link" },
+    { "type": "text", "id": "button_label_2", "label": "Knop 2 label", "default": "Shop grappige ornamenten" },
+    { "type": "url", "id": "button_link_2", "label": "Knop 2 link" },
+    { "type": "text", "id": "rating_text", "label": "Rating-tekst", "default": "4,8 gemiddeld — beoordeeld door klanten op Google" },
+    { "type": "text", "id": "sticker_text", "label": "Sticker-tekst", "info": "Gebruik een nieuwe regel voor twee regels", "default": "vanaf\n€8,50" },
+    { "type": "header", "content": "Foto's" },
+    { "type": "collection", "id": "image_collection", "label": "Foto's uit collectie", "info": "Gebruikt de eerste 2 productfoto's als er hieronder geen foto's zijn gekozen" },
+    { "type": "image_picker", "id": "image_1", "label": "Foto 1 (groot)" },
+    { "type": "image_picker", "id": "image_2", "label": "Foto 2 (klein)" }
+  ],
+  "presets": [{ "name": "FN — Hero" }]
+}
+{% endschema %}

@@ -1,0 +1,1794 @@
+/* ==========================================================================
+   feliznavidad.nl — redesign layer  (bold & playful)
+   Loaded AFTER base.css in layout/theme.liquid, overrides Dawn 15.3.0.
+   Keep redesign styling in THIS file; touch Dawn's own .liquid/.css minimally.
+   Design canvas: https://claude.ai/code/artifact/329e2eae-f326-4899-bf4f-e1a5eedaee63
+   ========================================================================== */
+
+/* ---- 0. Fonts ------------------------------------------------------------------
+   @font-face staat in layout/theme.liquid ({% style %} met asset_url — betrouwbaarste
+   pad op de Shopify-CDN). Hier alleen Dawn's font-variabelen overschrijven zodat
+   ELK element de redesign-fonts pakt, niet alleen wat we expliciet targeten. */
+:root {
+  --font-heading-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif !important;
+  --font-heading-style: normal !important;
+  --font-heading-weight: 800 !important;
+  --font-body-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+  --font-body-style: normal !important;
+  --font-body-weight: 400 !important;
+  --font-body-weight-bold: 600 !important;
+}
+
+/* Forceer op element-niveau — sommige Dawn-onderdelen negeren de variabele. */
+body,
+.rte, .rte *,
+p, li, dd, dt, td, th, blockquote, figcaption, label, legend, caption,
+input, select, textarea, button, .btn, .field__input,
+.card__content, .card-information, .card__information,
+.facets, .facet-filters, .product-count, .collection-hero__description,
+.product__text, .product__description, .product-form,
+.announcement-bar__message {
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5,
+.title, .card__heading, .collection-hero__title,
+.product__title, .product__title h1,
+.rich-text__heading, .rich-text h1, .rich-text h2, .rich-text h3,
+.rich-text__blocks h1, .rich-text__blocks h2, .rich-text__blocks h3 {
+  font-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+.price, .price *, [class*="price-item"],
+.fn-hero__eyebrow, .fn-cats__eyebrow, .fn-statement__eyebrow, .fn-contact__eyebrow,
+.eyebrow, .announcement-bar__message {
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, "Courier New", monospace;
+}
+
+:root {
+  --fn-cream:      #FFF7ED;
+  --fn-paper:      #FFFFFF;
+  --fn-ink:        #221C17;
+  --fn-ink-soft:   #6E6156;
+  --fn-line:       #EBE1D4;
+  --fn-red:        #E5372B;
+  --fn-red-soft:   #FBE0DC;
+  --fn-green:      #1F9D61;
+  --fn-green-soft: #DEF2E8;
+  --fn-pine:       #10362A;
+  --fn-gold:       #E8B54B;
+  --fn-photo-bg:   #F2E6DF;
+
+  --fn-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --fn-body:    "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --fn-mono:    "Space Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* ---- 1. Type -------------------------------------------------------------- */
+body, .rte, input, select, textarea, button,
+.product__text, .card__content { font-family: var(--fn-body); }
+
+h1, h2, h3, h4,
+.h0, .h1, .h2, .h3, .h4,
+.title, .title-wrapper h2,
+.card__heading, .banner__heading,
+.product__title, .product__title h1,
+.footer-block__heading, .newsletter__heading,
+.rich-text__heading, .collection__title,
+.cart__heading, .main-page-title, .article-template__title {
+  font-family: var(--fn-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.banner__heading.h0, .rich-text__heading.h0, .title.h0 {
+  font-size: clamp(3.4rem, 6vw, 6.2rem);
+}
+
+/* ---- 2. Announcement bar ------------------------------------------------------ */
+.announcement-bar, .utility-bar { background: var(--fn-pine); }
+.announcement-bar__message, .announcement-bar__link {
+  color: var(--fn-cream);
+  font-family: var(--fn-mono);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+}
+
+/* ---- 3. Header ------------------------------------------------------------------- */
+.header-wrapper { border-bottom: 2px solid var(--fn-line); background: var(--fn-cream); }
+.header__menu-item span, .header__active-menu-item { font-weight: 600; }
+.header__menu-item:hover span { color: var(--fn-red); }
+
+/* ---- 4. Buttons ---------------------------------------------------------------- */
+.button, .shopify-payment-button__button--unbranded,
+.product-form__submit, .cart__checkout-button,
+.shopify-payment-button__more-options {
+  border-radius: 999px !important;
+  font-family: var(--fn-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+.button:not([disabled]):hover,
+.product-form__submit:not([disabled]):hover { transform: translateY(-2px); }
+.button--primary, .product-form__submit, .cart__checkout-button {
+  --color-button: 229, 55, 43;
+  --color-button-text: 255, 255, 255;
+}
+.button--secondary { --color-button: 255, 247, 237; --color-button-text: 34, 28, 23; border-width: 2px; }
+
+/* ---- 5. Prices ---------------------------------------------------------------- */
+.price, .price .price-item, .price__regular, .price__sale,
+.product__price, .cart-item__price, .totals__total-value {
+  font-family: var(--fn-mono); font-weight: 700; letter-spacing: -0.01em;
+}
+.price .price-item--regular,
+.product__info-container .price-item--regular { color: var(--fn-red); }
+.price--on-sale .price-item--sale { color: var(--fn-red); }
+
+/* ---- 6. Product & collection cards ------------------------------------------ */
+.card-wrapper .card__media, .card--card .card__inner,
+.card--standard .card__media, .collection-list .card__media,
+.product-media-container {
+  background: var(--fn-photo-bg); border-radius: 15px; overflow: hidden;
+}
+.card { border-radius: 20px; }
+.card--card, .card-wrapper .card--card .card__inner {
+  border: 2px solid var(--fn-line);
+  transition: transform .18s ease, border-color .18s ease;
+}
+.card-wrapper:hover .card--card,
+.card-wrapper:hover .card--card .card__inner {
+  transform: translateY(-5px); border-color: var(--fn-red);
+}
+.card__heading { font-size: 1.7rem; }
+.card__media img { transition: transform .3s ease; }
+.card-wrapper:hover .card__media img { transform: scale(1.03); }
+
+/* Witruimte weg: Dawn's kaart-grid heeft flexibele 1fr-spacer-rijen die de
+   inhoud verticaal centreren -> laat alles bovenaan aansluiten. */
+.card__content,
+.card:not(.ratio) > .card__content,
+.card__inner:not(.ratio) > .card__content {
+  grid-template-rows: max-content !important;
+  align-content: start !important;
+  row-gap: 0 !important;
+  padding: 1.4rem 0.4rem 0.4rem !important;
+}
+.card__information,
+.card--standard .card__information {
+  grid-row-start: auto !important;
+  padding: 0.6rem 0.4rem 0 !important;
+}
+.card-wrapper .card-information { margin-top: 0.4rem; }
+.card-wrapper .quick-add { margin-top: 1rem; }
+.card-wrapper .card-information > *:empty { display: none; }
+
+/* ---- 7. Rich text ------------------------------------------------------------- */
+.rich-text__text { color: var(--fn-ink-soft); }
+.rich-text__blocks { max-width: 72rem; }
+
+/* ---- 8. Product page --------------------------------------------------------------- */
+.product__title h1, .product__title { font-size: clamp(2.8rem, 3.4vw, 4.4rem); }
+.product__info-container .price { font-size: 2.4rem; }
+.product-form__buttons { display: flex; flex-direction: column; gap: 1rem; }
+.product-form__submit.button--secondary[disabled] { opacity: .45; }
+/* CTA-kleuren: zie het "CTA-KLEUREN — definitief" blok onderaan dit bestand. */
+.quantity { border-radius: 999px; border: 2px solid var(--fn-ink); overflow: hidden; }
+.quantity__input, .quantity__button { font-family: var(--fn-display); font-weight: 700; }
+.product .accordion, .product__accordion {
+  border: 2px solid var(--fn-line); border-radius: 16px; padding: 0 1.6rem;
+}
+.product__accordion summary { font-family: var(--fn-display); font-weight: 700; }
+.product .icon-with-text { gap: 1rem; }
+.product .icon-with-text .icon { color: var(--fn-green); }
+
+/* "Onbreekbaar plastic" badge op de PDP-galerij */
+.product__media-wrapper { position: relative !important; }
+.product__media-wrapper::after {
+  content: "Onbreekbaar plastic";
+  position: absolute; z-index: 5; top: 1.6rem; left: 1.6rem;
+  background: var(--fn-green); color: #fff;
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.05rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .5rem 1rem; border-radius: 8px;
+  pointer-events: none;
+}
+
+/* ---- 9. Cart / cart drawer -------------------------------------------------------- */
+.cart__blocks .totals__total-value { color: var(--fn-red); }
+.cart-item__name { font-family: var(--fn-display); font-weight: 700; }
+.cart-drawer .drawer__inner { background: var(--fn-paper); }
+.cart-drawer__header, .drawer__header { border-bottom: 2px solid var(--fn-line); }
+cart-drawer .drawer__heading { font-family: var(--fn-display); font-weight: 800; }
+.cart-drawer .cart-item__name { font-size: 1.5rem; }
+.cart-notification { border-radius: 20px; border: 2px solid var(--fn-line); }
+
+/* ---- 10. Mega-menu -------------------------------------------------------------- */
+.mega-menu__content {
+  border-radius: 0 0 20px 20px;
+  border: 2px solid var(--fn-line); border-top: 0;
+  box-shadow: 0 24px 40px rgba(34, 28, 23, .12);
+  background: var(--fn-paper);
+  padding-block: 3rem;
+}
+.mega-menu__list { gap: 3rem; }
+.mega-menu__link { font-weight: 600; }
+.mega-menu__link:hover { color: var(--fn-red); }
+.mega-menu__link--level-2 { font-size: 1.4rem; }
+
+/* ---- 11. Footer ------------------------------------------------------------------- */
+.footer { border-top: 2px solid var(--fn-line); }
+.footer-block__heading { font-family: var(--fn-display); font-weight: 700; font-size: 1.5rem; }
+.footer__payment .list-payment__item svg { border-radius: 6px; }
+
+/* ---- 12. Newsletter --------------------------------------------------------------- */
+.newsletter__button.button { border-radius: 999px !important; }
+
+/* ---- 13. Focus states ---------------------------------------------------------- */
+.button:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--fn-red); outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Custom redesign sections  (sections/fn-*.liquid)
+   ========================================================================== */
+
+/* ---- fn-hero -------------------------------------------------------------------- */
+.fn-hero { background:
+    radial-gradient(1100px 520px at 82% 4%, var(--fn-red-soft), transparent 60%),
+    var(--fn-cream);
+  padding: 6rem 0 7rem;
+}
+.fn-hero__grid {
+  display: grid; grid-template-columns: 1.02fr .98fr; gap: 5rem;
+  align-items: center; max-width: var(--page-width, 120rem);
+  margin: 0 auto; padding-inline: 5rem;
+}
+.fn-hero__eyebrow {
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red);
+  margin: 0 0 1.6rem;
+}
+.fn-hero__title {
+  font-family: var(--fn-display); font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.0; font-size: clamp(4rem, 6vw, 8.2rem); margin: 0;
+}
+.fn-hero__title em { font-style: normal; color: var(--fn-red); display: inline-block; transform: rotate(-2.5deg); }
+.fn-hero__text { max-width: 44rem; margin: 2.2rem 0 0; font-size: 1.8rem; color: var(--fn-ink-soft); }
+.fn-hero__actions { display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 3rem; }
+.fn-hero__rating { display: flex; align-items: center; gap: 1rem; margin-top: 2.4rem;
+  font-size: 1.4rem; color: var(--fn-ink-soft); }
+.fn-hero__stars { color: var(--fn-gold); letter-spacing: 2px; }
+.fn-hero__media { position: relative; min-height: 46rem; }
+.fn-hero__frame { position: absolute; border: 3px solid var(--fn-ink); border-radius: 2.4rem;
+  overflow: hidden; background: var(--fn-photo-bg); }
+.fn-hero__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fn-hero__frame--1 { right: 3.4rem; top: 0; width: 30rem; height: 43rem;
+  box-shadow: 16px 18px 0 rgba(34, 28, 23, .12); }
+.fn-hero__frame--2 { left: 0; bottom: 2rem; width: 21.4rem; height: 28rem;
+  transform: rotate(-3deg); box-shadow: 12px 14px 0 rgba(229, 55, 43, .18); }
+.fn-hero__sticker { position: absolute; right: 0; bottom: 0; background: var(--fn-gold);
+  color: var(--fn-ink); font-family: var(--fn-display); font-weight: 800; font-size: 1.5rem;
+  text-align: center; line-height: 1.1; padding: 1.2rem 1.6rem; border-radius: 1.4rem;
+  transform: rotate(6deg); box-shadow: 0 10px 22px rgba(34, 28, 23, .16); }
+@media (max-width: 749px) {
+  .fn-hero__grid { grid-template-columns: 1fr; gap: 3rem; padding-inline: 2rem; }
+  .fn-hero__media { min-height: 40rem; }
+  .fn-hero__frame--1 { right: 0; width: 60%; height: 34rem; }
+  .fn-hero__frame--2 { width: 42%; height: 22rem; }
+}
+
+/* ---- fn-category-split -------------------------------------------------------- */
+.fn-cats { max-width: var(--page-width, 120rem); margin: 0 auto; padding: 6rem 5rem; }
+.fn-cats__head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.4rem; gap: 2rem; }
+.fn-cats__title { font-family: var(--fn-display); font-weight: 800; font-size: clamp(3rem, 4vw, 4.4rem); margin: 0; }
+.fn-cats__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.4rem; }
+.fn-cat { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem;
+  border: 2px solid; border-radius: 2.4rem; padding: 3rem 3rem 3rem 3.8rem; text-decoration: none; color: var(--fn-ink); }
+.fn-cat--green { background: var(--fn-green-soft); border-color: var(--fn-green); }
+.fn-cat--red { background: var(--fn-red-soft); border-color: var(--fn-red); }
+.fn-cat__name { font-family: var(--fn-display); font-weight: 800; font-size: 2.8rem; margin: 0; }
+.fn-cat__text { color: var(--fn-ink-soft); margin: 1rem 0 0; max-width: 32rem; }
+.fn-cat__link { display: inline-block; margin-top: 1.6rem; font-family: var(--fn-display); font-weight: 700; }
+.fn-cat--green .fn-cat__link { color: var(--fn-green); }
+.fn-cat--red .fn-cat__link { color: var(--fn-red); }
+.fn-cat__img { width: 15rem; height: 20rem; object-fit: cover; border-radius: 1.6rem; border: 3px solid; }
+.fn-cat--green .fn-cat__img { border-color: var(--fn-green); }
+.fn-cat--red .fn-cat__img { border-color: var(--fn-red); }
+@media (max-width: 749px) {
+  .fn-cats { padding: 4rem 2rem; }
+  .fn-cats__grid { grid-template-columns: 1fr; }
+  .fn-cat { padding: 2rem; }
+  .fn-cat__img { width: 9rem; height: 12rem; }
+  .fn-cat__name { font-size: 2rem; }
+}
+
+/* ---- fn-trust --------------------------------------------------------------------- */
+.fn-trust { background: var(--fn-green); color: #fff; padding: 4.4rem 5rem; }
+.fn-trust__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.8rem;
+  max-width: var(--page-width, 120rem); margin: 0 auto; }
+.fn-trust__item { display: flex; gap: 1.4rem; align-items: flex-start; }
+.fn-trust__item svg { flex: none; width: 3rem; height: 3rem; }
+.fn-trust__item strong { font-family: var(--fn-display); font-size: 1.7rem; display: block; }
+.fn-trust__item p { opacity: .9; font-size: 1.4rem; margin: .3rem 0 0; }
+@media (max-width: 749px) {
+  .fn-trust { padding: 2.6rem 2rem; }
+  .fn-trust__grid { grid-template-columns: 1fr; gap: 1.6rem; }
+}
+
+/* ---- fn-breadcrumb -------------------------------------------------------------- */
+/* GEEN padding-shorthand: dat zou .page-width's kantlijn-padding op 0 zetten. */
+.fn-crumbs {
+  display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+  font-size: 1.3rem; color: var(--fn-ink-soft);
+  padding-top: 2.4rem;
+}
+.fn-crumbs a { color: var(--fn-ink-soft); text-decoration: none; }
+.fn-crumbs a:hover { color: var(--fn-red); }
+.fn-crumbs span[aria-hidden] { opacity: .5; }
+
+/* ---- fn-shipping-bar ---------------------------------------------------------- */
+.fn-shipbar { padding: 1.6rem 0 0; }
+.fn-shipbar__msg {
+  margin: 0 0 .8rem; font-size: 1.4rem; font-weight: 500;
+  display: flex; align-items: center; gap: .6rem;
+}
+.fn-shipbar__msg strong { color: var(--fn-red); font-family: var(--fn-mono); }
+.fn-shipbar__msg--done { color: var(--fn-green); font-weight: 600; }
+.fn-shipbar__track {
+  height: 8px; border-radius: 999px; background: var(--fn-line); overflow: hidden;
+}
+.fn-shipbar__fill {
+  height: 100%; border-radius: 999px; background: var(--fn-green);
+  transition: width .4s ease;
+}
+
+/* ==========================================================================
+   Collection page
+   ========================================================================== */
+.collection-hero, .main-collection-banner {
+  padding-block: 2.4rem 0;
+}
+.collection-hero__inner { padding-block: 2.4rem 1.6rem; }
+.collection-hero__title, .main-collection-banner .title,
+.collection .title-wrapper .title {
+  font-size: clamp(3.6rem, 5vw, 6rem);
+}
+.collection-hero__description, .collection__description, .banner__text {
+  color: var(--fn-ink-soft); font-size: 1.7rem; max-width: 62rem; margin-top: 1.2rem;
+}
+/* minder witruimte tussen omschrijving, filterbalk en grid */
+.collection { padding-top: 0.8rem !important; }
+#ProductGridContainer { margin-top: 0.5rem; }
+.facets-container, .collection .facets { margin-block: 1rem 1.5rem !important; }
+.product-grid { margin-top: 1rem !important; }
+
+/* facets: alleen niet-pill dingen hier — de pills zelf staan verderop
+   in het "ALLE filter-knoppen identiek" blok (de enige bron van waarheid). */
+.active-facets__button--light .active-facets__button-inner {
+  background: var(--fn-red-soft); color: var(--fn-red); border-color: var(--fn-red-soft) !important;
+}
+.facets__button.button,
+.facets__reset .button { border-radius: 999px !important; }
+.facets__price .price-range__slider,
+.slider-progress { accent-color: var(--fn-red); }
+
+/* grid + pagination */
+.collection .grid__item .card__heading { font-size: 1.6rem; }
+.pagination__list .pagination__item {
+  border-radius: 999px; font-family: var(--fn-display); font-weight: 700;
+}
+.pagination__item--current { background: var(--fn-red); color: #fff; }
+
+/* ==========================================================================
+   Product page
+   ========================================================================== */
+.product__text.caption-with-letter-spacing,
+.product .product__text[class*="uppercase"],
+.product__info-container .product__text {
+  font-family: var(--fn-mono);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--fn-ink-soft);
+}
+.product__info-wrapper { gap: 1.4rem; }
+.product .price { font-size: 2.6rem; }
+.product__tax.caption { color: var(--fn-ink-soft); }
+
+/* variant pills */
+.product-form__input .form__label { font-family: var(--fn-display); font-weight: 700; }
+fieldset.js .product-form__input input[type="radio"] + label,
+.product-form__input--pill input[type="radio"] + label {
+  border-radius: 999px; border-width: 2px; font-weight: 600;
+}
+fieldset.js .product-form__input input[type="radio"]:checked + label {
+  border-color: var(--fn-red); box-shadow: 0 0 0 1px var(--fn-red);
+}
+
+/* CTA-kleuren: zie het "CTA-KLEUREN — definitief" blok onderaan dit bestand. */
+
+/* trust icon-with-text rows */
+.product .icon-with-text,
+.product__info-container .icon-with-text {
+  display: flex; flex-direction: column; gap: 1rem;
+  border-top: 2px solid var(--fn-line); padding-top: 1.8rem; margin-top: .6rem;
+}
+.product .icon-with-text > * { display: flex; align-items: center; gap: 1rem; text-align: left; }
+.product .icon-with-text .icon { width: 2rem; height: 2rem; color: var(--fn-green); flex: none; }
+
+/* spec accordion */
+.product__accordion .accordion__title,
+.product .accordion summary .h4 { font-family: var(--fn-display); font-weight: 700; font-size: 1.6rem; }
+.product__accordion { border: 2px solid var(--fn-line); border-radius: 16px; padding-inline: 1.8rem; }
+
+/* gallery */
+.product__media-list .product__media-item .media,
+.product__media-wrapper .product__media { border-radius: 22px; overflow: hidden; background: var(--fn-photo-bg); }
+.thumbnail-list__item .thumbnail { border-radius: 12px; border: 2px solid var(--fn-line); }
+.thumbnail-list__item .thumbnail[aria-current] { border-color: var(--fn-red); }
+
+/* related products */
+.related-products .related-products__heading,
+#Related-Products .title { font-size: clamp(2.6rem, 3vw, 3.6rem); }
+
+/* ==========================================================================
+   Cart page  (and drawer refinements)
+   ========================================================================== */
+.cart__items thead th, .cart-items thead th {
+  font-family: var(--fn-mono); font-size: 1.1rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--fn-ink-soft);
+}
+.cart-item__details .cart-item__name { font-size: 1.7rem; }
+.cart-item__media .cart-item__image { border-radius: 14px; background: var(--fn-photo-bg); }
+.cart__ctas .cart__checkout-button,
+.cart__ctas .cart__update-button { border-radius: 999px !important; }
+.cart__blocks .totals__subtotal,
+.cart__blocks .totals__total { font-family: var(--fn-display); font-weight: 800; }
+.cart__blocks .totals__total-value { color: var(--fn-red); font-family: var(--fn-mono); }
+.cart__contents .cart__footer { border-top: 2px solid var(--fn-line); }
+.cart__warnings .cart__empty-text { font-family: var(--fn-display); font-weight: 800; }
+
+/* ==========================================================================
+   Contact page
+   ========================================================================== */
+.contact .form__label, .contact label { font-weight: 600; font-size: 1.3rem; }
+.contact .field__input,
+.contact .text-area,
+.contact input[type="text"],
+.contact input[type="email"],
+.contact textarea {
+  border: 2px solid var(--fn-line);
+  border-radius: 12px;
+  background: var(--fn-paper);
+}
+.contact .field__input:focus,
+.contact textarea:focus { border-color: var(--fn-ink); }
+.contact .button { border-radius: 999px !important; }
+
+/* ==========================================================================
+   Blog / article
+   ========================================================================== */
+.article-template__title, .blog__title, .article-card__title {
+  font-family: var(--fn-display); font-weight: 800; letter-spacing: -0.02em;
+}
+.article-template__hero-container .article-template__hero,
+.blog-articles .article-card__image-wrapper .media {
+  border-radius: 22px; overflow: hidden; border: 2px solid var(--fn-line);
+}
+.article-card { border-radius: 20px; overflow: hidden; border: 2px solid var(--fn-line); }
+.article-card:hover { border-color: var(--fn-red); }
+.article-template__content { max-width: 72rem; margin-inline: auto; }
+.article-template__content h2 { font-family: var(--fn-display); font-weight: 800; }
+
+/* ==========================================================================
+   Header extras
+   ========================================================================== */
+.header__icon .icon { width: 2.2rem; height: 2.2rem; }
+.cart-count-bubble { background: var(--fn-red); }
+.cart-count-bubble span { color: #fff; }
+.search-modal__content { border-radius: 0 0 20px 20px; border: 2px solid var(--fn-line); }
+.predictive-search { border-radius: 0 0 20px 20px; }
+
+/* ==========================================================================
+   Footer — deep pine
+   ========================================================================== */
+.footer {
+  background: var(--fn-pine);
+  --color-foreground: 249, 245, 236;
+  color: #D9E5DF;
+}
+.footer :is(a, p, li, .footer-block__heading, .footer__copyright small, .rte) { color: #D9E5DF; }
+.footer a:hover { color: #fff; }
+.footer-block__heading { color: var(--fn-cream); }
+/* base.css bevat nog een oude !important-regel (font 'Bubblegum') op .footer-block__heading
+   — hier expliciet terug naar het echte site-lettertype, incl. "Blijf op de hoogte". */
+.footer-block__heading,
+.newsletter-form__message--success,
+.newsletter-form__message--success * {
+  font-family: var(--fn-display) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+.footer__content-top { border-bottom: 1px solid rgba(255, 255, 255, .15); }
+.footer__content-bottom { border-top: 0; }
+.footer .newsletter-form__field-wrapper .field__input {
+  background: transparent; border: 2px solid rgba(255, 255, 255, .35); color: var(--fn-cream);
+  border-radius: 999px;
+}
+.footer .newsletter-form__button { border-radius: 999px !important; }
+.footer__payment .list-payment__item svg { background: rgba(255, 255, 255, .08); border-radius: 6px; }
+.footer .list-social__link { color: #D9E5DF; }
+/* cream plaque behind the footer logo image */
+.footer .footer-block__details-content .footer-block__image-wrapper img,
+.footer__content-top .footer-block--newsletter img {
+  background: var(--fn-cream); border-radius: 12px; padding: 1rem 1.4rem;
+}
+
+/* ---- PDP: statische Google-rating (custom_liquid block) --------------------- */
+.fn-pdp-rating {
+  display: flex; align-items: center; gap: .8rem;
+  font-size: 1.3rem; color: var(--fn-ink-soft); margin: .4rem 0 .2rem;
+}
+.fn-pdp-rating__stars { color: var(--fn-gold); letter-spacing: 2px; font-size: 1.5rem; }
+
+/* ---- Multicolumn (o.a. Over ons "Waar we voor staan") --------------------- */
+.multicolumn .multicolumn-list__item { text-align: left; }
+.multicolumn .multicolumn-card__title { font-family: var(--fn-display); font-weight: 700; font-size: 1.7rem; }
+
+/* ---- fn-stats (Over ons) --------------------------------------------------------- */
+.fn-stats { background: var(--fn-green); color: #fff; padding: 5.2rem 5rem; }
+.fn-stats__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.8rem;
+  max-width: var(--page-width, 120rem); margin: 0 auto; text-align: center;
+}
+.fn-stats__value { font-family: var(--fn-display); font-weight: 800; font-size: 4.4rem; line-height: 1; }
+.fn-stats__label { opacity: .9; font-size: 1.4rem; margin: .6rem 0 0; }
+@media (max-width: 749px) {
+  .fn-stats { padding: 3.2rem 2rem; }
+  .fn-stats__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ---- Collectie: eyebrow boven de titel ------------------------------------- */
+.collection-hero__title::before {
+  content: "De collectie";
+  display: block;
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red);
+  margin-bottom: 1rem;
+}
+.collection-hero__title { display: block; }
+
+/* ---- Cart drawer: verzendbalk-marge -------------------------------------------- */
+.cart-drawer__shipbar { padding: 0 var(--fn-drawer-pad, 3.5rem) 1.2rem; }
+.cart-drawer__shipbar .fn-shipbar { padding-top: 0; }
+
+/* ---- Footer: text-blokken als link-lijstjes -------------------------------- */
+.footer-block--text .rte a { display: inline-block; padding: .4rem 0; }
+.footer-block--text .rte a:hover { color: #fff; }
+.footer-block__heading { margin-bottom: 1rem; }
+
+/* ---- fn-statement + foto-collage (homepage) -------------------------------
+   Witte achtergrond loopt nu OVER de volle breedte (op de -section wrapper),
+   de inhoud zit in .page-width. Geen zwevend wit blok meer. */
+.fn-statement-section { background: var(--fn-paper); padding-block: 6.5rem; }
+.fn-statement {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5.6rem;
+  align-items: center;
+}
+.fn-statement__eyebrow {
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red); margin: 0 0 1.4rem;
+}
+.fn-statement__title {
+  font-family: var(--fn-display); font-weight: 800; letter-spacing: -0.02em;
+  font-size: clamp(3.2rem, 4vw, 4.4rem); line-height: 1.06; margin: 0;
+}
+.fn-statement__text { color: var(--fn-ink-soft); font-size: 1.7rem; margin: 1.8rem 0 2.6rem; max-width: 44rem; }
+.fn-statement__collage { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+.fn-statement__tile { border-radius: 1.8rem; overflow: hidden; background: var(--fn-photo-bg); aspect-ratio: 1 / 1.12; }
+.fn-statement__tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fn-statement__tile--2, .fn-statement__tile--4 { margin-top: 2.4rem; }
+@media (max-width: 749px) {
+  .fn-statement-section { padding-block: 4rem; }
+  .fn-statement { grid-template-columns: 1fr; gap: 2.6rem; }
+  .fn-statement__tile--2, .fn-statement__tile--4 { margin-top: 1.2rem; }
+}
+
+/* ---- fn-reviews — 3 vaste reviews + Google-badge (zoals het design) ----- */
+.fn-reviews { padding-block: .5rem 4rem; }
+
+/* Klikbare Google-badge, gecentreerd onder de kop */
+.fn-reviews__head { text-align: center; margin-bottom: 3rem; }
+.fn-reviews__badge {
+  display: inline-flex; align-items: center; gap: .8rem;
+  border: 2px solid var(--fn-line); background: var(--fn-paper);
+  border-radius: 999px; padding: .8rem 1.6rem;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 1.35rem; font-weight: 500; color: var(--fn-ink);
+  text-decoration: none;
+  transition: border-color .12s ease;
+}
+a.fn-reviews__badge:hover { border-color: var(--fn-ink); }
+.fn-reviews__badge .fn-reviews__stars { color: var(--fn-gold); letter-spacing: 1px; font-size: 1.4rem; }
+.fn-reviews__badge .fn-reviews__score { font-family: var(--fn-display); font-weight: 800; }
+.fn-reviews__badge .fn-reviews__count { color: var(--fn-ink-soft); }
+.fn-reviews__badge-arrow { color: var(--fn-ink-soft); flex: none; }
+
+/* 3 kaarten naast elkaar, middelste donker (pine) — precies als het canvas */
+.fn-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.2rem;
+}
+.fn-review {
+  display: flex; flex-direction: column; gap: 1.4rem;
+  background: var(--fn-paper);
+  border: 2px solid var(--fn-line);
+  border-radius: 20px;
+  padding: 2.6rem;
+}
+.fn-review:nth-child(3n + 2) {
+  background: var(--fn-pine);
+  border-color: var(--fn-pine);
+  color: var(--fn-cream);
+}
+.fn-review__stars { color: var(--fn-gold); letter-spacing: 2px; font-size: 1.5rem; }
+.fn-review__star--dim { color: var(--fn-line); }
+.fn-review:nth-child(3n + 2) .fn-review__star--dim { color: rgba(255, 255, 255, .3); }
+.fn-review__text {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 700; font-size: 1.9rem; line-height: 1.35; margin: 0;
+}
+.fn-review__name { font-size: 1.35rem; color: var(--fn-ink-soft); margin: auto 0 0; }
+.fn-review:nth-child(3n + 2) .fn-review__name { color: rgba(255, 255, 255, .7); }
+@media (max-width: 749px) {
+  .fn-reviews__grid { grid-template-columns: 1fr; }
+  .fn-review__text { font-size: 1.7rem; }
+}
+
+/* ---- fn-contact --------------------------------------------------------------- */
+.fn-contact { padding-block: 4rem 8rem; }
+.fn-contact__eyebrow {
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red); margin: 0 0 1.2rem;
+}
+.fn-contact__title { font-family: var(--fn-display); font-weight: 800; font-size: clamp(3.6rem, 5vw, 5.6rem); margin: 0; }
+.fn-contact__text { color: var(--fn-ink-soft); font-size: 1.7rem; max-width: 56rem; margin: 1.6rem 0 0; }
+.fn-contact__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 34rem; gap: 5.6rem;
+  align-items: start; margin-top: 4rem;
+}
+.fn-contact__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; }
+.fn-field { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.8rem; }
+.fn-field span { font-size: 1.3rem; font-weight: 600; }
+.fn-field span em { color: var(--fn-ink-soft); font-style: normal; font-weight: 400; }
+.fn-field input, .fn-field textarea {
+  border: 2px solid var(--fn-line); border-radius: 12px; background: var(--fn-paper);
+  padding: 1.3rem 1.5rem; font-family: var(--fn-body); font-size: 1.5rem; color: var(--fn-ink); width: 100%;
+}
+.fn-field input:focus, .fn-field textarea:focus { border-color: var(--fn-ink); outline: none; }
+.fn-contact__formwrap .button { border-radius: 999px !important; margin-top: .4rem; }
+.fn-contact__note { border-radius: 12px; padding: 1.2rem 1.4rem; font-size: 1.4rem; margin-bottom: 1.8rem; }
+.fn-contact__note--ok { background: var(--fn-green-soft); color: var(--fn-pine); border: 2px solid var(--fn-green); }
+.fn-contact__note--err { background: var(--fn-red-soft); color: var(--fn-red); border: 2px solid var(--fn-red); }
+.fn-contact__aside { display: flex; flex-direction: column; gap: 1.6rem; }
+.fn-contact__card { border: 2px solid var(--fn-line); border-radius: 18px; padding: 2.2rem; background: var(--fn-paper); }
+.fn-contact__card--green { background: var(--fn-green-soft); border-color: var(--fn-green); }
+.fn-contact__card h3 { font-family: var(--fn-display); font-weight: 700; font-size: 1.6rem; margin: 0 0 1rem; }
+.fn-contact__card .rte { font-size: 1.4rem; color: var(--fn-ink-soft); }
+.fn-contact__card .rte a { color: var(--fn-red); }
+@media (max-width: 749px) {
+  .fn-contact__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .fn-contact__row { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Cart page — 2-koloms (items links, samenvatting rechts)
+   Haakt op de sectie-id's uit templates/cart.json.
+   ========================================================================== */
+@media (min-width: 990px) {
+  #MainContent:has(> #shopify-section-cart-footer) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 38rem;
+    align-items: start;
+    column-gap: 4.4rem;
+    max-width: var(--page-width, 120rem);
+    margin-inline: auto;
+    padding-inline: 5rem;
+  }
+  #MainContent:has(> #shopify-section-cart-footer) > #shopify-section-fn_shipping_bar { grid-column: 1 / -1; }
+  #MainContent:has(> #shopify-section-cart-footer) > #shopify-section-cart-items { grid-column: 1; }
+  #MainContent:has(> #shopify-section-cart-footer) > #shopify-section-cart-footer {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    position: sticky;
+    top: 2rem;
+  }
+  #MainContent:has(> #shopify-section-cart-footer) > #shopify-section-featured_collection_iKLkfY { grid-column: 1 / -1; }
+
+  #shopify-section-cart-footer .cart__footer {
+    background: var(--fn-paper);
+    border: 2px solid var(--fn-line);
+    border-radius: 22px;
+    padding: 2.6rem;
+    margin-top: 0;
+  }
+  #shopify-section-cart-footer .cart__footer > * { max-width: none; }
+}
+
+/* ==========================================================================
+   Mobiel menu — grote typografie
+   ========================================================================== */
+@media (max-width: 989px) {
+  .menu-drawer__inner-container { background: var(--fn-cream); }
+  .menu-drawer__navigation-container { padding-top: 1.2rem; }
+  .menu-drawer__menu-item {
+    font-family: var(--fn-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 2.4rem;
+    padding-block: 1.4rem;
+  }
+  .menu-drawer__menu-item--active,
+  .menu-drawer__menu-item:hover { color: var(--fn-red); background: transparent; }
+  .menu-drawer__submenu .menu-drawer__menu-item { font-size: 1.8rem; }
+  .menu-drawer__utility-links { background: transparent; }
+}
+
+/* ==========================================================================
+   Blog / artikel — extra
+   ========================================================================== */
+.template-article .fn-crumbs,
+.template-blog .fn-crumbs { margin-bottom: 1.6rem; }
+.article-template__title { font-size: clamp(3.2rem, 5vw, 5.4rem); }
+.article-template__hero { border-radius: 24px; }
+.blog-articles__article .article-card { height: 100%; }
+
+/* ==========================================================================
+   Delivery 9 — collectiepagina + productkaarten aanscherpen
+   (redesign.css laadt nu óók aan het einde van <body>, dus dit wint van
+    Dawn's component-css zonder !important-spam)
+   ========================================================================== */
+
+/* -- Geen witte balk bovenaan: hele pagina op crème -- */
+body,
+.content-for-layout,
+#shopify-section-fn_breadcrumb,
+#shopify-section-fn_collection_nav { background-color: var(--fn-cream); }
+
+/* Kruimelpad — GEEN horizontale padding overschrijven: .page-width regelt de
+   kantlijn. Alleen verticaal. */
+#shopify-section-fn_breadcrumb { padding: 0 !important; }
+.fn-crumbs {
+  padding-top: 1.8rem !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* -- Collectie-header: uitlijnen met de producten, links, met scheidingslijn -- */
+.collection-hero { padding-block: 1.2rem 0 !important; }
+.collection-hero__inner {
+  padding-top: 1.6rem !important;
+  padding-bottom: 2.6rem !important;
+  border-bottom: 2px solid var(--fn-line) !important;
+}
+.collection-hero__text-wrapper {
+  align-items: flex-start !important;
+  text-align: left !important;
+  padding: 0 !important;
+}
+.collection-hero__title {
+  margin: 0 !important;
+  font-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  font-size: clamp(3.6rem, 5vw, 5.6rem) !important;
+  text-align: left !important;
+}
+.collection-hero__description,
+.collection-hero__title + .collection-hero__description {
+  font-family: "Instrument Sans", system-ui, -apple-system, sans-serif !important;
+  color: var(--fn-ink-soft) !important;
+  font-size: 1.7rem !important;
+  line-height: 1.55 !important;
+  max-width: 60rem !important;
+  margin: 1.4rem 0 0 !important;
+  text-align: left !important;
+}
+
+/* -- Categorie-pills + Dawn-facetbalk als één filterband -- */
+.fn-collnav {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .8rem;
+  padding: 1rem 0 .2rem;
+}
+.fn-collnav__label {
+  font-family: "Space Mono", ui-monospace, monospace; font-weight: 700; font-size: 1.1rem;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--fn-ink-soft); margin-right: .4rem;
+}
+.fn-collnav__pill {
+  display: inline-flex; align-items: center;
+  border: 2px solid var(--fn-line); background: var(--fn-paper);
+  border-radius: 999px; padding: .8rem 1.6rem;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 1.4rem; font-weight: 600; color: var(--fn-ink); text-decoration: none;
+}
+.fn-collnav__pill:hover { border-color: var(--fn-ink); }
+.fn-collnav__pill.is-active { background: var(--fn-ink); border-color: var(--fn-ink); color: var(--fn-cream); }
+
+/* ==========================================================================
+   Filterbalk (Dawn facets) — zelfde pill-stijl als de categorie-nav
+   ========================================================================== */
+.facets-container { margin-top: 1.2rem !important; padding-top: .4rem !important; }
+
+/* --- Layout: Dawn's .facets__form is een GRID (1fr | max | max).
+   Kolommen omwisselen zodat het aantal producten VÓÓR de sorteer-pill staat. --- */
+@media screen and (min-width: 750px) {
+  .facets__form {
+    display: grid !important;
+    grid-template-columns: 1fr max-content max-content !important;
+    column-gap: 1.6rem !important;
+    align-items: center !important;
+    margin-bottom: .5rem !important;
+  }
+  .facets__form > .facets__wrapper { grid-column: 1 !important; grid-row: 1 !important; }
+  .facets__form .product-count {
+    grid-column: 2 !important; grid-row: 1 !important;
+    align-self: center !important; margin: 0 !important; text-align: right;
+  }
+  .facets__form .facet-filters.sorting {
+    grid-column: 3 !important; grid-row: 1 !important;
+    align-self: center !important; margin: 0 !important;
+  }
+}
+.facets__wrapper {
+  display: flex !important; flex-wrap: wrap; align-items: center;
+  gap: .8rem !important;
+}
+.facets__disclosure { margin: 0 !important; }
+.facet-filters { align-items: center !important; }
+
+/* "FILTER:" en "SORTEER OP:" labels visueel weg — design heeft alleen de pills.
+   Visually-hidden (niet display:none) zodat screenreaders het label houden. */
+.facets__heading,
+.facet-filters__label {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* === ALLE filter-knoppen identiek: witte pill, ruime tekst === */
+.facets__form .facets__summary,
+.facets__form .facets__disclosure .facets__summary,
+.facets__disclosure .facets__summary,
+.facets__summary,
+.mobile-facets__summary,
+.facets-pill .facets__summary,
+.facet-filters .facet-filters__sort,
+.facet-filters__sort,
+.facets .select__select {
+  box-sizing: border-box !important;
+  list-style: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  height: 4.2rem !important;
+  min-height: 4.2rem !important;
+  min-width: 0;
+  white-space: nowrap !important;
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 999px !important;
+  /* 2rem links, 4rem rechts — vaste ruimte voor de caret. Identiek voor élk. */
+  padding: 0 4rem 0 2rem !important;
+  margin: 0 !important;
+  font-family: "Instrument Sans", system-ui, -apple-system, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 1.4rem !important;
+  line-height: 1 !important;
+  color: var(--fn-ink) !important;
+  background: var(--fn-paper) !important;
+  box-shadow: none !important;
+  transition: border-color .12s ease, background .12s ease, color .12s ease;
+}
+/* alle tekst in de filter-pills exact hetzelfde gewicht (niet vet) */
+.facets__summary,
+.facets__summary *,
+.facets__summary-label,
+.mobile-facets__summary,
+.mobile-facets__summary *,
+.facet-filters__sort,
+.facet-filters__sort option,
+.facets .select__select,
+.facets .select__select option {
+  font-weight: 500 !important;
+}
+.facets__summary::-webkit-details-marker,
+.facets__summary::marker,
+.mobile-facets__summary::-webkit-details-marker { display: none !important; content: "" !important; }
+/* label-wrapper in de <summary> mag niet stretchen */
+.facets__summary > div,
+.mobile-facets__summary > div {
+  display: inline-flex !important; align-items: center; gap: 0;
+  width: auto !important; justify-content: flex-start !important;
+}
+/* caret in de <summary> absoluut op exact dezelfde plek als bij de select */
+.facets__summary .svg-wrapper,
+.facets__summary > div > svg,
+.facets__summary svg.icon-caret,
+.mobile-facets__summary svg {
+  position: absolute !important;
+  right: 1.8rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 1.1rem !important; height: 1.1rem !important;
+  margin: 0 !important; flex: none;
+}
+.facets__summary:hover,
+.mobile-facets__summary:hover,
+.facet-filters__sort:hover { border-color: var(--fn-ink) !important; }
+
+/* geopende filter -> donkere pill (zoals de actieve categorie-pill) */
+details[open] > .facets__summary,
+.facets__disclosure[open] .facets__summary,
+details[open] > .mobile-facets__summary {
+  background: var(--fn-ink) !important;
+  border-color: var(--fn-ink) !important;
+  color: var(--fn-cream) !important;
+}
+.facets__disclosure[open] .facets__summary svg,
+details[open] > .mobile-facets__summary svg { color: var(--fn-cream) !important; }
+
+/* Sorteer-select: native pijl weg (padding komt uit de gedeelde regel: 0 4rem 0 2rem) */
+.facet-filters__sort,
+.facets .select__select,
+select.facet-filters__sort {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-image: none !important;
+  text-align: left;
+}
+/* de .select-wrapper zelf: geen eigen rand/achtergrond, wél verticaal centreren */
+.facet-filters .select,
+.facets .select {
+  border: 0 !important;
+  background: none !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+/* caret van de select op exact dezelfde plek (1.8rem) als bij de <summary> */
+.facet-filters .select .svg-wrapper,
+.facets .select .svg-wrapper {
+  right: 1.8rem !important;
+  left: auto !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: var(--fn-ink) !important;
+}
+.facet-filters .select .svg-wrapper svg,
+.facets .select .svg-wrapper svg { width: 1.1rem !important; height: 1.1rem !important; }
+
+/* Actieve-filter chips ("verwijder deze filter") */
+.active-facets__button-inner,
+.active-facets__button--light .active-facets__button-inner {
+  border: 2px solid var(--fn-red) !important;
+  background: var(--fn-red-soft) !important;
+  color: var(--fn-red) !important;
+  border-radius: 999px !important;
+  padding: .6rem 1.2rem !important;
+  font-weight: 600 !important;
+}
+.active-facets__button-remove,
+.active-facets__button-inner .svg-wrapper { color: var(--fn-red) !important; }
+
+.product-count__text {
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+  color: var(--fn-ink-soft) !important;
+  white-space: nowrap;
+}
+#ProductGridContainer, #product-grid { margin-top: 1.6rem !important; }
+
+/* -- PRODUCTKAARTEN (card-stijl) — matcht het canvas -- */
+.card-wrapper.product-card-wrapper { display: flex; flex-direction: column; }
+.card--card {
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 20px !important;
+  background: var(--fn-paper) !important;
+  padding: 1.1rem !important;
+  overflow: hidden;
+  height: auto !important;
+}
+.card--card:after { display: none !important; }              /* Dawn's schaduw-pseudo uit */
+.card--card .card__inner {
+  background: var(--fn-photo-bg) !important;
+  border: 0 !important;
+  border-radius: 13px !important;
+  overflow: hidden;
+}
+.card--card .card__inner .card__media,
+.card--card .card__inner .card__media .media { border-radius: 13px !important; }
+.card--card .card__inner .card__media .media img { object-fit: cover !important; }
+
+/* inhoud onder de foto: flex-kolom, ruime gelijke gaps, bovenaan uitgelijnd */
+.card--card > .card__content,
+.card--card.card--media > .card__content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: .9rem !important;
+  grid-template-rows: none !important;
+  padding: 1.4rem .2rem .2rem !important;
+  margin: 0 !important;
+}
+/* chip -> titel -> prijs krijgen elk lucht (staan alle drie in .card__information) */
+.card--card > .card__content .card__information {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: .9rem !important;
+  padding: 0 !important; margin: 0 !important; width: 100%;
+}
+.card--card > .card__content .card-information {
+  padding: 0 !important; margin: 0 !important; width: 100%;
+}
+.card--card .card__heading {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important; font-size: 1.55rem !important;
+  line-height: 1.2 !important; margin: 0 !important;
+}
+.card--card .card__heading a { color: var(--fn-ink); }
+.card--card .price,
+.card--card .price *,
+.card--card .price-item {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  font-weight: 700 !important; font-size: 1.3rem !important;
+}
+.card--card .price .price-item--regular { color: var(--fn-red) !important; }
+
+/* quick-add knop: vol-breed onder de prijs, uitgelijnd met de kaart */
+.card-wrapper .quick-add {
+  margin: .9rem 0 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+.card-wrapper .quick-add__submit {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+  border-radius: 999px !important;
+  width: 100% !important;
+  min-height: 4.4rem;
+}
+
+/* -- Grid: gelijke kolommen + nette tussenruimte -- */
+.product-grid.grid { column-gap: 2.2rem !important; row-gap: 3rem !important; }
+.grid--3-col-desktop .grid__item { max-width: none !important; }
+@media (min-width: 990px) {
+  .product-grid.grid--3-col-desktop .grid__item { width: calc((100% - 4.4rem) / 3) !important; }
+}
+
+/* -- Classificatie-chip -- */
+.fn-card-tag {
+  display: inline-block;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-weight: 700; font-size: 1rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .35rem .7rem; border-radius: 6px; margin: 0 !important;
+}
+.fn-card-tag--klassiek { background: var(--fn-green-soft); color: #157a49; }
+.fn-card-tag--grappig { background: var(--fn-red-soft); color: var(--fn-red); }
+
+/* -- Prijs + voorraadstatus op één regel (zoals het canvas) -- */
+.card--card > .card__content .card-information {
+  display: flex !important;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .8rem;
+  flex-wrap: wrap;
+}
+.card--card > .card__content .card-information > *:empty { display: none !important; }
+.fn-card-stock {
+  font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  font-size: 1.15rem; font-weight: 600; color: var(--fn-green);
+  white-space: nowrap;
+}
+.fn-card-stock--out { color: var(--fn-ink-soft); }
+
+/* ==========================================================================
+   Header — zoekknop als omcirkelde pill, winkelwagen als rode pill (canvas)
+   ========================================================================== */
+/* ruimte tussen de icoontjes (Dawn's .header__icons heeft geen gap) */
+.header__icons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.1rem !important;
+}
+.header__icons > .header__icon { margin: 0 !important; }
+
+.header__icon--search,
+summary.header__icon--summary {
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 999px !important;
+  width: 4rem !important;
+  height: 4rem !important;
+  display: grid !important;
+  place-items: center !important;
+  color: var(--fn-ink) !important;
+}
+.header__icon--search:hover,
+summary.header__icon--summary:hover { border-color: var(--fn-ink) !important; }
+.header__icon--search .svg-wrapper, .header__icon--summary .svg-wrapper,
+.header__icon--search .icon, .header__icon--summary .icon,
+.header__icon--search svg, .header__icon--summary svg {
+  width: 1.9rem !important; height: 1.9rem !important; color: var(--fn-ink) !important;
+}
+
+/* Winkelwagen als rode pill:  [icoon]  Winkelwagen  (n) */
+#cart-icon-bubble.header__icon--cart {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .55rem !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 3.6rem;
+  background: var(--fn-red) !important;
+  border-radius: 999px !important;
+  padding: 0 1.7rem !important;
+  text-decoration: none !important;
+  color: #fff !important;
+}
+#cart-icon-bubble.header__icon--cart:hover,
+#cart-icon-bubble.header__icon--cart:focus { text-decoration: none !important; }
+#cart-icon-bubble .svg-wrapper {
+  order: 1;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: none;
+}
+#cart-icon-bubble .icon-cart,
+#cart-icon-bubble svg {
+  display: block;
+  width: 1.9rem !important;
+  height: 1.9rem !important;
+  color: #fff !important;      /* trolley-icoon is stroke-based met currentColor */
+  stroke: currentColor !important;
+  fill: none !important;
+}
+#cart-icon-bubble svg circle { fill: currentColor !important; stroke: currentColor !important; }
+/* "Winkelwagen (1)" als één tekst-run, netjes verticaal uitgelijnd met het icoon */
+#cart-icon-bubble::after { content: none !important; }
+#cart-icon-bubble .fn-cart-text {
+  order: 2;
+  display: inline-flex;
+  align-items: center;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #fff;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+#cart-icon-bubble .fn-cart-count { font: inherit; margin-left: .3rem; }
+#cart-icon-bubble .cart-count-bubble { display: none !important; }
+
+/* ==========================================================================
+   CTA-KLEUREN — definitief (overschrijft alle regels hierboven)
+   Canvas: "In m'n boom" (in winkelwagen) = ROOD gevuld overal.
+           Dynamische checkout ("Nu kopen") = ghost/outline, ondergeschikt.
+   ========================================================================== */
+
+/* Add-to-cart / "In m'n boom" — ROOD, op PDP en op kaarten */
+.product-form__submit.button,
+.product-form__buttons .product-form__submit,
+.quick-add__submit.button,
+.card .quick-add__submit,
+.quick-add-modal .product-form__submit {
+  --color-button: 229, 55, 43 !important;
+  --color-button-text: 255, 255, 255 !important;
+  background-color: var(--fn-red) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  font-family: var(--fn-display);
+  font-weight: 700;
+}
+.product-form__submit.button:hover,
+.quick-add__submit.button:hover {
+  background-color: #c72a20 !important;
+}
+.product-form__submit .icon,
+.quick-add__submit .icon { color: #fff !important; }
+
+/* Dynamische checkout ("Nu kopen" / "Koop het nu") — ghost, ondergeschikt */
+.shopify-payment-button__button--unbranded,
+.shopify-payment-button__button,
+.product-form__buttons .shopify-payment-button__button--unbranded,
+.product-form__buttons .shopify-payment-button__button,
+.shopify-payment-button .shopify-payment-button__button--unbranded {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--fn-ink) !important;
+  border: 2px solid var(--fn-ink) !important;
+  border-radius: 999px !important;
+  font-family: var(--fn-display);
+  font-weight: 700;
+  box-shadow: none !important;
+}
+.shopify-payment-button__button--unbranded:hover,
+.product-form__buttons .shopify-payment-button__button--unbranded:hover {
+  background: var(--fn-ink) !important;
+  background-color: var(--fn-ink) !important;
+  color: var(--fn-cream) !important;
+}
+.shopify-payment-button__more-options { color: var(--fn-ink-soft) !important; }
+
+/* Kaart-koppen iets groter (matcht canvas ~17px) */
+.card__heading,
+.card-wrapper .card__heading,
+.card__information .card__heading { font-size: 1.7rem; font-weight: 700; }
+
+/* ==========================================================================
+   RICH-TEXT SECTIE — exact hetzelfde lettertype als de collectie-header
+   (staat helemaal onderaan zodat het van álles wint; het <h2> heeft ook
+    de class .rte, die anders het body-font zou opdringen)
+   ========================================================================== */
+h2.rich-text__heading,
+.rich-text__heading,
+.rich-text__heading.rte,
+.rich-text__blocks .rich-text__heading,
+.rich-text .rich-text__heading {
+  font-family: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.08 !important;
+}
+.rich-text__text,
+.rich-text__text.rte,
+.rich-text__text.rte p,
+.rich-text__text.rte *,
+.rich-text__blocks .rich-text__text,
+.rich-text__blocks .rich-text__text * {
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+  font-weight: 400 !important;
+}
+.rich-text__text,
+.rich-text__blocks .rich-text__text { color: var(--fn-ink-soft) !important; font-size: 1.7rem !important; }
+
+/* ==========================================================================
+   Delivery 26 — content-links, productpagina, blog/artikel, cart-drawer, fonts
+   ========================================================================== */
+
+/* -- Inline content-links: zwarte tekst, rode lijn eronder (geen blauw) --
+   Geldt overal waar Dawn een .rte / content-link rendert. */
+.rte a:not(.button),
+.rich-text__text a,
+.article-template__content a,
+.article-card__excerpt a,
+.metafield-rich_text_field a,
+#MainContent .rte a:not(.button),
+#MainContent p a:not(.button),
+#MainContent li a:not(.button),
+.fn-contact__card .rte a {
+  color: var(--fn-ink) !important;
+  text-decoration: none !important;
+  box-shadow: inset 0 -2px 0 0 var(--fn-red);
+  padding-bottom: .15rem;
+  transition: box-shadow .12s ease, color .12s ease;
+}
+.rte a:not(.button):hover,
+.article-template__content a:hover,
+#MainContent p a:not(.button):hover {
+  color: var(--fn-red) !important;
+  box-shadow: inset 0 -3px 0 0 var(--fn-red);
+}
+
+/* CTA-tekstlink met pijl (utility voor eigen secties) */
+.fn-arrow-link {
+  color: var(--fn-ink) !important; text-decoration: none !important; font-weight: 600;
+  box-shadow: inset 0 -2px 0 0 var(--fn-red); padding-bottom: .2rem;
+}
+.fn-arrow-link::after { content: " \2192"; }
+
+/* -- Productpagina -- */
+.product-form__buttons .product-form__submit,
+.product-form__buttons .product-form__submit.button--secondary {
+  background-color: var(--fn-red) !important;
+  color: #fff !important;
+  border: 0 !important;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+}
+.product-form__buttons .shopify-payment-button__button--unbranded,
+.product-form__buttons .shopify-payment-button__button {
+  background: transparent !important;
+  color: var(--fn-ink) !important;
+  border: 2px solid var(--fn-ink) !important;
+  border-radius: 999px !important;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+}
+.product-form__quantity .quantity,
+.product .quantity {
+  border: 2px solid var(--fn-ink) !important;
+  border-radius: 999px !important;
+  overflow: hidden;
+  height: 4.8rem;
+}
+.product .quantity__button { color: var(--fn-ink) !important; width: 4.4rem; }
+.product .quantity__button svg { width: 1rem; height: 1rem; }
+.product .quantity__input {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important; font-size: 1.6rem !important;
+}
+.product__accordion summary,
+.product .accordion__title,
+.product .accordion summary * {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+}
+.product .icon-with-text p,
+.product .icon-with-text .h4 {
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+  font-weight: 400 !important; font-size: 1.4rem !important;
+}
+/* "TIP"-caption op de PDP-rich-text */
+.rich-text__caption {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  letter-spacing: .2em !important;
+  text-transform: uppercase !important;
+  color: var(--fn-red) !important;
+  margin-bottom: 1.4rem !important;
+}
+/* Related products */
+#Related-Products .title,
+.related-products__heading,
+.related-products .h2 {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+
+/* -- Featured blog / Inspiratie-kaarten -- */
+.article-card {
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  background: var(--fn-paper) !important;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.article-card:hover { transform: translateY(-4px); border-color: var(--fn-red) !important; }
+.article-card__info,
+.article-card > .card__content,
+.article-card__content { padding: 1.8rem !important; }
+.article-card__title,
+.article-card .card__heading {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important; font-size: 1.7rem !important; line-height: 1.25;
+}
+.article-card__excerpt { font-size: 1.35rem !important; color: var(--fn-ink-soft) !important; }
+.blog-articles, .article-card-wrapper .grid { gap: 2.2rem !important; }
+
+/* -- Blog-lijst + artikelpagina -- */
+.main-blog .title,
+.blog .title--primary,
+.template-blog .title {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+.article-template__title {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(3.2rem, 5vw, 5.2rem) !important;
+  letter-spacing: -.02em !important;
+}
+.article-template__hero,
+.article-template__hero-container .media,
+.article-template__hero-image { border-radius: 24px !important; overflow: hidden; }
+.article-template__content {
+  max-width: 68rem; margin-inline: auto;
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+}
+.article-template__content p,
+.article-template__content li { font-size: 1.7rem !important; line-height: 1.65 !important; }
+.article-template__content h2,
+.article-template__content h3 {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+.pagination__list .pagination__item {
+  border-radius: 999px;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 700;
+}
+.pagination__item--current { background: var(--fn-red); color: #fff; }
+
+/* -- Cart drawer (winkelmand op elke pagina) -- */
+.cart-drawer .drawer__inner { background: var(--fn-cream) !important; }
+.cart-drawer .drawer__header { border-bottom: 2px solid var(--fn-line); }
+.cart-drawer .drawer__heading,
+.cart-drawer .totals__total {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+.cart-drawer .cart-item__name {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important; font-size: 1.5rem !important;
+}
+.cart-drawer .cart-item__price-wrapper .price,
+.cart-drawer .cart-item__price,
+.cart-drawer .totals__total-value {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  color: var(--fn-red) !important;
+}
+.cart-drawer .cart-item__media img,
+.cart-drawer .cart-item__image {
+  border-radius: 12px; background: var(--fn-photo-bg);
+}
+.cart-drawer .cart-item .quantity {
+  border: 2px solid var(--fn-ink); border-radius: 999px; overflow: hidden; height: 3.6rem;
+}
+.cart-drawer .drawer__footer { border-top: 2px solid var(--fn-line); background: var(--fn-cream); }
+.cart-drawer .cart__checkout-button { border-radius: 999px !important; }
+.cart-notification,
+.cart-notification__header { border-radius: 20px; }
+.cart-notification__heading,
+.cart-notification .cart-item__name {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+}
+
+/* -- Cart-pagina -- */
+.cart-items thead th,
+.cart__items thead th {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  text-transform: uppercase; letter-spacing: .12em; font-size: 1.1rem;
+}
+.cart-item__name {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 700 !important;
+}
+.cart__footer .totals__total-value,
+.cart__blocks .totals__total-value {
+  font-family: "Space Mono", ui-monospace, monospace !important;
+  color: var(--fn-red) !important;
+}
+
+/* -- Losse pagina (Over ons via standaard page-template als vangnet) -- */
+.main-page-title,
+.page-title,
+.rte h1, .rte h2 {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+}
+.page-width .rte,
+.article-template__content,
+.page-content { font-family: "Instrument Sans", system-ui, sans-serif; }
+
+/* ==========================================================================
+   Delivery 27 — footer-links wit, blauwe links overal weg, PDP-blokken
+   ========================================================================== */
+
+/* -- Content-links overal in #MainContent: zwart + rode lijn (geen blauw) -- */
+#MainContent a:not(.button):not([class*="button--"]):not([class*="__link"]):not([class*="card"]):not([class*="menu"]):not([class*="facet"]):not([class*="pagination"]):not([class*="quick-add"]):not(.shopify-payment-button__button):not(.shopify-payment-button__button--unbranded):not(.header__icon):not(.fn-collnav__pill):not(.fn-reviews__badge):not(.fn-cat):not(.full-unstyled-link):not(.fn-crumbs a):not(.slider-button),
+.fn-cat__link,
+.rich-text a:not(.button) {
+  color: var(--fn-ink) !important;
+  text-decoration: none !important;
+  box-shadow: inset 0 -2px 0 0 var(--fn-red);
+  padding-bottom: .15rem;
+  transition: box-shadow .12s ease, color .12s ease;
+}
+#MainContent a:not(.button):not([class*="button--"]):not([class*="__link"]):not([class*="card"]):not([class*="menu"]):not([class*="facet"]):not(.fn-crumbs a):hover,
+.fn-cat__link:hover,
+.rich-text a:not(.button):hover {
+  color: var(--fn-red) !important;
+  box-shadow: inset 0 -3px 0 0 var(--fn-red);
+}
+
+/* -- FOOTER-links: wit, GEEN rode lijn (leesbaar op pine) -- */
+.footer a,
+.footer .rte a,
+.footer-block--text .rte a,
+#shopify-section-footer a:not(.button) {
+  color: #D9E5DF !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  padding-bottom: 0 !important;
+}
+.footer a:hover,
+.footer .rte a:hover { color: #fff !important; box-shadow: none !important; }
+
+/* -- "Anderen kochten ook": echt 2 kolommen naast elkaar, wit vlak -- */
+#shopify-section-related-products { background: var(--fn-paper); }
+.related-products .grid.product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 2.6rem !important;
+  max-width: 84rem;
+}
+.related-products .grid.product-grid > .grid__item {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+@media (max-width: 599px) {
+  .related-products .grid.product-grid { grid-template-columns: 1fr !important; }
+}
+
+/* -- Inspiratie-blok: lichtgroene achtergrond -- */
+#shopify-section-featured_blog_KzHcUU,
+#shopify-section-featured_blog_KzHcUU [class*="color-scheme"],
+#shopify-section-featured_blog_KzHcUU .gradient {
+  background: var(--fn-green-soft) !important;
+  --color-background: 222, 242, 231;
+}
+
+/* -- "Alle artikelen"-link: rechts naast de kop, rode lijn + pijl -- */
+.featured-blog .title-wrapper-with-link {
+  display: flex !important;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.blog__view-all-link {
+  color: var(--fn-ink) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 1.4rem;
+  box-shadow: inset 0 -2px 0 0 var(--fn-red);
+  padding-bottom: .2rem;
+  white-space: nowrap;
+  align-self: flex-end;
+  margin-bottom: .4rem;
+}
+.blog__view-all-link::after { content: " \2192"; }
+.blog__view-all-link:hover { color: var(--fn-red) !important; }
+.blog__view-all { display: none !important; }   /* de onderste rode knop weg */
+
+/* ==========================================================================
+   Delivery 28 — Inspiratie-blok (featured-blog) exact als het design
+   ========================================================================== */
+.featured-blog .blog__title,
+.blog__title {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -.02em !important;
+}
+
+/* 3 kaarten naast elkaar */
+.featured-blog .blog__posts,
+.featured-blog .grid.grid--3-col-desktop,
+.featured-blog ul.grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 2.2rem !important;
+}
+.featured-blog .grid > .grid__item { width: auto !important; max-width: none !important; }
+@media (max-width: 749px) {
+  .featured-blog .blog__posts,
+  .featured-blog .grid.grid--3-col-desktop,
+  .featured-blog ul.grid { grid-template-columns: 1fr !important; }
+}
+
+/* article-card zonder afbeelding -> tekst-forward "artikel-teaser" die uitnodigt
+   om door te klikken: label · titel · eerste regels · "Lees verder ->" */
+.article-card.card--card {
+  background: var(--fn-paper) !important;
+  border: 2px solid var(--fn-line) !important;
+  border-radius: 20px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.article-card.card--card::after { display: none !important; }
+.article-card-wrapper:hover .article-card.card--card {
+  transform: translateY(-4px);
+  border-color: var(--fn-red) !important;
+}
+/* .card__inner is bij deze posts alleen een wrapper (geen foto) -> onzichtbaar */
+.article-card.card--card .card__inner {
+  border: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+.article-card.card--card .card__media:empty,
+.article-card.card--card .article-card__image-wrapper:empty { display: none !important; }
+
+.article-card.card--card > .card__content,
+.article-card.card--card .card__content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: .9rem !important;
+  padding: 2.4rem !important;
+  grid-template-rows: none !important;
+  align-content: start;
+  height: 100%;
+  min-height: 22rem;
+}
+.article-card.card--card .card__information {
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  gap: .9rem;
+  height: 100%;
+}
+/* "Inspiratie"-label */
+.featured-blog .article-card .card__information::before,
+.template-blog .article-card .card__information::before {
+  content: "Inspiratie";
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fn-red);
+}
+/* titel (override Dawn's .h2 wanneer show_excerpt aan staat) */
+.article-card.card--card .card__heading,
+.article-card.card--card .card__heading a,
+.article-card.card--card .card__heading .full-unstyled-link {
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 1.75rem !important;
+  line-height: 1.22 !important;
+  letter-spacing: -.01em !important;
+  color: var(--fn-ink) !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* eerste regels van het artikel, kleiner */
+.article-card.card--card .article-card__excerpt {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: "Instrument Sans", system-ui, sans-serif !important;
+  font-size: 1.35rem !important;
+  line-height: 1.5 !important;
+  color: var(--fn-ink-soft) !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+/* "Lees verder ->" onderaan de kaart */
+.article-card.card--card .article-card__footer {
+  margin-top: auto !important;
+  padding-top: .4rem;
+}
+.article-card.card--card .article-card__footer::before {
+  content: "Lees verder \2192";
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--fn-red);
+}
+.article-card-wrapper:hover .article-card__footer::before { text-decoration: underline; text-underline-offset: .3rem; }
+/* datum/auteur weg */
+.featured-blog .article-card .article-card__info,
+.template-blog .article-card .article-card__info,
+.article-card.card--card .card__badge { display: none !important; }
+
+/* ==========================================================================
+   Delivery 30 — PDP koop-blok: hoeveelheid naast de knop, strakke knoppen
+   ========================================================================== */
+/* fn-product-buy.js verplaatst de teller IN .product-form__buttons, zodat
+   teller + beide knoppen echte siblings zijn. Daarna is de layout een simpel,
+   betrouwbaar CSS-grid:
+       [ − 1 + ]  [ In m'n boom ]          (rij 1)
+       [ Nu kopen -- volle breedte ]       (rij 2) */
+.fn-purchase-row { margin-top: 1.8rem; }
+
+/* wrappers zijn geen layout meer -> volle breedte doorgeven */
+.fn-purchase-row product-form,
+.fn-purchase-row .product-form,
+.fn-purchase-row product-form > form {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.fn-purchase-row .product-form__buttons {
+  display: grid !important;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  align-items: start;
+  gap: 1.2rem;
+  width: 100%;
+}
+.fn-purchase-row .product-form__quantity {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.fn-purchase-row .quantity__label,
+.fn-purchase-row .quantity__rules-cart,
+.fn-purchase-row .price-per-item {
+  position: absolute !important;
+  width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; margin: -1px;
+}
+.fn-purchase-row .quantity {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 5rem;
+}
+.fn-purchase-row .product-form__submit {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100% !important;
+  min-height: 5rem;
+  margin: 0 !important;
+}
+.fn-purchase-row .shopify-payment-button {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  width: 100% !important;
+  margin: 0 !important;
+}
+.fn-purchase-row .shopify-payment-button__button { width: 100% !important; min-height: 5rem; }
+.fn-purchase-row .product-form__error-message-wrapper { grid-column: 1 / -1; }
+
+/* voordat het script draait: teller nog los in .fn-purchase-row -> gewoon links */
+.fn-purchase-row:not([data-fn-arranged]) > .product-form__quantity { width: 14rem; margin-bottom: 1.2rem !important; }
+
+/* Mobiel: alles onder elkaar, vol-breed */
+@media (max-width: 520px) {
+  .fn-purchase-row .product-form__buttons {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .fn-purchase-row .product-form__quantity { grid-column: 1; grid-row: 1; }
+  .fn-purchase-row .product-form__submit { grid-column: 1; grid-row: 2; }
+  .fn-purchase-row .shopify-payment-button { grid-column: 1; grid-row: 3; }
+}
+
+/* Strakke knoppen: geen extra rand-ring of schaduw meer */
+.product-form__buttons .button::after,
+.product-form__submit::after,
+.shopify-payment-button__button::after,
+.shopify-payment-button__button--unbranded::after,
+.button::after {
+  display: none !important;
+  content: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+.product-form__buttons .button,
+.product-form__submit,
+.shopify-payment-button__button,
+.shopify-payment-button__button--unbranded {
+  box-shadow: none !important;
+  outline: none !important;
+}
+.product-form__submit { border: 0 !important; }
+.shopify-payment-button__button--unbranded,
+.shopify-payment-button__button { border: 2px solid var(--fn-ink) !important; }
+/* Dawn's ghost-knoppen elders houden hun contour */
+.button--secondary { border: 2px solid currentColor; }
+
+/* --------------------------------------------------------------------------
+   Handmatig in Shopify (geen code):
+   - Mega-menu CONTENT -> Online Store -> Navigation (dropdown-items).
+   - Nav-labels in de header komen uit je hoofdmenu.
+   - Announcement-bar tekst: stel de 3-delige boodschap in via de theme-editor.
+   - Social links: vul ze in onder Theme settings -> Social media.
+   - Klassiek/Grappig-badge op productkaarten: alleen mogelijk als je producten
+     die tags geeft in de admin (ze zitten nu in collecties, niet in tags).
+   - Collectie-omschrijvingen: alleen zichtbaar als in de admin ingevuld.
+   - Blogposts voor de "Inspiratie"-sectie: aanmaken in de admin.
+   -------------------------------------------------------------------------- */

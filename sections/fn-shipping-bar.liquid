@@ -1,0 +1,13 @@
+<div class="page-width">
+  {% render 'fn-shipping-progress', threshold: section.settings.threshold %}
+</div>
+
+{% schema %}
+{
+  "name": "FN — Verzendbalk",
+  "settings": [
+    { "type": "number", "id": "threshold", "label": "Drempel voor gratis verzending (€)", "default": 25 }
+  ],
+  "presets": [{ "name": "FN — Verzendbalk" }]
+}
+{% endschema %}
