@@ -1,0 +1,38 @@
+{
+  "sections": {
+    "fn_breadcrumb": { "type": "fn-breadcrumb", "settings": {} },
+    "fn_faq": {
+      "type": "fn-faq",
+      "blocks": {
+        "cat1": { "type": "category", "settings": { "heading": "Bestellen & verzenden" } },
+        "q1": { "type": "item", "settings": { "question": "Wat zijn de verzendkosten?", "answer": "<p>Vanaf €25 verzenden we gratis binnen Nederland. Daaronder rekenen we €3,95 verzendkosten.</p>" } },
+        "q2": { "type": "item", "settings": { "question": "Hoe lang duurt de levering?", "answer": "<p>We versturen binnen 1 werkdag na bestelling. Je pakket is daarna gemiddeld binnen 2–3 werkdagen in huis.</p>" } },
+        "q3": { "type": "item", "settings": { "question": "Welke betaalmethoden accepteren jullie?", "answer": "<p>Je kunt veilig betalen met iDEAL, creditcard of PayPal.</p>" } },
+        "q4": { "type": "item", "settings": { "question": "Kan ik mijn bestelling nog wijzigen of annuleren?", "answer": "<p>Neem zo snel mogelijk contact met ons op via info@feliznavidad.nl. Is je bestelling nog niet verzonden, dan passen we 'm graag voor je aan.</p>" } },
+
+        "cat2": { "type": "category", "settings": { "heading": "Onze ornamenten" } },
+        "q5": { "type": "item", "settings": { "question": "Waar zijn de ornamenten van gemaakt?", "answer": "<p>Onze ornamenten zijn gemaakt van onbreekbaar plastic. Valt er eentje uit de boom, dan is er geen man overboord.</p>" } },
+        "q6": { "type": "item", "settings": { "question": "Hoeveel ornamenten heb ik nodig voor mijn boom?", "answer": "<p>Een vuistregel: reken op zo'n 8–10 ornamenten per 30 cm boomhoogte, afhankelijk van hoe vol je 'm wilt hebben.</p>" } },
+        "q7": { "type": "item", "settings": { "question": "Kan ik de ornamenten ook los combineren met bestaande kerstballen?", "answer": "<p>Zeker! Onze ornamenten zijn los verkrijgbaar en combineren goed met kerstballen of een guirlande die je al in huis hebt.</p>" } },
+        "q8": { "type": "item", "settings": { "question": "Hebben jullie ook een collectie voor kinderen of grappenmakers?", "answer": "<p>Ja — naast onze klassieke ornamenten hebben we een aparte collectie grappige ornamenten, zoals een gewichtheffende kerstman.</p>" } },
+
+        "cat3": { "type": "category", "settings": { "heading": "Retourneren & garantie" } },
+        "q9": { "type": "item", "settings": { "question": "Kan ik een besteld ornament retourneren?", "answer": "<p>Ja, je kunt je bestelling binnen 14 dagen na ontvangst retourneren. Neem contact met ons op via info@feliznavidad.nl en we helpen je verder.</p>" } },
+        "q10": { "type": "item", "settings": { "question": "Wat als mijn bestelling beschadigd aankomt?", "answer": "<p>Vervelend! Stuur een foto van de schade naar info@feliznavidad.nl, dan sturen we kosteloos een vervanging op.</p>" } },
+
+        "cat4": { "type": "category", "settings": { "heading": "Bewaren & verzorgen" } },
+        "q11": { "type": "item", "settings": { "question": "Hoe bewaar ik mijn ornamenten na de kerst?", "answer": "<p>Bewaar ze het liefst in de originele verpakking of een doos met vakjes, op een droge plek uit direct zonlicht. Zo gaan ze jarenlang mee.</p>" } }
+      },
+      "block_order": ["cat1", "q1", "q2", "q3", "q4", "cat2", "q5", "q6", "q7", "q8", "cat3", "q9", "q10", "cat4", "q11"],
+      "settings": {
+        "eyebrow": "Veelgestelde vragen",
+        "heading": "Vast heb je een vraag",
+        "text": "De meestgestelde vragen over bestellen, verzenden en onze ornamenten op een rij. Staat je vraag er niet bij? Stuur ons gerust een berichtje.",
+        "contact_text": "Staat je vraag er niet bij?",
+        "contact_link_label": "Neem contact op",
+        "contact_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": ["fn_breadcrumb", "fn_faq"]
+}

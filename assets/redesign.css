@@ -686,6 +686,63 @@ a.fn-reviews__badge:hover { border-color: var(--fn-ink); }
   .fn-contact__row { grid-template-columns: 1fr; }
 }
 
+/* ---- fn-faq --------------------------------------------------------------- */
+.fn-faq { padding-block: 4rem 8rem; max-width: 88rem; }
+.fn-faq__intro { max-width: 62rem; }
+.fn-faq__eyebrow {
+  font-family: var(--fn-mono); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fn-red); margin: 0 0 1.2rem;
+}
+.fn-faq__title { font-family: var(--fn-display); font-weight: 800; font-size: clamp(3.6rem, 5vw, 5.6rem); margin: 0; }
+.fn-faq__text { color: var(--fn-ink-soft); font-size: 1.7rem; margin: 1.6rem 0 0; }
+
+.fn-faq__list { margin-top: 3.6rem; }
+.fn-faq__category {
+  font-family: var(--fn-display); font-weight: 800; font-size: 1.9rem;
+  margin: 3.6rem 0 1.4rem; letter-spacing: -0.01em;
+}
+.fn-faq__category:first-child { margin-top: 0; }
+
+.fn-faq__item {
+  border: 2px solid var(--fn-line); border-radius: 16px;
+  background: var(--fn-paper); margin-bottom: 1rem; overflow: hidden;
+}
+.fn-faq__item[open] { border-color: var(--fn-ink); }
+.fn-faq__question {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.6rem;
+  padding: 1.6rem 2rem; cursor: pointer; list-style: none;
+  font-family: var(--fn-body); font-weight: 600; font-size: 1.6rem; color: var(--fn-ink);
+}
+.fn-faq__question::-webkit-details-marker { display: none; }
+.fn-faq__question::marker { content: ''; }
+.fn-faq__icon {
+  flex: none; position: relative; width: 2.2rem; height: 2.2rem; border-radius: 999px;
+  border: 2px solid var(--fn-ink);
+}
+.fn-faq__icon::before, .fn-faq__icon::after {
+  content: ''; position: absolute; top: 50%; left: 50%; background: var(--fn-ink);
+  transform: translate(-50%, -50%);
+}
+.fn-faq__icon::before { width: 1.1rem; height: 2px; }
+.fn-faq__icon::after { width: 2px; height: 1.1rem; transition: transform .15s ease; }
+.fn-faq__item[open] .fn-faq__icon::after { transform: translate(-50%, -50%) scaleY(0); }
+.fn-faq__item[open] .fn-faq__icon { background: var(--fn-red); border-color: var(--fn-red); }
+.fn-faq__item[open] .fn-faq__icon::before, .fn-faq__item[open] .fn-faq__icon::after { background: #fff; }
+.fn-faq__answer { padding: 0 2rem 1.8rem; font-size: 1.5rem; color: var(--fn-ink-soft); }
+.fn-faq__answer p { margin: 0 0 .8rem; }
+.fn-faq__answer p:last-child { margin-bottom: 0; }
+.fn-faq__answer a { color: var(--fn-red); }
+
+.fn-faq__contact {
+  margin-top: 3.2rem; font-size: 1.5rem; color: var(--fn-ink-soft);
+  display: flex; flex-wrap: wrap; gap: .6rem; align-items: baseline;
+}
+.fn-faq__contact a { color: var(--fn-red); font-weight: 600; }
+@media (max-width: 749px) {
+  .fn-faq__question { padding: 1.4rem 1.6rem; font-size: 1.5rem; }
+  .fn-faq__answer { padding: 0 1.6rem 1.6rem; }
+}
+
 /* ==========================================================================
    Cart page — 2-koloms (items links, samenvatting rechts)
    Haakt op de sectie-id's uit templates/cart.json.

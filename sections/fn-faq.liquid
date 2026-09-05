@@ -1,0 +1,117 @@
+<div class="fn-faq page-width">
+  <div class="fn-faq__intro">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="fn-faq__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h1 class="fn-faq__title">{{ section.settings.heading }}</h1>
+    {%- if section.settings.text != blank -%}
+      <p class="fn-faq__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="fn-faq__list">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'category' -%}
+          <h2 class="fn-faq__category" {{ block.shopify_attributes }}>{{ block.settings.heading }}</h2>
+        {%- when 'item' -%}
+          <details class="fn-faq__item" {{ block.shopify_attributes }}>
+            <summary class="fn-faq__question">
+              <span>{{ block.settings.question }}</span>
+              <span class="fn-faq__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="fn-faq__answer rte">{{ block.settings.answer }}</div>
+          </details>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+
+  {%- if section.settings.contact_text != blank -%}
+    <p class="fn-faq__contact">
+      {{ section.settings.contact_text }}
+      {%- if section.settings.contact_link != blank -%}
+        <a href="{{ section.settings.contact_link }}">{{ section.settings.contact_link_label | default: 'Neem contact op' }} →</a>
+      {%- endif -%}
+    </p>
+  {%- endif -%}
+</div>
+
+{%- comment -%} FAQPage structured data — voor Google rich results (uitklapbare vraag/antwoord in de zoekresultaten) en als goed extraheerbare feiten voor AI-modellen. {%- endcomment -%}
+{%- assign fn_faq_items = section.blocks | where: 'type', 'item' -%}
+{%- if fn_faq_items.size > 0 -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {%- for block in fn_faq_items -%}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.question | strip_html | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ block.settings.answer | strip_html | json }}
+          }
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FN — FAQ",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Veelgestelde vragen" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Vast heb je een vraag" },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "De meestgestelde vragen over bestellen, verzenden en onze ornamenten op een rij. Staat je vraag er niet bij? Stuur ons gerust een berichtje." },
+    { "type": "text", "id": "contact_text", "label": "Contact-tekst", "default": "Staat je vraag er niet bij?" },
+    { "type": "text", "id": "contact_link_label", "label": "Contact-linktekst", "default": "Neem contact op" },
+    { "type": "url", "id": "contact_link", "label": "Contact-link" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categorie-kop",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Kop", "default": "Bestellen & verzenden" }
+      ]
+    },
+    {
+      "type": "item",
+      "name": "Vraag & antwoord",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Vraag", "default": "Vraag" },
+        { "type": "richtext", "id": "answer", "label": "Antwoord", "default": "<p>Antwoord</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 40,
+  "presets": [
+    {
+      "name": "FN — FAQ",
+      "blocks": [
+        { "type": "category", "settings": { "heading": "Bestellen & verzenden" } },
+        { "type": "item", "settings": { "question": "Wat zijn de verzendkosten?", "answer": "<p>Vanaf €25 verzenden we gratis binnen Nederland. Daaronder rekenen we €3,95 verzendkosten.</p>" } },
+        { "type": "item", "settings": { "question": "Hoe lang duurt de levering?", "answer": "<p>We versturen binnen 1 werkdag na bestelling. Je pakket is daarna gemiddeld binnen 2–3 werkdagen in huis.</p>" } },
+        { "type": "item", "settings": { "question": "Welke betaalmethoden accepteren jullie?", "answer": "<p>Je kunt veilig betalen met iDEAL, creditcard of PayPal.</p>" } },
+        { "type": "item", "settings": { "question": "Kan ik mijn bestelling nog wijzigen of annuleren?", "answer": "<p>Neem zo snel mogelijk contact met ons op via info@feliznavidad.nl. Is je bestelling nog niet verzonden, dan passen we 'm graag voor je aan.</p>" } },
+
+        { "type": "category", "settings": { "heading": "Onze ornamenten" } },
+        { "type": "item", "settings": { "question": "Waar zijn de ornamenten van gemaakt?", "answer": "<p>Onze ornamenten zijn gemaakt van onbreekbaar plastic. Valt er eentje uit de boom, dan is er geen man overboord.</p>" } },
+        { "type": "item", "settings": { "question": "Hoeveel ornamenten heb ik nodig voor mijn boom?", "answer": "<p>Een vuistregel: reken op zo'n 8–10 ornamenten per 30 cm boomhoogte, afhankelijk van hoe vol je 'm wilt hebben.</p>" } },
+        { "type": "item", "settings": { "question": "Kan ik de ornamenten ook los combineren met bestaande kerstballen?", "answer": "<p>Zeker! Onze ornamenten zijn los verkrijgbaar en combineren goed met kerstballen of een guirlande die je al in huis hebt.</p>" } },
+        { "type": "item", "settings": { "question": "Hebben jullie ook een collectie voor kinderen of grappenmakers?", "answer": "<p>Ja — naast onze klassieke ornamenten hebben we een aparte collectie grappige ornamenten, zoals een gewichtheffende kerstman.</p>" } },
+
+        { "type": "category", "settings": { "heading": "Retourneren & garantie" } },
+        { "type": "item", "settings": { "question": "Kan ik een besteld ornament retourneren?", "answer": "<p>Ja, je kunt je bestelling binnen 14 dagen na ontvangst retourneren. Neem contact met ons op via info@feliznavidad.nl en we helpen je verder.</p>" } },
+        { "type": "item", "settings": { "question": "Wat als mijn bestelling beschadigd aankomt?", "answer": "<p>Vervelend! Stuur een foto van de schade naar info@feliznavidad.nl, dan sturen we kosteloos een vervanging op.</p>" } },
+
+        { "type": "category", "settings": { "heading": "Bewaren & verzorgen" } },
+        { "type": "item", "settings": { "question": "Hoe bewaar ik mijn ornamenten na de kerst?", "answer": "<p>Bewaar ze het liefst in de originele verpakking of een doos met vakjes, op een droge plek uit direct zonlicht. Zo gaan ze jarenlang mee.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
