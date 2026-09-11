@@ -9,36 +9,43 @@
  */
 {
   "sections": {
-    "fn_breadcrumb": { "type": "fn-breadcrumb", "settings": {} },
+    "fn_breadcrumb": {
+      "type": "fn-breadcrumb",
+      "settings": {}
+    },
     "fn_contact": {
       "type": "fn-contact",
       "blocks": {
         "c1": {
           "type": "card",
           "settings": {
-            "scheme": "plain",
             "heading": "Direct contact",
-            "text": "<p>E-mail: <a href=\"mailto:info@feliznavidad.nl\">info@feliznavidad.nl</a><br>Bereikbaar ma–vr, 9:00–17:00</p>"
+            "text": "<p>E-mail: <a href=\"mailto:info@feliznavidad.nl\">info@feliznavidad.nl</a><br>Bereikbaar ma–vr, 9:00–17:00</p>",
+            "scheme": "plain"
           }
         },
         "c2": {
           "type": "card",
           "settings": {
-            "scheme": "green",
             "heading": "Bestelling & retour",
-            "text": "<p>Levering in 2–3 werkdagen. Niet tevreden? Retourneren kan binnen 14 dagen.</p>"
+            "text": "<p>Levering in 1 werkdag. Niet tevreden? Retourneren kan binnen 14 dagen.</p>",
+            "scheme": "green"
           }
         },
         "c3": {
           "type": "card",
           "settings": {
-            "scheme": "plain",
             "heading": "Bedrijfsgegevens",
-            "text": "<p>Feliznavidad.nl<br>[STRAAT + NR]<br>[POSTCODE + PLAATS]<br>KvK [KVK-NUMMER] · BTW [BTW-NUMMER]</p>"
+            "text": "<p>Feliznavidad.nl<br/>Kastanjestraat 67<br/>8021XP Zwolle <br/>KvK 77231775· BTW NL002286840B70</p>",
+            "scheme": "plain"
           }
         }
       },
-      "block_order": ["c1", "c2", "c3"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
       "settings": {
         "eyebrow": "Contact",
         "heading": "Vraag maar raak",
@@ -46,5 +53,8 @@
       }
     }
   },
-  "order": ["fn_breadcrumb", "fn_contact"]
+  "order": [
+    "fn_breadcrumb",
+    "fn_contact"
+  ]
 }
