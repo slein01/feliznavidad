@@ -35,6 +35,7 @@
             "heading": "Klassieke ornamenten",
             "text": "Tijdloos in je boom — zuurstok, kerstlicht en meer. Voor de kerst zoals je 'm kent.",
             "link_label": "3 ornamenten",
+            "link_url": "",
             "scheme": "green"
           }
         },
@@ -45,11 +46,15 @@
             "heading": "Grappige ornamenten",
             "text": "Een astronaut, een gewichtheffende kerstman of een koffiebeker. Voor wie de boom niet te serieus neemt.",
             "link_label": "3 ornamenten",
+            "link_url": "",
             "scheme": "red"
           }
         }
       },
-      "block_order": ["cat_klassiek", "cat_grappig"],
+      "block_order": [
+        "cat_klassiek",
+        "cat_grappig"
+      ],
       "settings": {
         "heading": "Grappig of klassiek?",
         "link_label": "Bekijk alles",
@@ -107,12 +112,16 @@
           "type": "item",
           "settings": {
             "icon": "calendar",
-            "heading": "In 2–3 werkdagen in huis",
-            "text": "Ruim op tijd voor de boom."
+            "heading": "Vandaag besteld",
+            "text": "Morgen verzonden, dus op tijd in je boom."
           }
         }
       },
-      "block_order": ["t1", "t2", "t3"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
       "settings": {}
     },
     "fn_statement": {
@@ -131,11 +140,22 @@
       "blocks": {
         "heading_kdRwN9": {
           "type": "heading",
-          "settings": { "heading": "Wat klanten van ons vinden", "heading_size": "h1" }
+          "settings": {
+            "heading": "Wat klanten van ons vinden",
+            "heading_size": "h1"
+          }
         },
-        "text_3YTkmt": { "type": "text", "settings": { "text": "" } }
+        "text_3YTkmt": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        }
       },
-      "block_order": ["heading_kdRwN9", "text_3YTkmt"],
+      "block_order": [
+        "heading_kdRwN9",
+        "text_3YTkmt"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -149,11 +169,36 @@
     "fn_reviews": {
       "type": "fn-reviews",
       "blocks": {
-        "rv1": { "type": "review", "settings": { "name": "Joost", "rating": 5, "text": "Mooie producten en snelle levering!" } },
-        "rv2": { "type": "review", "settings": { "name": "Suzanne", "rating": 5, "text": "Leuke producten en mooi op tijd in huis, kom hier zeker vaker." } },
-        "rv3": { "type": "review", "settings": { "name": "Jordi", "rating": 5, "text": "Top, snel in huis." } }
+        "rv1": {
+          "type": "review",
+          "settings": {
+            "name": "Joost",
+            "rating": 5,
+            "text": "Mooie producten en snelle levering!"
+          }
+        },
+        "rv2": {
+          "type": "review",
+          "settings": {
+            "name": "Suzanne",
+            "rating": 5,
+            "text": "Leuke producten en mooi op tijd in huis, kom hier zeker vaker."
+          }
+        },
+        "rv3": {
+          "type": "review",
+          "settings": {
+            "name": "Jordi",
+            "rating": 5,
+            "text": "Top, snel in huis."
+          }
+        }
       },
-      "block_order": ["rv1", "rv2", "rv3"],
+      "block_order": [
+        "rv1",
+        "rv2",
+        "rv3"
+      ],
       "settings": {
         "show_badge": true,
         "score": "4,8",
@@ -167,7 +212,10 @@
       "blocks": {
         "heading_cj8XFF": {
           "type": "heading",
-          "settings": { "heading": "Feliznavidad.nl", "heading_size": "h1" }
+          "settings": {
+            "heading": "Feliznavidad.nl",
+            "heading_size": "h1"
+          }
         },
         "text_hNpWiW": {
           "type": "text",
@@ -187,7 +235,11 @@
           }
         }
       },
-      "block_order": ["heading_cj8XFF", "text_hNpWiW", "button_Edgrdq"],
+      "block_order": [
+        "heading_cj8XFF",
+        "text_hNpWiW",
+        "button_Edgrdq"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
