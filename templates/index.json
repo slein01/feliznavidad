@@ -172,17 +172,17 @@
         "rv1": {
           "type": "review",
           "settings": {
-            "name": "Joost",
+            "name": "Chantal",
             "rating": 5,
-            "text": "Mooie producten en snelle levering!"
+            "text": "Leuke opvulling voor mijn kerstboom"
           }
         },
         "rv2": {
           "type": "review",
           "settings": {
-            "name": "Suzanne",
+            "name": "Danny H",
             "rating": 5,
-            "text": "Leuke producten en mooi op tijd in huis, kom hier zeker vaker."
+            "text": "Super origineel en stevig gemaakt – de astronaut zweeft nu vrolijk tussen de lichtjes van onze boom."
           }
         },
         "rv3": {
@@ -190,7 +190,7 @@
           "settings": {
             "name": "Jordi",
             "rating": 5,
-            "text": "Top, snel in huis."
+            "text": "Erg ruim assortiment en goede kwaliteit."
           }
         }
       },
