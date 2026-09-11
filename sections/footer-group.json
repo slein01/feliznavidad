@@ -32,7 +32,7 @@
           "type": "text",
           "settings": {
             "heading": "Info",
-            "subtext": "<p><a href=\"/pages/over-ons\">Over ons</a><br/><a href=\"/pages/contact\">Contact</a><br/><a href=\"/blogs/nieuws\">Inspiratie & nieuws</a></p>"
+            "subtext": "<p><a href=\"/pages/over-ons\">Over ons</a><br/><a href=\"/pages/contact\">Contact</a><br/><a href=\"/blogs/nieuws\">Inspiratie & nieuws</a><br/><a href=\"/pages/veelgestelde-vragen\" title=\"Veelgestelde vragen\">Veelgestelde vragen</a></p>"
           }
         }
       },
