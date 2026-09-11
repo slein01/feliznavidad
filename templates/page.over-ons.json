@@ -133,15 +133,15 @@
         "s2": {
           "type": "stat",
           "settings": {
-            "value": "6",
+            "value": "10+",
             "label": "ornamenten in de vaste collectie"
           }
         },
         "s3": {
           "type": "stat",
           "settings": {
-            "value": "2–3",
-            "label": "werkdagen levertijd"
+            "value": "1",
+            "label": "werkdag levertijd"
           }
         }
       },
