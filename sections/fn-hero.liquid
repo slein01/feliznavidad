@@ -12,6 +12,17 @@
       assign i = i | plus: 1
     endfor
   endif
+
+  # img1 is doorgaans het LCP-element (grootste zichtbare content boven de vouw op de
+  # homepage) — net als Dawn's eigen image-banner alleen 'eager'/'high' als dit de
+  # eerste sectie op de pagina is, zodat andere hero's verderop niet onnodig meewegen.
+  if section.index == 1
+    assign img1_loading = 'eager'
+    assign img1_fetchpriority = 'high'
+  else
+    assign img1_loading = 'lazy'
+    assign img1_fetchpriority = 'auto'
+  endif
 -%}
 
 <div class="fn-hero">
@@ -43,12 +54,12 @@
     <div class="fn-hero__media">
       <div class="fn-hero__frame fn-hero__frame--1">
         {%- if img1 -%}
-          {{ img1 | image_url: width: 800 | image_tag: widths: '300,450,600,800', sizes: '30rem', alt: img1.alt }}
+          {{ img1 | image_url: width: 800 | image_tag: widths: '300,450,600,800', sizes: '30rem', alt: img1.alt, loading: img1_loading, fetchpriority: img1_fetchpriority }}
         {%- endif -%}
       </div>
       <div class="fn-hero__frame fn-hero__frame--2">
         {%- if img2 -%}
-          {{ img2 | image_url: width: 600 | image_tag: widths: '215,320,430', sizes: '21rem', alt: img2.alt }}
+          {{ img2 | image_url: width: 600 | image_tag: widths: '215,320,430', sizes: '21rem', alt: img2.alt, loading: 'lazy' }}
         {%- endif -%}
       </div>
       {%- if section.settings.sticker_text != blank -%}
