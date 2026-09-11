@@ -18,7 +18,7 @@
           "type": "text",
           "settings": {
             "heading": "",
-            "subtext": "<p>Feliz Navidad = Vrolijk Kerstfeest. Ornamenten die je boom afmaken.</p>"
+            "subtext": "<p>Feliz Navidad = Vrolijk Kerstfeest. <br/>Ornamenten die je boom afmaken.</p>"
           }
         },
         "fn_shop": {
