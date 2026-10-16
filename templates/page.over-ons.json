@@ -20,7 +20,8 @@
           "type": "heading",
           "settings": {
             "heading": "Kerst mag best gek zijn",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_tag": "h1"
           }
         },
         "text": {
