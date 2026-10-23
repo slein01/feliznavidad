@@ -197,6 +197,7 @@ h1, h2, h3, h4,
 }
 .fn-material-badge--plastic { background: var(--fn-green); color: #fff; }
 .fn-material-badge--glas { background: var(--fn-pine); color: var(--fn-gold); }
+.fn-material-badge--papier { background: var(--fn-gold); color: var(--fn-ink); }
 
 /* ---- 9. Cart / cart drawer -------------------------------------------------------- */
 .cart__blocks .totals__total-value { color: var(--fn-red); }
