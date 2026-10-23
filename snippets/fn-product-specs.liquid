@@ -1,0 +1,15 @@
+{%- comment -%}
+  Specificaties uit de productmetafields (namespace "custom"):
+  - custom.afmetingen  (tekst van één regel)
+  - custom.materiaal   (tekst van één regel, bijv. "Plastic" of "Glas")
+  - custom.onbreekbaar (waar/onwaar)
+  Rendert niets als geen van de drie is ingevuld; main-product valt dan terug op de bloktekst.
+{%- endcomment -%}
+{%- liquid
+  assign fn_afmetingen = product.metafields.custom.afmetingen.value
+  assign fn_materiaal = product.metafields.custom.materiaal.value
+  assign fn_onbreekbaar = product.metafields.custom.onbreekbaar
+-%}
+{%- if fn_afmetingen != blank -%}<p><strong>Afmetingen: </strong>{{ fn_afmetingen | escape }}</p>{%- endif -%}
+{%- if fn_materiaal != blank -%}<p><strong>Materiaal: </strong>{{ fn_materiaal | escape }}</p>{%- endif -%}
+{%- if fn_onbreekbaar -%}<p><strong>Onbreekbaar: </strong>{% if fn_onbreekbaar.value == true %}Ja{% else %}Nee{% endif %}</p>{%- endif -%}
