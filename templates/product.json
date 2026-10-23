@@ -52,12 +52,12 @@
           "type": "icon-with-text",
           "settings": {
             "layout": "vertical",
-            "icon_1": "check_mark",
-            "heading_1": "<strong>Gratis verzending: </strong>vanaf €25 euro",
-            "icon_2": "check_mark",
-            "heading_2": "<strong>Veilig betalen: </strong>met iDEAL of creditcard",
-            "icon_3": "check_mark",
-            "heading_3": "<strong>Betrouwbare levering: </strong>in 2/3 werkdagen in huis"
+            "icon_1": "none",
+            "heading_1": "Gratis verzending vanaf €25 euro",
+            "icon_2": "none",
+            "heading_2": "",
+            "icon_3": "none",
+            "heading_3": "Vandaag besteld, morgen verzonden"
           }
         },
         "collapsible_tab_cjd3CH": {
