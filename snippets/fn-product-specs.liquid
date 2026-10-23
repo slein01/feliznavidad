@@ -2,7 +2,7 @@
   Specificaties uit de productmetafields (namespace "custom"):
   - custom.afmetingen  (tekst van één regel)
   - custom.materiaal   (tekst van één regel, bijv. "Plastic" of "Glas")
-  - custom.onbreekbaar (waar/onwaar)
+  - custom.onbreekbaar (waar/onwaar, of tekst zoals "Ja"/"Nee")
   Rendert niets als geen van de drie is ingevuld; main-product valt dan terug op de bloktekst.
 {%- endcomment -%}
 {%- liquid
@@ -12,4 +12,8 @@
 -%}
 {%- if fn_afmetingen != blank -%}<p><strong>Afmetingen: </strong>{{ fn_afmetingen | escape }}</p>{%- endif -%}
 {%- if fn_materiaal != blank -%}<p><strong>Materiaal: </strong>{{ fn_materiaal | escape }}</p>{%- endif -%}
-{%- if fn_onbreekbaar -%}<p><strong>Onbreekbaar: </strong>{% if fn_onbreekbaar.value == true %}Ja{% else %}Nee{% endif %}</p>{%- endif -%}
+{%- if fn_onbreekbaar.type == 'boolean' -%}
+  <p><strong>Onbreekbaar: </strong>{% if fn_onbreekbaar.value == true %}Ja{% else %}Nee{% endif %}</p>
+{%- elsif fn_onbreekbaar.value != blank -%}
+  <p><strong>Onbreekbaar: </strong>{{ fn_onbreekbaar.value | escape }}</p>
+{%- endif -%}
