@@ -15,13 +15,13 @@
         "eyebrow": "Kerst 2026 · Ornamenten",
         "heading": "Maak je kerstboom",
         "highlight": "compleet.",
-        "text": "Grappige en klassieke kerstornamenten van onbreekbaar plastic. Hang 'm tussen je kerstballen, verwerk 'm in een guirlande of geef 'm cadeau.",
+        "text": "Grappige en klassieke kerstornamenten van plastic, papier of glas. Hang 'm tussen je kerstballen, verwerk 'm in een guirlande of geef 'm cadeau.",
         "button_label": "Bekijk alle ornamenten",
         "button_link": "shopify://collections/all",
         "button_label_2": "Shop grappige ornamenten",
         "button_link_2": "shopify://collections/grappige-ornamenten",
         "rating_text": "4,8 gemiddeld — beoordeeld door klanten op Google",
-        "sticker_text": "vanaf€8,50",
+        "sticker_text": "vanaf 2,95",
         "image_collection": "all"
       }
     },
@@ -142,7 +142,8 @@
           "type": "heading",
           "settings": {
             "heading": "Wat klanten van ons vinden",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_tag": "h2"
           }
         },
         "text_3YTkmt": {
@@ -214,7 +215,8 @@
           "type": "heading",
           "settings": {
             "heading": "Feliznavidad.nl",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_tag": "h2"
           }
         },
         "text_hNpWiW": {

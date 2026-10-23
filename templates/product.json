@@ -16,26 +16,37 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": { "text": "{{ product.vendor }}", "text_style": "uppercase" }
+        "title": {
+          "type": "title",
+          "settings": {}
         },
-        "title": { "type": "title", "settings": {} },
         "rating_line": {
           "type": "custom_liquid",
           "settings": {
             "custom_liquid": "<div class=\"fn-pdp-rating\"><span class=\"fn-pdp-rating__stars\" aria-hidden=\"true\">★★★★★</span> <span>4,8 — beoordeeld door klanten op Google</span></div>"
           }
         },
-        "price": { "type": "price", "settings": {} },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "variant_picker": {
           "type": "variant_picker",
-          "settings": { "picker_type": "button", "swatch_shape": "circle" }
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
         },
-        "quantity_selector": { "type": "quantity_selector", "settings": {} },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
-          "settings": { "show_dynamic_checkout": true, "show_gift_card_recipient": true }
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
         },
         "icon_with_text_9mk8mC": {
           "type": "icon-with-text",
@@ -59,10 +70,12 @@
             "fn_product_specs": true
           }
         },
-        "description": { "type": "description", "settings": {} }
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
       },
       "block_order": [
-        "vendor",
         "title",
         "rating_line",
         "price",
@@ -78,11 +91,11 @@
         "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
         "media_size": "medium",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
+        "media_fit": "cover",
         "gallery_layout": "thumbnail",
         "mobile_thumbnails": "show",
         "media_position": "left",
-        "image_zoom": "none",
+        "image_zoom": "hover",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 24,
@@ -112,11 +125,19 @@
       "blocks": {
         "caption_tip": {
           "type": "caption",
-          "settings": { "caption": "Tip", "text_style": "caption-with-letter-spacing", "text_size": "medium" }
+          "settings": {
+            "caption": "Tip",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
         },
         "heading_8nbPU6": {
           "type": "heading",
-          "settings": { "heading": "Een ornament maakt je kerstboom af!", "heading_size": "h1" }
+          "settings": {
+            "heading": "Een ornament maakt je kerstboom af!",
+            "heading_size": "h1",
+            "heading_tag": "h2"
+          }
         },
         "text_VtaRAB": {
           "type": "text",
@@ -125,7 +146,11 @@
           }
         }
       },
-      "block_order": ["caption_tip", "heading_8nbPU6", "text_VtaRAB"],
+      "block_order": [
+        "caption_tip",
+        "heading_8nbPU6",
+        "text_VtaRAB"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -155,5 +180,11 @@
       }
     }
   },
-  "order": ["fn_breadcrumb", "main", "related-products", "rich_text_jdEbzg", "featured_blog_KzHcUU"]
+  "order": [
+    "fn_breadcrumb",
+    "main",
+    "related-products",
+    "rich_text_jdEbzg",
+    "featured_blog_KzHcUU"
+  ]
 }
