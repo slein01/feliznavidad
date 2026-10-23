@@ -55,7 +55,8 @@
             "heading": "Specificaties",
             "icon": "clipboard",
             "content": "<p><strong>Afmetingen: </strong>113 mm x 110 x 100</p><p><strong>Materiaal: </strong>Plastic</p><p><strong>Onbreekbaar: </strong>Ja</p>",
-            "page": ""
+            "page": "",
+            "fn_product_specs": true
           }
         },
         "description": { "type": "description", "settings": {} }

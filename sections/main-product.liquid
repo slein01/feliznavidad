@@ -78,6 +78,7 @@
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
+        {% render 'fn-material-badge' %}
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
@@ -223,8 +224,20 @@
                       {{- 'icon-caret.svg' | inline_asset_content -}}
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ block.settings.content }}
-                      {{ block.settings.page.content }}
+                      {%- liquid
+                        assign fn_specs = ''
+                        if block.settings.fn_product_specs
+                          capture fn_specs
+                            render 'fn-product-specs'
+                          endcapture
+                        endif
+                      -%}
+                      {%- if fn_specs != blank -%}
+                        {{ fn_specs }}
+                      {%- else -%}
+                        {{ block.settings.content }}
+                        {{ block.settings.page.content }}
+                      {%- endif -%}
                     </div>
                   </details>
                 </div>
@@ -1150,6 +1163,13 @@
           "type": "page",
           "id": "page",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "fn_product_specs",
+          "default": false,
+          "label": "Vullen met productspecificaties",
+          "info": "Toont de metafields Afmetingen, Materiaal en Onbreekbaar van het product. Is er niets ingevuld, dan verschijnt de inhoud hierboven."
         }
       ]
     },

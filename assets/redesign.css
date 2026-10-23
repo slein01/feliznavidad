@@ -186,17 +186,18 @@ h1, h2, h3, h4,
 .product .icon-with-text { gap: 1rem; }
 .product .icon-with-text .icon { color: var(--fn-green); }
 
-/* "Onbreekbaar plastic" badge op de PDP-galerij */
+/* Materiaallabel op de PDP-galerij (snippets/fn-material-badge.liquid, via producttag) */
 .product__media-wrapper { position: relative !important; }
-.product__media-wrapper::after {
-  content: "Onbreekbaar plastic";
+.fn-material-badge {
   position: absolute; z-index: 5; top: 1.6rem; left: 1.6rem;
-  background: var(--fn-green); color: #fff;
   font-family: var(--fn-mono); font-weight: 700; font-size: 1.05rem;
   letter-spacing: .1em; text-transform: uppercase;
   padding: .5rem 1rem; border-radius: 8px;
   pointer-events: none;
 }
+.fn-material-badge--plastic { background: var(--fn-green); color: #fff; }
+.fn-material-badge--glas { background: var(--fn-pine); color: var(--fn-gold); }
+.fn-material-badge--papier { background: var(--fn-gold); color: var(--fn-ink); }
 
 /* ---- 9. Cart / cart drawer -------------------------------------------------------- */
 .cart__blocks .totals__total-value { color: var(--fn-red); }

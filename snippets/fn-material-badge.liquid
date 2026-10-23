@@ -1,0 +1,42 @@
+{%- comment -%}
+  Materiaallabel op de PDP-galerij. Eerst het metafield custom.materiaal, anders de producttag
+  (hoofdletters maken niet uit):
+  - "plastic" → "Onbreekbaar plastic" (groen)
+  - "glas"    → "Echt glas" (pine met goud)
+  - "papier"  → "Van papier" (goud met inkt)
+  Zonder materiaal verschijnt er geen label.
+{%- endcomment -%}
+{%- liquid
+  assign fn_materials = 'glas,papier,plastic' | split: ','
+  assign fn_material = ''
+  assign fn_mf = product.metafields.custom.materiaal.value | downcase
+  for m in fn_materials
+    if fn_mf contains m
+      assign fn_material = m
+      break
+    endif
+  endfor
+  if fn_material == blank
+    assign fn_tags = product.tags | join: ',' | downcase | split: ','
+    for m in fn_materials
+      for t in fn_tags
+        assign fn_tag = t | strip
+        if fn_tag == m
+          assign fn_material = m
+          break
+        endif
+      endfor
+      if fn_material != blank
+        break
+      endif
+    endfor
+  endif
+-%}
+{%- case fn_material -%}
+  {%- when 'plastic' -%}
+    <span class="fn-material-badge fn-material-badge--plastic">Onbreekbaar plastic</span>
+  {%- when 'glas' -%}
+    <span class="fn-material-badge fn-material-badge--glas">Echt glas</span>
+  {%- when 'papier' -%}
+    <span class="fn-material-badge fn-material-badge--papier">Van papier</span>
+{%- endcase -%}
