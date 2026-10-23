@@ -121,20 +121,6 @@
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                   </div>
                 {%- endif -%}
-                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                  <div class="product__tax caption rte">
-                    {%- if cart.duties_included and cart.taxes_included -%}
-                      {{ 'products.product.duties_and_taxes_included' | t }}
-                    {%- elsif cart.taxes_included -%}
-                      {{ 'products.product.taxes_included' | t }}
-                    {%- elsif cart.duties_included -%}
-                      {{ 'products.product.duties_included' | t }}
-                    {%- endif -%}
-                    {%- if shop.shipping_policy.body != blank -%}
-                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
                 <div {{ block.shopify_attributes }}>
                   {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
                   {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
@@ -323,14 +309,14 @@
                                 </dt>
                                 <dd>
                                   <s class="variant-item__old-price">
-                                    {{ variant_price_compare | money_with_currency }}
+                                    {{ variant_price_compare | money_without_currency }}
                                   </s>
                                 </dd>
                               </dl>
                             {%- endif -%}
                             {%- if current_qty_for_volume_pricing < volume_pricing_array.last.minimum_quantity -%}
                               {%- assign variant_price = product.selected_or_first_available_variant.price
-                                | money_with_currency
+                                | money_without_currency
                               -%}
                               <span class="price-per-item--current">
                                 {{- 'products.product.volume_pricing.price_at_each_html' | t: price: variant_price -}}
@@ -338,7 +324,7 @@
                             {%- else -%}
                               {%- for price_break in volume_pricing_array -%}
                                 {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
-                                  {%- assign price_break_price = price_break.price | money_with_currency -%}
+                                  {%- assign price_break_price = price_break.price | money_without_currency -%}
                                   <span class="price-per-item--current">
                                     {{-
                                       'products.product.volume_pricing.price_at_each_html'
@@ -352,7 +338,7 @@
                           </div>
                         {%- else -%}
                           {%- assign variant_price = product.selected_or_first_available_variant.price
-                            | money_with_currency
+                            | money_without_currency
                           -%}
                           {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                           <div class="price-per-item">
@@ -363,7 +349,7 @@
                                 </dt>
                                 <dd>
                                   <s class="variant-item__old-price">
-                                    {{ variant_price_compare | money_with_currency }}
+                                    {{ variant_price_compare | money_without_currency }}
                                   </s>
                                 </dd>
                                 <dt class="visually-hidden">
@@ -419,14 +405,14 @@
                           <li>
                             <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
                             {%- assign price = product.selected_or_first_available_variant.price
-                              | money_with_currency
+                              | money_without_currency
                             -%}
                             <span data-text="{{ 'products.product.volume_pricing.price_at_each_html' | t: price: variant_price }}">
                               {{- 'sections.quick_order_list.each' | t: money: price -}}
                             </span>
                           </li>
                           {%- for price_break in product.selected_or_first_available_variant.quantity_price_breaks -%}
-                            {%- assign price_break_price = price_break.price | money_with_currency -%}
+                            {%- assign price_break_price = price_break.price | money_without_currency -%}
                             <li class="{%- if forloop.index >= 3 -%}show-more-item hidden{%- endif -%}">
                               <span>
                                 {{- price_break.minimum_quantity -}}
