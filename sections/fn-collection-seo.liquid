@@ -1,0 +1,75 @@
+{%- comment -%}
+  Tekst onder het productgrid, per collectie uniek.
+  Vult zich uit de collectie-metafields custom.seo_kop (tekst, één regel) en
+  custom.seo_tekst (rich text). Zijn die leeg, dan valt de sectie terug op de
+  kop en tekst uit de theme-editor. Zo staat niet op elke collectie dezelfde tekst.
+{%- endcomment -%}
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign seo_kop = collection.metafields.custom.seo_kop.value | default: section.settings.heading
+  assign seo_tekst = collection.metafields.custom.seo_tekst
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- if seo_kop != blank or seo_tekst != blank or section.settings.text != blank -%}
+  <div class="isolate">
+    <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient rich-text--full-width content-container--full-width section-{{ section.id }}-padding">
+      <div class="rich-text__wrapper rich-text__wrapper--center page-width">
+        <div class="rich-text__blocks {{ section.settings.content_alignment }}">
+          {%- if seo_kop != blank -%}
+            <h2 class="rich-text__heading rte inline-richtext h1">{{ seo_kop | escape }}</h2>
+          {%- endif -%}
+          <div class="rich-text__text rte">
+            {%- if seo_tekst != blank -%}
+              {{ seo_tekst | metafield_tag }}
+            {%- else -%}
+              {{ section.settings.text }}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FN — Collectietekst (SEO)",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Per collectie in te vullen via de metafields custom.seo_kop en custom.seo_tekst. Onderstaande kop en tekst zijn de terugval als die leeg zijn."
+    },
+    { "type": "text", "id": "heading", "label": "Kop (terugval)", "default": "Ornamenten, de ideale aanvulling in je kerstboom" },
+    { "type": "richtext", "id": "text", "label": "Tekst (terugval)" },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Uitlijning",
+      "options": [
+        { "value": "left", "label": "Links" },
+        { "value": "center", "label": "Midden" }
+      ],
+      "default": "center"
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 52 }
+  ],
+  "presets": [{ "name": "FN — Collectietekst (SEO)" }]
+}
+{% endschema %}

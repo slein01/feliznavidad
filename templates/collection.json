@@ -39,29 +39,12 @@
       }
     },
     "rich_text_LFzdCw": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_YAGRGJ": {
-          "type": "heading",
-          "settings": {
-            "heading": "Ornamenten, de ideale aanvulling in je kerstboom",
-            "heading_size": "h1"
-          }
-        },
-        "text_qff8nf": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Kerstornamenten zijn wat ons betreft de ideale aanvulling voor je kerstboom. Combineer een aantal ornamenten met mooie kerstballen, geef ze cadeau of verwerk ze zelfs in een guirlande. Maakt de kerst net wat leuker!</p>"
-          }
-        }
-      },
-      "block_order": ["heading_YAGRGJ", "text_qff8nf"],
-      "name": "t:sections.rich-text.presets.name",
+      "type": "fn-collection-seo",
       "settings": {
-        "desktop_content_position": "center",
+        "heading": "Ornamenten, de ideale aanvulling in je kerstboom",
+        "text": "<p>Kerstornamenten zijn wat ons betreft de ideale aanvulling voor je kerstboom. Combineer een aantal ornamenten met mooie kerstballen, geef ze cadeau of verwerk ze zelfs in een guirlande. Maakt de kerst net wat leuker!</p>",
         "content_alignment": "center",
         "color_scheme": "scheme-adde7f7e-70a1-482b-ac2a-7f1f033805d4",
-        "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
       }
