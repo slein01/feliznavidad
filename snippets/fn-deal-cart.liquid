@@ -1,0 +1,39 @@
+{%- comment -%}
+  Melding in winkelmand en cart drawer: hoeveel actieproducten nog nodig zijn voor
+  het volgende gratis exemplaar. De korting zelf is een automatische korting
+  "Koop X krijg Y" in de Shopify-admin; dit snippet telt alleen mee.
+{%- endcomment -%}
+{%- if settings.fn_deal_enabled and settings.fn_deal_collection != blank and cart != empty -%}
+  {%- liquid
+    assign fn_qty = 0
+    for item in cart.items
+      for c in item.product.collections
+        if c.handle == settings.fn_deal_collection
+          assign fn_qty = fn_qty | plus: item.quantity
+          break
+        endif
+      endfor
+    endfor
+    assign fn_rest = fn_qty | modulo: 3
+    assign fn_free = fn_qty | divided_by: 3 | floor
+    assign fn_deal_coll = collections[settings.fn_deal_collection]
+    assign fn_name = 'papieren ornament'
+  -%}
+  {%- if fn_qty > 0 -%}
+    <div class="fn-deal-cart{% if fn_rest == 0 %} fn-deal-cart--done{% endif %}" role="status">
+      <span class="fn-deal-cart__label">{{ settings.fn_deal_label | default: '3 voor 2' | escape }}</span>
+      <p class="fn-deal-cart__msg">
+        {%- if fn_rest == 0 -%}
+          {%- if fn_free == 1 -%}Top, je krijgt 1 {{ fn_name }} gratis!{%- else -%}Top, je krijgt er {{ fn_free }} gratis!{%- endif -%}
+        {%- elsif fn_rest == 2 -%}
+          Voeg nog <strong>1</strong> {{ fn_name }} toe, dan is die {% if fn_free > 0 %}ook {% endif %}gratis.
+        {%- else -%}
+          Nog <strong>2</strong> {{ fn_name }}en erbij en {% if fn_free > 0 %}je krijgt er nog 1 gratis{% else %}de derde is gratis{% endif %}.
+        {%- endif -%}
+        {%- if fn_rest != 0 and fn_deal_coll != blank %}
+          <a href="{{ fn_deal_coll.url }}">Bekijk ze</a>
+        {%- endif -%}
+      </p>
+    </div>
+  {%- endif -%}
+{%- endif -%}

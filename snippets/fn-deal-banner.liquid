@@ -1,0 +1,32 @@
+{%- comment -%}
+  Actiebanner "3 voor 2". Op de collectiepagina van de actiecollectie en op productpagina's
+  van producten in die collectie.
+  Accepts: context ('collection' of 'product')
+{%- endcomment -%}
+{%- if settings.fn_deal_enabled and settings.fn_deal_collection != blank -%}
+  {%- liquid
+    assign fn_show = false
+    if context == 'collection' and collection.handle == settings.fn_deal_collection
+      assign fn_show = true
+    elsif context == 'product'
+      for c in product.collections
+        if c.handle == settings.fn_deal_collection
+          assign fn_show = true
+          break
+        endif
+      endfor
+    endif
+    assign fn_deal_coll = collections[settings.fn_deal_collection]
+  -%}
+  {%- if fn_show -%}
+    <div class="fn-deal-banner fn-deal-banner--{{ context }}">
+      <span class="fn-deal-banner__label">{{ settings.fn_deal_label | default: '3 voor 2' | escape }}</span>
+      <p class="fn-deal-banner__text">
+        {{ settings.fn_deal_text | escape }}
+        {%- if context == 'product' and fn_deal_coll != blank %}
+          <a href="{{ fn_deal_coll.url }}" class="fn-deal-banner__link">Bekijk alle {{ fn_deal_coll.title | downcase | escape }}</a>
+        {%- endif -%}
+      </p>
+    </div>
+  {%- endif -%}
+{%- endif -%}

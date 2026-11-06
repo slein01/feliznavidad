@@ -75,7 +75,7 @@
         </button>
       </div>
       {%- if cart != empty -%}
-        <div class="cart-drawer__shipbar">{% render 'fn-shipping-progress', threshold: 25 %}</div>
+        <div class="cart-drawer__shipbar">{% render 'fn-shipping-progress', threshold: 25 %}{% render 'fn-deal-cart' %}</div>
       {%- endif -%}
       <cart-drawer-items
         {% if cart == empty %}
