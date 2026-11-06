@@ -33,7 +33,7 @@
           "settings": {
             "collection": "klassieke-ornamenten",
             "heading": "Klassieke ornamenten",
-            "text": "Tijdloos in je boom — zuurstok, kerstlicht en meer. Voor de kerst zoals je 'm kent.",
+            "text": "Tijdloze klassiekers in je boom. Een zuurstok, een kerstlicht en meer.",
             "link_label": "3 ornamenten",
             "link_url": "",
             "scheme": "green"
@@ -84,7 +84,7 @@
         "show_rating": false,
         "quick_add": "standard",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 44,
         "padding_bottom": 36
       }
