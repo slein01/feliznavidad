@@ -33,8 +33,8 @@
           "settings": {
             "collection": "klassieke-ornamenten",
             "heading": "Klassieke ornamenten",
-            "text": "Tijdloze klassiekers in je boom. Een zuurstok, een kerstlicht en meer.",
-            "link_label": "[aantal] ornamenten",
+            "text": "Tijdloze klassiekers in je boom. Een zuurstok, een kerstlicht en meer. Doen het elk jaar goed.",
+            "link_label": "Bekijk",
             "link_url": "",
             "scheme": "green"
           }
@@ -44,8 +44,8 @@
           "settings": {
             "collection": "grappige-ornamenten",
             "heading": "Grappige ornamenten",
-            "text": "Een astronaut, een gewichtheffende kerstman of een koffiebeker. Voor wie de boom niet te serieus neemt.",
-            "link_label": "[aantal] ornamenten",
+            "text": "Een gewichtheffende kerstman of een yogamat. Voor wie de boom niet te serieus neemt.",
+            "link_label": "Bekijk",
             "link_url": "",
             "scheme": "red"
           }
@@ -56,7 +56,7 @@
             "collection": "papieren-ornamenten",
             "heading": "Papieren ornamenten",
             "text": "Honeycombs die openvouwen tot een bal, hanger of ui. Licht, onbreekbaar en plat op te bergen.",
-            "link_label": "[aantal] ornamenten",
+            "link_label": "Bekijk",
             "link_url": "",
             "scheme": "gold"
           }
@@ -95,7 +95,7 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 44,
         "padding_bottom": 36
