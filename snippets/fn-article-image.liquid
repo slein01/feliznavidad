@@ -1,0 +1,31 @@
+{% comment %}
+  Uitgelichte afbeelding binnen een blogartikel (FelizNavidad).
+
+  Accepts:
+  - article: {Object} Article object
+  - size: {String} 'small' | 'medium' | 'wide' (default: medium)
+  - lazy: {Boolean} Lazy laden (default: true)
+{% endcomment %}
+{%- if article.image -%}
+  {%- assign fn_size = size | default: 'medium' -%}
+  <figure class="fn-article-figure fn-article-figure--{{ fn_size }}">
+    <img
+      srcset="
+        {%- if article.image.width >= 500 -%}{{ article.image | image_url: width: 500 }} 500w,{%- endif -%}
+        {%- if article.image.width >= 750 -%}{{ article.image | image_url: width: 750 }} 750w,{%- endif -%}
+        {%- if article.image.width >= 1100 -%}{{ article.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+        {%- if article.image.width >= 1500 -%}{{ article.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+        {{ article.image | image_url }} {{ article.image.width }}w
+      "
+      sizes="(min-width: 990px) {% case fn_size %}{% when 'small' %}480px{% when 'wide' %}960px{% else %}680px{% endcase %}, calc(100vw - 30px)"
+      src="{{ article.image | image_url: width: 1100 }}"
+      {% if lazy == false %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+      width="{{ article.image.width }}"
+      height="{{ article.image.height }}"
+      alt="{{ article.image.alt | default: article.title | escape }}"
+    >
+    {%- if article.image.alt != blank and article.image.alt != article.title -%}
+      <figcaption>{{ article.image.alt | escape }}</figcaption>
+    {%- endif -%}
+  </figure>
+{%- endif -%}

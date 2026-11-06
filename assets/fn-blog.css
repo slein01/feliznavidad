@@ -1,0 +1,171 @@
+/* ==========================================================================
+   FelizNavidad — blogkaarten (overzicht + homepage) en afbeelding in artikel
+   Eigen classes (fn-acard / fn-article-figure), los van Dawn's .card-markup,
+   zodat oude .article-card-overrides in redesign.css hier niet op ingrijpen.
+   ========================================================================== */
+
+/* -- Blogkaart -- */
+.fn-acard-wrap { height: 100%; }
+
+.fn-acard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--fn-paper, #fff);
+  border: 2px solid var(--fn-line, rgba(0, 0, 0, .12));
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.fn-acard:hover,
+.fn-acard:focus-within {
+  transform: translateY(-4px);
+  border-color: var(--fn-red, #d6382e);
+}
+
+.fn-acard__media {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--fn-line, #eee);
+}
+.fn-acard__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.fn-acard:hover .fn-acard__media img { transform: scale(1.03); }
+
+.fn-acard__body {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  flex: 1 1 auto;
+  padding: 2.4rem;
+  text-align: left;
+}
+.fn-acard--text .fn-acard__body { min-height: 22rem; }
+
+.fn-acard__label {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fn-red, #d6382e);
+}
+
+.fn-acard__title {
+  margin: 0;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 800;
+  font-size: 1.9rem;
+  line-height: 1.22;
+  letter-spacing: -.01em;
+}
+.fn-acard__link,
+.fn-acard__link:hover {
+  color: var(--fn-ink, #1a1a1a);
+  text-decoration: none;
+  box-shadow: none;
+}
+/* hele kaart klikbaar */
+.fn-acard__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.fn-acard__link:focus-visible { outline: none; }
+.fn-acard:has(.fn-acard__link:focus-visible) {
+  outline: 2px solid var(--fn-ink, #1a1a1a);
+  outline-offset: 3px;
+}
+
+.fn-acard__meta {
+  margin: 0;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 1.1rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--fn-ink-soft, #555);
+}
+
+.fn-acard__excerpt {
+  margin: 0;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  color: var(--fn-ink-soft, #555);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fn-acard__more {
+  margin-top: auto;
+  padding-top: .4rem;
+  font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--fn-red, #d6382e);
+}
+.fn-acard:hover .fn-acard__more { text-decoration: underline; text-underline-offset: .3rem; }
+
+/* overzicht: kaarten even hoog per rij, collage-layout niet centreren */
+.blog-articles { align-items: stretch; }
+.blog-articles__article { height: 100%; }
+.blog-articles--collage .fn-acard__body { text-align: left; }
+
+/* homepage-slider (featured blog) */
+.featured-blog .blog__post .fn-acard-wrap { width: 100%; }
+
+/* -- Afbeelding in een artikel -- */
+.fn-article-figure {
+  margin: 3.2rem auto;
+  max-width: 100%;
+}
+.fn-article-figure--small  { max-width: 48rem; }
+.fn-article-figure--medium { max-width: 68rem; }
+.fn-article-figure--wide   { max-width: 96rem; }
+
+.fn-article-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 52rem;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 2px solid var(--fn-line, rgba(0, 0, 0, .12));
+}
+.fn-article-figure--small img { max-height: 40rem; }
+
+.fn-article-figure figcaption {
+  margin-top: .8rem;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: var(--fn-ink-soft, #555);
+  text-align: center;
+}
+
+/* bovenaan geplaatst: wat ruimte onder het kruimelpad */
+.page-width > .fn-article-figure { margin-top: 1.6rem; margin-bottom: 2.4rem; }
+
+@media screen and (max-width: 749px) {
+  .fn-article-figure { margin: 2.4rem auto; }
+  .fn-article-figure img { border-radius: 14px; max-height: 36rem; }
+  .fn-acard__body { padding: 2rem; }
+}
+
+/* "Breed" mag buiten de tekstkolom uitsteken */
+@media screen and (min-width: 990px) {
+  .article-template__content .fn-article-figure--wide {
+    width: min(96rem, calc(100vw - 10rem));
+    max-width: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
