@@ -49,3 +49,11 @@ De oude `image-banner` / `collection-list` / disabled `multicolumn` zijn eruit.
 - Cart 2-koloms leunt op `:has()` + sectie-id's — check in preview.
 - Announcement-tekst, hoofdmenu/mega-menu, social links, collectie-omschrijvingen,
   productt tags (Klassiek/Grappig-badge), blogposts: handmatig in de Shopify-admin.
+
+## 3 voor 2-actie (papieren ornamenten)
+- `snippets/fn-deal-badge.liquid` — gouden "3 voor 2"-chip op productkaarten (naast Klassiek/Grappig).
+- `snippets/fn-deal-banner.liquid` — banner op de collectiepagina en productpagina's van de actiecollectie.
+- `snippets/fn-deal-cart.liquid` — melding in drawer en winkelmand ("Voeg nog 1 toe, dan is die gratis").
+- Aan/uit, collectie-handle, label en bannertekst: *Thema-instellingen → 3 voor 2-actie*.
+- De korting zelf staat niet in het thema: *Kortingen → Automatische korting → Koop X krijg Y*
+  (koopt 2 uit Papieren ornamenten, krijgt 1 uit dezelfde collectie 100% korting, geen maximum per bestelling).

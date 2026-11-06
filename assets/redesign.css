@@ -1867,3 +1867,49 @@ h2.rich-text__heading,
    - Collectie-omschrijvingen: alleen zichtbaar als in de admin ingevuld.
    - Blogposts voor de "Inspiratie"-sectie: aanmaken in de admin.
    -------------------------------------------------------------------------- */
+
+/* ---- 3 voor 2-actie (fn-deal-*) ---------------------------------------------------- */
+.fn-deal-badge {
+  display: inline-block;
+  font-family: var(--fn-mono);
+  font-weight: 700; font-size: 1rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .35rem .7rem; border-radius: 6px;
+  margin: 0 0 0 .4rem !important;
+  background: var(--fn-gold); color: var(--fn-ink);
+}
+.card__information > .fn-deal-badge:first-child { margin-left: 0 !important; }
+
+.fn-deal-banner {
+  display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+  background: var(--fn-gold-soft); color: var(--fn-ink);
+  border: 2px dashed var(--fn-gold);
+  border-radius: 14px; padding: 1.2rem 1.6rem;
+  margin: 1.6rem 0 0;
+}
+.fn-deal-banner--product { margin: 0 0 1.6rem; }
+.fn-deal-banner__label {
+  flex: none;
+  font-family: var(--fn-display); font-weight: 800; font-size: 2rem; line-height: 1;
+  background: var(--fn-gold); color: var(--fn-ink);
+  padding: .6rem 1rem; border-radius: 999px; transform: rotate(-3deg);
+}
+.fn-deal-banner__text { margin: 0; font-size: 1.5rem; line-height: 1.45; flex: 1 1 22rem; }
+.fn-deal-banner__link { color: var(--fn-gold-ink); font-weight: 600; white-space: nowrap; }
+
+.fn-deal-cart {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--fn-gold-soft); border-radius: 10px;
+  padding: .9rem 1.2rem; margin: 1.2rem 0;
+}
+.fn-deal-cart__label {
+  flex: none; font-family: var(--fn-mono); font-weight: 700; font-size: 1rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  background: var(--fn-gold); color: var(--fn-ink); padding: .3rem .6rem; border-radius: 6px;
+}
+.fn-deal-cart__msg { margin: 0; font-size: 1.4rem; line-height: 1.4; }
+.fn-deal-cart__msg strong { color: var(--fn-red); font-family: var(--fn-mono); }
+.fn-deal-cart__msg a { color: var(--fn-gold-ink); font-weight: 600; }
+.fn-deal-cart--done { background: var(--fn-green-soft); }
+.fn-deal-cart--done .fn-deal-cart__msg { color: #157a49; font-weight: 600; }
+.cart-drawer__shipbar .fn-deal-cart { margin-bottom: 0; }

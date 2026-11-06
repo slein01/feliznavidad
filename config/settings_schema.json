@@ -1451,5 +1451,38 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "3 voor 2-actie",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Alleen de weergave (badge, banner, winkelmandmelding). De korting zelf maak je in Kortingen → Automatische korting → Koop X krijg Y."
+      },
+      {
+        "type": "checkbox",
+        "id": "fn_deal_enabled",
+        "label": "Actie tonen",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "fn_deal_collection",
+        "label": "Handle van de actiecollectie",
+        "default": "papieren-ornamenten"
+      },
+      {
+        "type": "text",
+        "id": "fn_deal_label",
+        "label": "Label",
+        "default": "3 voor 2"
+      },
+      {
+        "type": "text",
+        "id": "fn_deal_text",
+        "label": "Bannertekst",
+        "default": "Doe er 3 in je mandje en betaal er maar 2. De goedkoopste krijg je cadeau."
+      }
+    ]
   }
 ]

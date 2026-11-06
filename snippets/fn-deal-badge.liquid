@@ -1,0 +1,15 @@
+{%- comment -%}
+  "3 voor 2"-badge op productkaarten. Verschijnt alleen als de actie aan staat
+  (Thema-instellingen → 3 voor 2-actie) en het product in de actiecollectie zit.
+  Accepts: card_product
+{%- endcomment -%}
+{%- if settings.fn_deal_enabled and settings.fn_deal_collection != blank -%}
+  {%- assign fn_in_deal = false -%}
+  {%- for c in card_product.collections -%}
+    {%- if c.handle == settings.fn_deal_collection -%}
+      {%- assign fn_in_deal = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if fn_in_deal -%}<span class="fn-deal-badge">{{ settings.fn_deal_label | default: '3 voor 2' | escape }}</span>{%- endif -%}
+{%- endif -%}
