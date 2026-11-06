@@ -58,6 +58,8 @@ h1, h2, h3, h4, h5, h6,
   --fn-green-soft: #DEF2E8;
   --fn-pine:       #10362A;
   --fn-gold:       #E8B54B;
+  --fn-gold-soft:  #FBF0D6;
+  --fn-gold-ink:   #8A5D0B;
   --fn-photo-bg:   #F2E6DF;
 
   --fn-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
@@ -288,18 +290,33 @@ cart-drawer .drawer__heading { font-family: var(--fn-display); font-weight: 800;
 .fn-cats__head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.4rem; gap: 2rem; }
 .fn-cats__title { font-family: var(--fn-display); font-weight: 800; font-size: clamp(3rem, 4vw, 4.4rem); margin: 0; }
 .fn-cats__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.4rem; }
+.fn-cats__grid--1 { grid-template-columns: minmax(0, 1fr); }
 .fn-cat { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem;
   border: 2px solid; border-radius: 2.4rem; padding: 3rem 3rem 3rem 3.8rem; text-decoration: none; color: var(--fn-ink); }
 .fn-cat--green { background: var(--fn-green-soft); border-color: var(--fn-green); }
 .fn-cat--red { background: var(--fn-red-soft); border-color: var(--fn-red); }
+.fn-cat--gold { background: var(--fn-gold-soft); border-color: var(--fn-gold); }
 .fn-cat__name { font-family: var(--fn-display); font-weight: 800; font-size: 2.8rem; margin: 0; }
 .fn-cat__text { color: var(--fn-ink-soft); margin: 1rem 0 0; max-width: 32rem; }
 .fn-cat__link { display: inline-block; margin-top: 1.6rem; font-family: var(--fn-display); font-weight: 700; }
 .fn-cat--green .fn-cat__link { color: var(--fn-green); }
 .fn-cat--red .fn-cat__link { color: var(--fn-red); }
+.fn-cat--gold .fn-cat__link { color: var(--fn-gold-ink); }
 .fn-cat__img { width: 15rem; height: 20rem; object-fit: cover; border-radius: 1.6rem; border: 3px solid; }
 .fn-cat--green .fn-cat__img { border-color: var(--fn-green); }
 .fn-cat--red .fn-cat__img { border-color: var(--fn-red); }
+.fn-cat--gold .fn-cat__img { border-color: var(--fn-gold); }
+/* 3 kaarten: compacter naast elkaar vanaf 1100px, daaronder onder elkaar */
+@media (min-width: 1100px) {
+  .fn-cats__grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fn-cats__grid--3 .fn-cat { padding: 2.4rem; gap: 1.6rem; }
+  .fn-cats__grid--3 .fn-cat__name { font-size: 2.2rem; }
+  .fn-cats__grid--3 .fn-cat__text { font-size: 1.4rem; }
+  .fn-cats__grid--3 .fn-cat__img { width: 11rem; height: 15rem; }
+}
+@media (max-width: 1099px) {
+  .fn-cats__grid--3 { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 749px) {
   .fn-cats { padding: 4rem 2rem; }
   .fn-cats__grid { grid-template-columns: 1fr; }

@@ -34,7 +34,7 @@
             "collection": "klassieke-ornamenten",
             "heading": "Klassieke ornamenten",
             "text": "Tijdloze klassiekers in je boom. Een zuurstok, een kerstlicht en meer.",
-            "link_label": "3 ornamenten",
+            "link_label": "[aantal] ornamenten",
             "link_url": "",
             "scheme": "green"
           }
@@ -45,18 +45,30 @@
             "collection": "grappige-ornamenten",
             "heading": "Grappige ornamenten",
             "text": "Een astronaut, een gewichtheffende kerstman of een koffiebeker. Voor wie de boom niet te serieus neemt.",
-            "link_label": "3 ornamenten",
+            "link_label": "[aantal] ornamenten",
             "link_url": "",
             "scheme": "red"
+          }
+        },
+        "cat_papier": {
+          "type": "category",
+          "settings": {
+            "collection": "papieren-ornamenten",
+            "heading": "Papieren ornamenten",
+            "text": "Honeycombs die openvouwen tot een bal, hanger of ui. Licht, onbreekbaar en plat op te bergen.",
+            "link_label": "[aantal] ornamenten",
+            "link_url": "",
+            "scheme": "gold"
           }
         }
       },
       "block_order": [
         "cat_klassiek",
-        "cat_grappig"
+        "cat_grappig",
+        "cat_papier"
       ],
       "settings": {
-        "heading": "Grappig of klassiek?",
+        "heading": "Welke stijl past bij jouw boom?",
         "link_label": "Bekijk alles",
         "link_url": "shopify://collections/all"
       }
