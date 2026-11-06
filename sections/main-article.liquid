@@ -1,4 +1,18 @@
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+{{ 'fn-blog.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  # Positie van de uitgelichte afbeelding: bovenaan, na de eerste alinea of verborgen.
+  # Dezelfde afbeelding wordt op het blogoverzicht als teaser gebruikt.
+  assign fn_image_position = 'none'
+  assign fn_image_size = 'medium'
+  for b in section.blocks
+    if b.type == 'featured_image'
+      assign fn_image_position = b.settings.image_position | default: 'after_first_paragraph'
+      assign fn_image_size = b.settings.image_size | default: 'medium'
+    endif
+  endfor
+-%}
 
 <article class="article-template">
   {%- for block in section.blocks -%}
@@ -8,36 +22,12 @@
           {% render block %}
         </div>
       {%- when 'featured_image' -%}
-        {%- if article.image -%}
+        {%- if article.image and fn_image_position == 'top' -%}
           <div
-            class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            class="page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             {{ block.shopify_attributes }}
           >
-            <div
-              class="article-template__hero-{{ block.settings.image_height }} media"
-              {% if block.settings.image_height == 'adapt' and article.image %}
-                style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
-              {% endif %}
-            >
-              <img
-                srcset="
-                  {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
-                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
-                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
-                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
-                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
-                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
-                  {{ article.image | image_url }} {{ article.image.width }}w
-                "
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
-                src="{{ article.image | image_url: width: 1100 }}"
-                loading="eager"
-                fetchpriority="high"
-                width="{{ article.image.width }}"
-                height="{{ article.image.height }}"
-                alt="{{ article.image.alt | escape }}"
-              >
-            </div>
+            {%- render 'fn-article-image', article: article, size: block.settings.image_size, lazy: false -%}
           </div>
         {%- endif -%}
 
@@ -68,7 +58,23 @@
           class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {{ block.shopify_attributes }}
         >
-          {{ article.content }}
+          {%- liquid
+            assign fn_inline_image = false
+            if article.image and fn_image_position == 'after_first_paragraph'
+              assign fn_inline_image = true
+            endif
+          -%}
+          {%- if fn_inline_image and article.content contains '</p>' -%}
+            {%- assign fn_first_paragraph = article.content | split: '</p>' | first | append: '</p>' -%}
+            {{ fn_first_paragraph }}
+            {%- render 'fn-article-image', article: article, size: fn_image_size, lazy: false -%}
+            {{ article.content | remove_first: fn_first_paragraph }}
+          {%- elsif fn_inline_image -%}
+            {%- render 'fn-article-image', article: article, size: fn_image_size, lazy: false -%}
+            {{ article.content }}
+          {%- else -%}
+            {{ article.content }}
+          {%- endif -%}
         </div>
 
       {%- when 'share' -%}
@@ -308,27 +314,26 @@
       "settings": [
         {
           "type": "select",
-          "id": "image_height",
+          "id": "image_position",
+          "label": "Positie in het artikel",
+          "info": "De uitgelichte afbeelding is ook de teaser op het blogoverzicht. Kies hier of en waar hij in het artikel zelf staat.",
           "options": [
-            {
-              "value": "adapt",
-              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
-            },
-            {
-              "value": "small",
-              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
-            },
-            {
-              "value": "medium",
-              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
-            },
-            {
-              "value": "large",
-              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
-            }
+            { "value": "after_first_paragraph", "label": "Na de eerste alinea" },
+            { "value": "top", "label": "Bovenaan, boven de titel" },
+            { "value": "hidden", "label": "Niet tonen (alleen teaser op overzicht)" }
           ],
-          "default": "adapt",
-          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label"
+          "default": "after_first_paragraph"
+        },
+        {
+          "type": "select",
+          "id": "image_size",
+          "label": "Formaat",
+          "options": [
+            { "value": "small", "label": "Klein" },
+            { "value": "medium", "label": "Normaal (tekstbreedte)" },
+            { "value": "wide", "label": "Breed" }
+          ],
+          "default": "medium"
         }
       ]
     },
