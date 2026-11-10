@@ -53,7 +53,7 @@
           "settings": {
             "layout": "vertical",
             "icon_1": "none",
-            "heading_1": "Gratis verzending vanaf €25 euro",
+            "heading_1": "Gratis verzending vanaf €25",
             "icon_2": "none",
             "heading_2": "",
             "icon_3": "none",
@@ -65,7 +65,7 @@
           "settings": {
             "heading": "Specificaties",
             "icon": "clipboard",
-            "content": "<p><strong>Afmetingen: </strong>113 mm x 110 x 100</p><p><strong>Materiaal: </strong>Plastic</p><p><strong>Onbreekbaar: </strong>Ja</p>",
+            "content": "<p>Afmetingen en materiaal staan in de productomschrijving.</p>",
             "page": "",
             "fn_product_specs": true
           }
