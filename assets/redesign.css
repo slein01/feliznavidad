@@ -1149,9 +1149,18 @@ select.facet-filters__sort {
 
 /* -- Grid: gelijke kolommen + nette tussenruimte -- */
 .product-grid.grid { column-gap: 2.2rem !important; row-gap: 3rem !important; }
+/* Kaarten groeien niet mee: een losse kaart op de laatste rij (bijv. de 4e of 7e)
+   houdt dezelfde breedte als de rest in plaats van de hele rij te vullen. */
 .grid--3-col-desktop .grid__item { max-width: none !important; }
+.product-grid.grid:not(.slider) > .grid__item { flex: 0 0 auto !important; }
+@media (max-width: 989px) {
+  .product-grid.grid--2-col-tablet-down:not(.slider) > .grid__item { width: calc((100% - 2.2rem) / 2) !important; }
+  .product-grid.grid--1-col-tablet-down:not(.slider) > .grid__item { width: 100% !important; }
+}
 @media (min-width: 990px) {
+  .product-grid.grid--4-col-desktop:not(.slider) > .grid__item { width: calc((100% - 6.6rem) / 4) !important; }
   .product-grid.grid--3-col-desktop .grid__item { width: calc((100% - 4.4rem) / 3) !important; }
+  .product-grid.grid--2-col-desktop:not(.slider) > .grid__item { width: calc((100% - 2.2rem) / 2) !important; }
 }
 
 /* -- Classificatie-chip -- */
