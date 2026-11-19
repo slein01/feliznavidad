@@ -1876,3 +1876,53 @@ h2.rich-text__heading,
    - Collectie-omschrijvingen: alleen zichtbaar als in de admin ingevuld.
    - Blogposts voor de "Inspiratie"-sectie: aanmaken in de admin.
    -------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   PRODUCTKAARTEN — lange (Google Shopping) titels netjes tonen
+   De volledige titel blijft in de HTML staan (SEO, schermlezers, productpagina);
+   alleen de weergave in de kaart wordt ingekort tot max. 2 regels.
+   ========================================================================== */
+/* kaarten in één rij even hoog; knop altijd onderaan uitgelijnd */
+.product-grid > .grid__item { display: flex; }
+.product-grid .card-wrapper.product-card-wrapper { flex: 1 1 auto; width: 100%; }
+.card-wrapper.product-card-wrapper > .card--card {
+  flex: 1 1 auto;
+  display: flex !important;
+  flex-direction: column;
+}
+.card--card > .card__content { flex: 1 1 auto; }
+.card--card > .card__content .card__information { flex: 1 1 auto; }
+.card--card > .card__content .card-information { margin-top: auto !important; }
+
+/* titel: iets kleiner, max. 2 regels met "…", altijd 2 regels hoog */
+.card--card .card__heading {
+  font-size: 1.45rem !important;
+  line-height: 1.25 !important;
+  letter-spacing: -.005em;
+  width: 100%;
+  min-height: calc(2 * 1.25em);
+}
+.card--card .card__heading a,
+.card--card .card__heading .full-unstyled-link {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  /* geen rode content-link-lijn onder de kaarttitel (komt van "#MainContent li a") */
+  box-shadow: none !important;
+  padding-bottom: 0 !important;
+  text-decoration: none !important;
+  color: var(--fn-ink) !important;
+  transition: color .12s ease;
+}
+.card-wrapper:hover .card--card .card__heading a,
+.card--card .card__heading a:hover { color: var(--fn-red) !important; box-shadow: none !important; }
+/* mobiel (2 smalle kolommen): kleiner en 3 regels, anders blijft er te weinig titel over */
+@media (max-width: 749px) {
+  .card--card .card__heading { font-size: 1.3rem !important; min-height: calc(3 * 1.25em); }
+  .card--card .card__heading a,
+  .card--card .card__heading .full-unstyled-link { -webkit-line-clamp: 3; line-clamp: 3; hyphens: auto; }
+  .card-wrapper .quick-add__submit { white-space: nowrap; padding-left: 1rem; padding-right: 1rem; }
+}
